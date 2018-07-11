@@ -27,5 +27,21 @@ Button.propTypes = {
     // }).isRequired,
   }
 
+  // Retrieve data from store as props
+function mapStateToProps(store) {
 
-export default Button;
+    
+}
+
+
+//Map Redux Actions to Props..
+const mapActionsToProps = {
+//map action here
+
+};
+
+  
+  
+  
+  
+export default connect(mapStateToProps, mapActionsToProps)(Button);

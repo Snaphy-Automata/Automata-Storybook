@@ -3,20 +3,21 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { Provider } from 'react-redux';
 
+
 //Custom Import
 import Button from '../components/Button';
 import configureStore from '../store/configureStore';
-import ReactBigCalendar from '../components/ReactBigCalendar';
+import GanttChart from '../components/GanttChart';
 
 const store = configureStore();
 
 
 storiesOf('Button', module)
   .addDecorator(story => <Provider store={store}>{story()}</Provider>)
-  .add('ReactBigCalendar', ()=> {
+  .add('GanttChart', ()=> {
         
     return (
-        <ReactBigCalendar></ReactBigCalendar>
+        <GanttChart></GanttChart>
     )
   })
   .add('with text', () => (

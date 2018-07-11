@@ -1,12 +1,12 @@
 import { reducer as formReducer } from 'redux-form';
 
 import ButtonReducer from '../components/Button/ButtonReducer';
-import ReactBigCalendarReducer from '../components/ReactBigCalendar/ReactBigCalendarReducer';
+//import GanttChart from '../components/GanttChart/GanttChartReducer';
 
 
 export default {
     form: formReducer,
     ButtonReducer,
-    ReactBigCalendarReducer,
+    //GanttChart,
 };
 

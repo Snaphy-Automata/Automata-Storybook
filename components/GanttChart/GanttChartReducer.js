@@ -4,7 +4,7 @@
  */
 //Set initial state for gridview reducer..
 const initialState = {};
-const ReactBigCalendarReducer = (state = initialState, action) => {
+const GanttChartReducer = (state = initialState, action) => {
   switch (action.type){
 
 
@@ -14,4 +14,4 @@ const ReactBigCalendarReducer = (state = initialState, action) => {
 };
 
 
-export default ReactBigCalendarReducer;
+export default GanttChartReducer;

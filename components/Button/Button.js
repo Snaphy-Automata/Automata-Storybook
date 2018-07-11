@@ -31,7 +31,9 @@ Button.propTypes = {
   // Retrieve data from store as props
 function mapStateToProps(store) {
 
-    
+    return {
+
+    };
 }
 
 

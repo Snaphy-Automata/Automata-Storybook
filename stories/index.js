@@ -8,7 +8,6 @@ import Button from '../components/Button';
 import configureStore from '../store/configureStore';
 import ReactBigCalendar from '../components/ReactBigCalendar';
 
-
 const store = configureStore();
 
 

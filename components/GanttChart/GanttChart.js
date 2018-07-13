@@ -6,7 +6,10 @@ import 'react-calendar-timeline/lib/Timeline.css'
 
 
 //Custom Import
-import {onItemResizeAction} from "./GanttChartActions";
+import {
+  onItemResizeAction,
+  onItemMoveAction,
+} from "./GanttChartActions";
 
 
 var keys = {
@@ -58,7 +61,7 @@ class App extends Component {
 
   render() {
     const { defaultTimeStart, defaultTimeEnd } = state
-    const { groups, items, onItemResizeAction } = this.props;
+    const { groups, items, onItemResizeAction, onItemMoveAction } = this.props;
 
     return (
       <Timeline
@@ -84,8 +87,9 @@ class App extends Component {
         minZoom={60*60*1000*24} //Smallest time that can be zoomed. 1 day
         maxZoom={365.24 * 86400 * 1000} //longest time that can be zoomed 1 year.
         canChangeGroup={false} //items cannot be moved outside a group.
-        useResizeHandle={true}
+        //useResizeHandle={true}
         onItemResize={onItemResizeAction}
+        onItemMove={onItemMoveAction}
       />
     )
   }
@@ -105,6 +109,7 @@ class App extends Component {
 const mapActionsToProps = {
   //map action here
   onItemResizeAction,
+  onItemMoveAction,
 };
 
 

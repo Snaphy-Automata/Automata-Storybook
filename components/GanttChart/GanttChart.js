@@ -21,6 +21,23 @@ var keys = {
   itemTimeEndKey: 'end'
 }
 
+const defaultHeaderLabelFormats =
+  {
+    yearShort: 'YY',
+    yearLong: 'YYYY',
+    monthShort: 'MM/YY',
+    monthMedium: 'MM/YYYY',
+    monthMediumLong: 'MMM YYYY',
+    monthLong: 'MMMM YYYY',
+    dayShort: 'L',
+    dayLong: 'dddd, LL',
+    hourShort: 'HH',
+    hourMedium: 'HH:00',
+    hourMediumLong: 'L, HH:00',
+    hourLong: 'dddd, LL, HH:00',
+    time: 'LLL'
+  }
+
 const defaultTimeStart = moment()
   .startOf('day')
   .toDate()
@@ -57,7 +74,6 @@ class App extends Component {
         defaultTimeStart={defaultTimeStart}
         defaultTimeEnd={defaultTimeEnd}
         lineHeight={25}
-        onItemResize={onItemResizeAction}
 
         sidebarWidth={170}
         sidebarContent={<div>April</div>}
@@ -66,6 +82,10 @@ class App extends Component {
         headerLabelHeight={23}
         itemHeightRatio={0.65}
         minZoom={60*60*1000*24} //Smallest time that can be zoomed. 1 day
+        maxZoom={365.24 * 86400 * 1000} //longest time that can be zoomed 1 year.
+        canChangeGroup={false} //items cannot be moved outside a group.
+        useResizeHandle={true}
+        onItemResize={onItemResizeAction}
       />
     )
   }

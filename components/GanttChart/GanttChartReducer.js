@@ -20,10 +20,40 @@ const initialState = {
 const GanttChartReducer = (state = initialState, action) => {
   switch (action.type){
     case ON_ITEM_RESIZE:{
-      //First find the item..
       const {itemId, time, edge} = action.payload;
-      console.log("On Resize", itemId, time, edge);
+      const oldItemList = state.data.items;
+      const newItem = [];
+      let targetItem, index = -1;
+      for(let i=0; i<oldItemList.length;i++){
+        const item = oldItemList[i];
+        if(item.id === itemId){
+          targetItem = item;
+          index = i;
+        }
+        newItem.push(item);
+      }
+      //First find the item..
+      if(targetItem && index !== -1){
+        console.log("Target Item", targetItem);
+        console.log(time, edge);
+        if(edge === "left"){
+          //Start date modified
+          targetItem.start = time;
+        }else{
+          targetItem.end = time;
+        }
 
+        newItem[index] = targetItem;
+      }
+
+      state = {
+        ...state,
+        data: {
+          groups: state.data.groups,
+          items: newItem,
+        }
+      }
+      
       break;
     }
 

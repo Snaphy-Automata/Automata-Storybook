@@ -38,16 +38,16 @@ function configureStore(initialState) {
     enhancers,
   );
 
-  if (process.env.NODE_ENV === 'development' && module.hot) {
-    // Enable Webpack hot module replacement for reducers. This is so that we
-    // don't lose all of our current application state during hot reloading.
-    module.hot.accept('../reducers', () => {
-      // eslint-disable-next-line global-require
-      const nextRootReducer = require('../reducers').default;
+  // if (process.env.NODE_ENV === 'development' && module.hot) {
+  //   // Enable Webpack hot module replacement for reducers. This is so that we
+  //   // don't lose all of our current application state during hot reloading.
+  //   module.hot.accept('../reducers', () => {
+  //     // eslint-disable-next-line global-require
+  //     const nextRootReducer = require('../reducers').default;
 
-      store.replaceReducer(nextRootReducer);
-    });
-  }
+  //     store.replaceReducer(nextRootReducer);
+  //   });
+  // }
 
   return store;
 }

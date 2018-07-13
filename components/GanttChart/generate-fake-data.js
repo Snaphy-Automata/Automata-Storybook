@@ -9,7 +9,7 @@ export default function (groupCount = 30, itemCount = 1000, daysInPast = 30) {
     groups.push({
       id: `${i + 1}`,
       title: faker.name.firstName(),
-      rightTitle: faker.name.lastName(),
+      //rightTitle: faker.name.lastName(),
       bgColor: randomColor({ luminosity: 'light', seed: randomSeed + i })
     })
   }
@@ -23,9 +23,12 @@ export default function (groupCount = 30, itemCount = 1000, daysInPast = 30) {
     items.push({
       id: i + '',
       group: faker.random.number({ min: 1, max: groups.length }) + '',
-      title: faker.hacker.phrase(),
+      //title: faker.hacker.phrase(),
       start: startValue,
       end: endValue,
+      style:{
+        //backgroundColor:  (moment(startDate).day() === 6 || moment(startDate).day() === 0)? "#ffc16233": "#ff414133",
+      },
       // canMove: startValue > new Date().getTime(),
       // canResize: startValue > new Date().getTime() ? (endValue > new Date().getTime() ? 'both' : 'left') : (endValue > new Date().getTime() ? 'right' : false),
       className: (moment(startDate).day() === 6 || moment(startDate).day() === 0) ? 'item-weekend' : '',

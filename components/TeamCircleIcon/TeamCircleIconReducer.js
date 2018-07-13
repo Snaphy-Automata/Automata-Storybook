@@ -4,7 +4,7 @@
  */
 //Set initial state for gridview reducer..
 const initialState = {};
-const ButtonReducer = (state = initialState, action) => {
+const TeamCircleIconReducer = (state = initialState, action) => {
   switch (action.type){
 
 
@@ -14,4 +14,4 @@ const ButtonReducer = (state = initialState, action) => {
 };
 
 
-export default ButtonReducer;
+export default TeamCircleIconReducer;

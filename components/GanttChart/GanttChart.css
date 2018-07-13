@@ -1,1 +1,27 @@
 /* Created By Robins Gupta */
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400');
+
+.react-calendar-timeline{
+    font-family: 'Lato', sans-serif;
+    color: #707070;
+    
+}
+
+.rct-sidebar{
+    font-size: 11px;
+}
+
+.react-calendar-timeline .rct-items .rct-item.analysis {
+    background-color: #68efad;
+}
+
+.react-calendar-timeline .rct-sidebar-header{
+    font-family: 'Lato', sans-serif;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* style for displaying vertical lines for Sat and Sun column */
+.react-calendar-timeline .rct-vertical-lines .rct-vl.rct-day-6, .react-calendar-timeline .rct-vertical-lines .rct-vl.rct-day-0{
+    background-color: rgba(250, 246, 225, 0.5)
+}

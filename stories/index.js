@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { Provider } from 'react-redux';
 
+import 'semantic-ui-css/semantic.min.css';
 
 //Custom Import
 import Button from '../components/Button';

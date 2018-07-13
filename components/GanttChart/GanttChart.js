@@ -11,6 +11,9 @@ import {
   onItemMoveAction,
 } from "./GanttChartActions";
 
+//Custom style
+import "./GanttChart.css";
+
 
 var keys = {
   groupIdKey: 'id',

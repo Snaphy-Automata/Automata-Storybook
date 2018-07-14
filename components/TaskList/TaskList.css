@@ -1,0 +1,102 @@
+/* Created By Nikita Mittal */
+
+.task-list-heading-container{
+    width: 100%;
+    padding: 15px
+    
+}
+
+.task-list-heading-icon{
+    display: inline-block;
+    width: 3%
+}
+
+.task-list-heading-title{
+    display: inline-block;
+    width : 60%;
+    font-size: larger;
+    font-style: inherit;
+}
+
+.task-list-heading-archive-container{
+    display:inline-block;
+    width : 24%;
+    text-align: right
+}
+
+.task-list-heading-archive-container:hover{
+    cursor: pointer;
+}
+
+.task-list-heading-add-new-container{
+    display:inline-block;
+    width : 10%;
+    text-align: right;
+    margin-left: 10px
+}
+
+.task-list-heading-add-new-container:hover{
+    cursor: pointer;
+}
+
+/************************************ END OF HEADING CSS *****************************************/
+
+.task-list-item-container{
+    width: 100%;
+    padding: 12px;
+    display: inline-block;
+}
+
+.task-list-item-container:hover{
+    cursor: pointer;
+    background: rgba(197, 175, 247, 0.2)
+}
+
+.task-list-item-container:hover .task-list-item-drag-icon{
+   display: block;
+}
+
+.task-list-item-drag-icon{
+    display: none;
+}
+
+.task-list-item-side-line{
+    display: inline-block;
+    width: 2%;
+}
+
+.task-list-item-icon{
+    display:inline-block;
+    width: 3%;
+}
+
+.task-list-item-title{
+    display: inline-block;
+    width: 45%;
+    white-space: nowrap;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+}
+
+.task-list-item-status{
+    display: inline-block;
+    width: 15%;
+    text-align: center;
+}
+
+.task-list-item-sub-task-attachment-container{
+    display: inline-block;
+    width: 15%;
+    text-align: center
+}
+
+.task-list-item-tags-container{
+    display: inline-block;
+    width: 10%;
+    text-align: center
+}
+
+.task-list-item-date-container{
+    display: inline-block;
+    width: 10%;
+}

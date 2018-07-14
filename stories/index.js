@@ -10,9 +10,62 @@ import Button from '../components/Button';
 import configureStore from '../store/configureStore';
 import GanttChart from '../components/GanttChart';
 import TeamCircleIcon from '../components/TeamCircleIcon';
+import TaskList from '../components/TaskList';
+import Label    from '../components/Label';
 
 
 const store = configureStore();
+
+
+const items = [
+  {
+    title : "This is the first issue to be solved",
+    icon:{
+      title : "Nikita",
+      toolTip : "Nikita",
+      onClick : "Items has been clicked"
+    },
+    status: {
+      title: "Completed",
+      color : "#1ed0c1"
+    },
+    subTask:{
+      total : 9,
+      completed: 4
+    },
+    attachment: 3,
+    labels : [
+      {title : "Bug", color : "#ff9b00", onClick:"Bug"}
+    ],
+    dueDate : {
+      date : "2018-07-10T01:14:00Z",
+      onClick : "Date has been clicked"
+    }
+  },
+  {
+    title : "Disable the button after clicking and then enable the button after getting response",
+    icon: {
+      icon : "users",
+      toolTip : "Nikita, Mitsu, Sakura",
+      onClick : "Items has been clicked"
+    },
+    status : {
+      title : "In Progress",
+      color : "#3b86ff"
+    },
+    subTask:{
+      total : 15,
+      completed : 10
+    },
+    attachment : 6,
+    dueDate : {
+      date : "2018-07-23T01:14:00Z",
+      onClick : "Date has been clicked"
+    }
+  }
+]
+
+
 
 
 storiesOf('GanttChart', module)
@@ -72,5 +125,41 @@ storiesOf('Team Icon', module)
           <TeamCircleIcon size="massive" title="Robins" onClick={()=>{console.log("Item Has been clicked")}}></TeamCircleIcon>
         </div>
       </div>
+  )
+
+ 
+
+})
+
+
+storiesOf("Label", module)
+.addDecorator(story => <Provider store={store}>{story()}</Provider>)
+.add('Basic', ()=>{
+  return (
+    <Label title="Issue" color="#0f0f4c"></Label>
+  )
+})
+.add("Empty Label", ()=>{
+  return (
+    <Label title="..."></Label>
+  )
+})
+.add("Over Flow Label", ()=>{
+  return (
+    <Label title="Staus Updated" color="#6f6fff"></Label>
+  )
+})
+
+
+storiesOf('TaskList', module)
+.addDecorator(story => <Provider store={store}>{story()}</Provider>)
+.add('Basic', ()=> {   
+  return (
+      <TaskList heading="Active Tasks" onArchiveClicked={()=>{console.log("Archive has been clicked")}} onNewTaskClicked={()=>{console.log("New Task has been Clicked")}}></TaskList>
+  )
+})
+.add('With Items', ()=>{
+  return (
+    <TaskList items = {items} heading="Active Tasks" isOpened onArchiveClicked={()=>{console.log("Archive has been clicked")}} onNewTaskClicked={()=>{console.log("New Task has been Clicked")}}></TaskList>
   )
 })

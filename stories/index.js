@@ -12,6 +12,9 @@ import GanttChart from '../components/GanttChart';
 import TeamCircleIcon from '../components/TeamCircleIcon';
 import TaskList from '../components/TaskList';
 import Label    from '../components/Label';
+import TaskDetail from '../components/TaskDetail';
+import IconLabel  from '../components/IconLabel';
+import Description from '../components/Description';
 
 
 
@@ -165,5 +168,36 @@ storiesOf('TaskList', module)
     <TaskList items = {items} heading="Active Tasks" isOpened onArchiveClicked={()=>{console.log("Archive has been clicked")}} onNewTaskClicked={()=>{console.log("New Task has been Clicked")}}></TaskList>
   )
 })
+
+storiesOf('Task Detail', module)
+.addDecorator(story => <Provider store={store}>{story()}</Provider>)
+.add('Basic', ()=>{
+  return (
+    <TaskDetail></TaskDetail>
+  )
+})
+
+storiesOf("Label Icon", module)
+.addDecorator(story => <Provider store={store}>{story()}</Provider>)
+.add('With User', ()=>{
+  return (
+    <IconLabel size="mini" title="Nikita Mittal" name="Nikita Mittal" isLabel></IconLabel>
+  )
+})
+.add('With Icon', ()=>{
+  return (
+    <IconLabel size="mini" icon="calendar minus outline" name="Start Date"></IconLabel>
+  )
+})
+
+
+storiesOf("Description", module)
+.addDecorator(story => <Provider store={store}>{story()}</Provider>)
+.add('Basic', ()=>{
+  return (
+    <Description placeholder="Write Description Here" style={{ minHeight: '200px' }}></Description>
+  )
+})
+
 
 

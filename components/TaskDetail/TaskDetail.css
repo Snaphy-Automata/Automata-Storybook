@@ -1,0 +1,202 @@
+
+/* Created By Nikita Mittal
+   16th July 2018 
+*/
+
+
+.task-detail-header-conatiner{
+    line-height: 20px;
+    padding: 10px;
+    width: 100%;
+    border-style: solid;
+    border-width: 0px 0px 1px 0px;
+    border-color: lightgrey;
+}
+
+.task-detail-share-container{
+    display: inline-block;
+   width: 20%;
+   text-align: center;
+}
+
+.task-detail-attachment-container{
+    display: inline-block;
+    width: 20%;
+    text-align: center;
+   
+}
+
+.task-detail-add-subtask-button-conatiner{
+    display: inline-block;
+    width : 20%;
+    text-align: center;
+}
+
+.task-detail-close-button-conatiner{
+    display: inline-block;
+    width: 40%;
+    text-align: right;
+    padding-right: 10px;
+    
+}
+
+
+
+
+/***********************************End of Heading css ******************************************/
+
+/************************************ Task Item Detail Css ************************************/
+
+.task-detail-task-detail-container{
+    padding: 10px;
+}
+
+.task-detail-task-name-container{
+    font-size: 18px;
+    padding-bottom: 5px;
+}
+
+.task-detail-task-action-button-conatiner{
+    width: 100%;
+    padding-Top:10px;
+    padding-bottom: 10px;
+    line-height: 20px;
+}
+
+.task-detail-completed-container{
+    width: 40%;
+    display: inline-block
+}
+
+.task-detail-status-container{
+    width: 20%;
+    display:inline-block;
+    text-align: center;
+}
+
+.task-detail-archive-container{
+    width: 40%;
+    display: inline-block;
+    text-align: right;
+}
+
+.task-detail-assigned-to-container{
+    padding-bottom: 5px;
+    margin-top: 10px;
+}
+
+.task-detail-assigned-to-data-container{
+    width: 100%;
+    margin-top: 10px;
+    border-style: solid;
+    height: 40px;
+    border-width: 0px 0px 1px 0px;
+    border-color: lightgray;
+}
+
+.task-detail-assigned-to-list-conatiner{
+    width: 90%;
+    display: 'inline-block';
+}
+
+.task-detail-add-assigned-button-container{
+    float: right;
+    border-radius: 32px;
+    font-size: 14px;
+    height: 30px;
+    width: 30px;
+    line-height: 30px;
+    font-family: Lato;
+    color: #707070;
+    cursor: pointer;
+    text-align: center;
+    border-color: lightgray;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.task-detail-date-container{
+    width: 100%;
+    margin-top: 10px;
+}
+
+.task-detail-due-date-container{
+    width: 30%;
+    display: inline-block;
+    font-family: Lato;
+}
+
+.task-detail-start-date-container{
+    width: 30%;
+    display: inline-block;
+    font-family: Lato;
+}
+
+.task-detail-labels-container{
+    width: 100%;
+    margin-top: 10px;
+}
+
+.task-detail-labels-data-container{
+    width: 100%;
+    margin-top: 10px;
+    border-style: solid;
+    height: 40px;
+    border-width: 0px 0px 1px 0px;
+    border-color: lightgray;
+}
+
+.task-detail-labels-list-conatiner{
+    width: 90%;
+    display: 'inline-block';
+}
+
+.task-detail-add-labels-button-container{
+    float: right;
+    border-radius: 32px;
+    font-size: 14px;
+    height: 30px;
+    width: 30px;
+    line-height: 30px;
+    font-family: Lato;
+    color: #707070;
+    cursor: pointer;
+    text-align: center;
+    border-color: lightgray;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.task-detail-description-container{
+    margin-top: 15px;
+}
+
+.task-detail-comment-container{
+    width: 100%;
+    margin-top: 15px;
+    border-style: solid;
+    border-width: 0px 0px 0px 0px;
+    border-color: lightgrey; 
+}
+
+.task-detail-comment-data-container{
+    display : inline-block;
+    width : 80%;
+    margin-top : 5px;
+}
+
+.task-detail-comment-button-container{
+    display : inline-block;
+    width : 20%;
+    margin-top : 5px;
+}
+
+
+
+
+
+
+
+
+
+

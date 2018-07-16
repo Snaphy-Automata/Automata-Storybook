@@ -14,6 +14,7 @@ import TaskList from '../components/TaskList';
 import Label    from '../components/Label';
 
 
+
 const store = configureStore();
 
 
@@ -159,7 +160,10 @@ storiesOf('TaskList', module)
   )
 })
 .add('With Items', ()=>{
+ console.log("Items List", items);
   return (
     <TaskList items = {items} heading="Active Tasks" isOpened onArchiveClicked={()=>{console.log("Archive has been clicked")}} onNewTaskClicked={()=>{console.log("New Task has been Clicked")}}></TaskList>
   )
 })
+
+

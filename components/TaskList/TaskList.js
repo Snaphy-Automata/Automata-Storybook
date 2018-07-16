@@ -10,14 +10,23 @@ import './TaskList.css';
 import TaskListHeading from './TaskListHeading';
 import TaskItem       from './TaskItem'
 
-const TaskList = ({items, heading, isOpened, onArchiveClicked, onNewTaskClicked, onStateChanged}) => {
+import {expandTaskListAction} from './TaskListActions';
+
+const TaskList = (props) => {
+
+    console.log("Task List Props Data", props);
+
+    const onStateChangedFunction = function(){
+        console.log("Method called", props.isOpened);
+        props.expandTaskListAction(!props.isOpened);
+    }
 
     return (
         <div>
-            <TaskListHeading heading={heading} isOpened={isOpened} onArchiveClicked={onArchiveClicked} onNewTaskClicked={onNewTaskClicked}></TaskListHeading>
-            {isOpened && items && items.length && <div>
+            <TaskListHeading heading={props.heading} isOpened={props.isOpened} onArchiveClicked={props.onArchiveClicked} onNewTaskClicked={props.onNewTaskClicked} onStateChanged={onStateChangedFunction}></TaskListHeading>
+            {props.isOpened && props.items && props.items.length && <div>
                 {
-                    map(items, function(item, index){
+                    map(props.items, function(item, index){
                         return(
                             <TaskItem key={index} title={item.title} icon={item.icon} status={item.status} subTask={item.subTask} attachment={item.attachment} dueDate={item.dueDate}></TaskItem>
                         )
@@ -29,4 +38,22 @@ const TaskList = ({items, heading, isOpened, onArchiveClicked, onNewTaskClicked,
 
 }
 
-export default TaskList;
+  // Retrieve data from store as props
+  function mapStateToProps(store) {
+
+    return {
+        isOpened : store.TaskListReducer.isOpened
+    };
+}
+
+
+//Map Redux Actions to Props..
+const mapActionsToProps = {
+  //map action here
+  expandTaskListAction
+};
+
+
+
+
+export default connect(mapStateToProps, mapActionsToProps)(TaskList);

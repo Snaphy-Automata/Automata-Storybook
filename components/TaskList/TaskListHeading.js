@@ -17,7 +17,7 @@ const TaskListHeading = ({ heading, isOpened, onArchiveClicked, onNewTaskClicked
 
     return (
         <div className="task-list-heading-container">
-                <div className="task-list-heading-icon"> <Icon name={getIcon()}></Icon></div>
+                <div className="task-list-heading-icon"> <Icon name={getIcon()} onClick={onStateChanged}></Icon></div>
                 <div className="task-list-heading-title">{heading}</div>
                 <div className="task-list-heading-archive-container" >
                     <div>

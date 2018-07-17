@@ -4,6 +4,7 @@ import ButtonReducer from '../components/Button/ButtonReducer';
 import GanttChartReducer from '../components/GanttChart/GanttChartReducer';
 import TaskListReducer   from '../components/TaskList/TaskListReducer';
 import InputElementReducer from '../components/InputElement/InputElementReducer';
+import TagElementReducer   from '../components/TagElement/TagElementReducer';
 
 
 export default {
@@ -11,6 +12,7 @@ export default {
     ButtonReducer,
     GanttChartReducer,
     TaskListReducer,
-    InputElementReducer
+    InputElementReducer,
+    TagElementReducer
 };
 

@@ -19,6 +19,7 @@ import CustomCheckbox from '../components/CustomCheckbox';
 import SubTask        from '../components/TaskDetail/SubTask';
 import TaskAttachment from '../components/TaskDetail/TaskAttachment';
 import InputElement   from '../components/InputElement';
+import TagElement     from '../components/TagElement';
 
 
 
@@ -250,6 +251,17 @@ storiesOf("Input Element", module)
 .add('Basic', ()=>{
   return (
     <InputElement></InputElement>
+  )
+})
+
+storiesOf("Tag Element", module)
+.addDecorator(story => <Provider store={store}>{story()}</Provider>)
+.add('Basic', ()=>{
+  return (
+    <div style={{paddingLeft:"10px", paddingRight:"10px"}}>
+      <TagElement></TagElement>
+    </div>
+   
   )
 })
 

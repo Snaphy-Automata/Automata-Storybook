@@ -15,6 +15,10 @@ import Label    from '../components/Label';
 import TaskDetail from '../components/TaskDetail';
 import IconLabel  from '../components/IconLabel';
 import Description from '../components/Description';
+import CustomCheckbox from '../components/CustomCheckbox';
+import SubTask        from '../components/TaskDetail/SubTask';
+import TaskAttachment from '../components/TaskDetail/TaskAttachment';
+import InputElement   from '../components/InputElement';
 
 
 
@@ -177,6 +181,17 @@ storiesOf('Task Detail', module)
   )
 })
 
+.add('With Width', ()=>{
+  return (
+    <div style={{backgroundColor:"#f6f8f9", width: '1170px', height: '737px'}}>
+      <div style={{width: '463px', float:'right', backgroundColor:"#ffffff"}}>
+        <TaskDetail></TaskDetail>
+      </div>
+    </div>
+    
+  )
+})
+
 storiesOf("Label Icon", module)
 .addDecorator(story => <Provider store={store}>{story()}</Provider>)
 .add('With User', ()=>{
@@ -196,6 +211,45 @@ storiesOf("Description", module)
 .add('Basic', ()=>{
   return (
     <Description placeholder="Write Description Here" style={{ minHeight: '200px' }}></Description>
+  )
+})
+
+storiesOf("Custom Checkbox", module)
+.addDecorator(story => <Provider store={store}>{story()}</Provider>)
+.add('Basic', ()=>{
+  return (
+    <CustomCheckbox size='mini'></CustomCheckbox>
+  )
+})
+
+.add('With Select', ()=>{
+  return (
+    <CustomCheckbox size='mini' isSelected = 'isSelected'></CustomCheckbox>
+  )
+})
+
+storiesOf("SubTask", module)
+.addDecorator(story => <Provider store={store}>{story()}</Provider>)
+.add('Basic', ()=>{
+  return (
+    <SubTask title="SubTask1" isSelected="isSelected"></SubTask>
+  )
+})
+
+storiesOf("Task Attachment", module)
+.addDecorator(story => <Provider store={store}>{story()}</Provider>)
+.add('Basic', ()=>{
+  return (
+    <TaskAttachment title="Screen Shot 2018-05-22 at 11.41.35 AM.pdf"></TaskAttachment>
+  )
+})
+
+
+storiesOf("Input Element", module)
+.addDecorator(story => <Provider store={store}>{story()}</Provider>)
+.add('Basic', ()=>{
+  return (
+    <InputElement></InputElement>
   )
 })
 

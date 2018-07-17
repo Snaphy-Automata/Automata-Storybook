@@ -10,33 +10,39 @@
     width: 100%;
     border-style: solid;
     border-width: 0px 0px 1px 0px;
-    border-color: lightgrey;
+    border-color: #eeeeee;
 }
 
 .task-detail-share-container{
     display: inline-block;
    width: 20%;
+   font-size: 12px;
+   color: #707070;
    text-align: center;
 }
 
 .task-detail-attachment-container{
     display: inline-block;
-    width: 20%;
+    width: 30%;
+    font-size: 12px;
+    color: #707070;
     text-align: center;
    
 }
 
 .task-detail-add-subtask-button-conatiner{
     display: inline-block;
-    width : 20%;
+    width : 30%;
+    font-size: 12px;
+    color: #707070;
     text-align: center;
 }
 
 .task-detail-close-button-conatiner{
     display: inline-block;
-    width: 40%;
+    width: 20%;
     text-align: right;
-    padding-right: 10px;
+    color: #707070;
     
 }
 
@@ -52,8 +58,10 @@
 }
 
 .task-detail-task-name-container{
-    font-size: 18px;
+    font-size: 20px;
     padding-bottom: 5px;
+    line-height: 1.6;
+    font-family: Lato;
 }
 
 .task-detail-task-action-button-conatiner{
@@ -64,20 +72,23 @@
 }
 
 .task-detail-completed-container{
-    width: 40%;
-    display: inline-block
+    width: 35%;
+    display: inline-block;
+    font-size: 12px;
 }
 
 .task-detail-status-container{
-    width: 20%;
+    width: 25%;
     display:inline-block;
-    text-align: center;
+    text-align: left;
+    font-size: 12px;
 }
 
 .task-detail-archive-container{
     width: 40%;
     display: inline-block;
     text-align: right;
+    font-size: 12px;
 }
 
 .task-detail-assigned-to-container{
@@ -105,7 +116,7 @@
     font-size: 14px;
     height: 30px;
     width: 30px;
-    line-height: 30px;
+    line-height: 25px;
     font-family: Lato;
     color: #707070;
     cursor: pointer;
@@ -114,6 +125,18 @@
     border-width: 1px;
     border-style: solid;
 }
+
+.task-detail-add-icon{
+    margin:0 0 0 0 !important;
+    text-align: center !important
+}
+
+.task-detail-add-assigned-button-container > .task-detail-add-icon{
+    position:relative;
+    top: calc(50% - 10px); /* 50% - 3/4 of icon height */
+  }
+
+
 
 .task-detail-date-container{
     width: 100%;
@@ -157,7 +180,7 @@
     font-size: 14px;
     height: 30px;
     width: 30px;
-    line-height: 30px;
+    line-height: 25px;
     font-family: Lato;
     color: #707070;
     cursor: pointer;
@@ -181,15 +204,73 @@
 
 .task-detail-comment-data-container{
     display : inline-block;
-    width : 80%;
+    width : 75%;
     margin-top : 5px;
 }
 
 .task-detail-comment-button-container{
     display : inline-block;
-    width : 20%;
+    width : 25%;
     margin-top : 5px;
+    vertical-align: top;
+    text-align: right;
 }
+
+
+/******************************* Sub Task Css *****************************************/
+
+.task-detail-subtask-container{
+    width: 100%;
+    border-style: solid;
+    border-width: 0px 0px 1px 0px;
+    border-color: lightgray;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.task-detail-subtask-checkbox-container{
+    width: 10%;
+    display: inline-block;
+}
+
+.task-detail-subtask-data-container{
+    width: 80%;
+    display: inline-block;
+}
+
+.task-detail-subtask-delete-container{
+    width: 10%;
+    display: inline-block;
+}
+
+
+/************************************ Task Attachment Css **********************************/
+
+.task-detail-task-attachment-container{
+    width: 100%;
+    border-style: solid;
+    border-width: 0px 0px 1px 0px;
+    border-color: lightgray;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.task-detail-task-attachment-icon-container{
+    width: 10%;
+    display: inline-block;
+}
+
+.task-detail-task-attachment-data-container{
+    width: 70%;
+    display: inline-block;
+}
+
+.task-detail-task-attachment-action-container{
+    width: 20%;
+    display: inline-block;
+}
+
+
 
 
 

@@ -6,6 +6,7 @@ import { Icon, Button } from 'semantic-ui-react'
 import './TaskDetail.css';
 import IconLabel from '../IconLabel';
 import Description from '../Description';
+import InputElement from '../InputElement';
 
 const TaskDetail = (props) => {
     return (
@@ -13,15 +14,15 @@ const TaskDetail = (props) => {
             <div className="task-detail-header-conatiner">
                 <div className="task-detail-share-container">
                     <Icon name="share alternate" style={{display:"inline"}}></Icon>
-                    <div style={{display:"inline", marginLeft:'10px'}}>Share</div>
+                    <div style={{display:"inline", marginLeft:'5px'}}>Share</div>
                 </div>
                 <div className="task-detail-attachment-container">
                     <Icon name="attach" style={{display:"inline"}}></Icon>
-                    <div style={{display:"inline", marginLeft:'10px'}}>Add Attachment</div>
+                    <div style={{display:"inline", marginLeft:'5px'}}>Add Attachment</div>
                 </div>
                 <div className="task-detail-add-subtask-button-conatiner">
                     <Icon name="unordered list" style={{display:"inline"}}></Icon>
-                    <div style={{display:"inline", marginLeft:'10px'}}>Add Subtasks</div>
+                    <div style={{display:"inline", marginLeft:'5px'}}>Add Subtasks</div>
                 </div>
                 <div className="task-detail-close-button-conatiner">
                     <Icon name="close" style={{display:"inline"}}></Icon>
@@ -29,22 +30,24 @@ const TaskDetail = (props) => {
 
             </div>
             <div className="task-detail-task-detail-container">
-                <div className="task-detail-task-name-container">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+                <div className="task-detail-task-name-container">
+                    <InputElement placeholder="Write a task name" size="large"></InputElement>
+                </div>
                 <div className="task-detail-task-action-button-conatiner">
                     <div className="task-detail-completed-container">
-                        <Button basic>
+                        <Button size="tiny" basic>
                             <Icon name="check"/>
-                            Mark as completed
+                            Mark Complete
                         </Button>
                     </div>
                     <div className="task-detail-status-container">
-                        <Button basic icon labelPosition='right'>
+                        <Button size="tiny" basic icon labelPosition='right'>
                             <Icon name="angle down"/>
                             Status
                         </Button>
                     </div>
                     <div className="task-detail-archive-container">
-                        <Button basic>
+                        <Button size="tiny" basic>
                             <Icon name="archive"/>
                             Archive
                         </Button>
@@ -58,7 +61,7 @@ const TaskDetail = (props) => {
 
                         </div>
                         <div className="task-detail-add-assigned-button-container">
-                            <Icon name="add" style={{margin:'0'}}></Icon>
+                            <Icon size="small" name="add" style={{margin:0}}></Icon>
                         </div>
                     </div>
 
@@ -89,7 +92,7 @@ const TaskDetail = (props) => {
 
                         </div>
                         <div className="task-detail-add-labels-button-container">
-                            <Icon name="add" style={{margin:'0'}}></Icon>
+                            <Icon size="small" name="add" style={{margin:'0'}}></Icon>
                         </div>
                     </div>
                 </div>
@@ -105,7 +108,7 @@ const TaskDetail = (props) => {
                         <Description placeholder="Add Comment Here" style={{minHeight:'50px'}}></Description>
                     </div>
                     <div className="task-detail-comment-button-container">
-                        <Button color="blue">Comment</Button>
+                        <Button size="tiny" color="blue">Comment</Button>
                     </div>
                 </div>
 

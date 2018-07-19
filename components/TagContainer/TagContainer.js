@@ -69,7 +69,7 @@ const TagContainer = ({ isButtonClicked, onAddButtonClickedAction, addTagElement
                     {isButtonClicked && <Icon size="small" name="close" style={{ margin: 0 }} ></Icon>}
                 </div>
             </div>
-            {isButtonClicked && <div style={{marginTop:5}}>
+            {isButtonClicked && <div className="tag-conatiner-total-item-list-container">
                 {
                     map(totalItemList, function (itemObj, index) {
 

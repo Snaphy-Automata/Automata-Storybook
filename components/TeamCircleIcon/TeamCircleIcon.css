@@ -80,3 +80,9 @@
     width: 30px;
     line-height: 30px;
 }
+
+.team-circle-icon-image-container{
+    width: 30px;
+    height: 30px;
+    border-radius: 32px;
+}

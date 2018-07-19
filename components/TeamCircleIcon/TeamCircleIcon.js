@@ -8,7 +8,7 @@ import { Icon } from 'semantic-ui-react'
 import "./TeamCircleIcon.css";
 
 
-const TeamCircleIcon = ({ className, style, onClick, title, icon, size})=>{
+const TeamCircleIcon = ({ className, style, onClick, title, icon, size, src})=>{
     //size = mini | tiny | small | large | big | huge | massive;
 
     let char
@@ -21,6 +21,7 @@ const TeamCircleIcon = ({ className, style, onClick, title, icon, size})=>{
         <div onClick={onClick} className={className} style={style}>
             { char && char}
             {icon && <Icon  name={icon} />}
+            {src && <img className="team-circle-icon-image-container" src="https://homepages.cae.wisc.edu/~ece533/images/boat.png"/>}
         </div>
     )
 };

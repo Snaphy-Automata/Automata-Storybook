@@ -23,7 +23,7 @@ const TaskList = (props) => {
 
     return (
         <div>
-            <TaskListHeading heading={props.heading} isOpened={props.isOpened} onArchiveClicked={props.onArchiveClicked} onNewTaskClicked={props.onNewTaskClicked} onStateChanged={onStateChangedFunction}></TaskListHeading>
+            <TaskListHeading heading={props.heading} isOpened={props.isOpened} onArchiveClicked={props.onArchiveClicked} onNewTaskClicked={props.onNewTaskClicked} onStateChanged={onStateChangedFunction} type={props.type}></TaskListHeading>
             {props.isOpened && props.items && props.items.length && <div>
                 {
                     map(props.items, function(item, index){

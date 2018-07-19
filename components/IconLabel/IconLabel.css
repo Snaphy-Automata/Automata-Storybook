@@ -1,6 +1,6 @@
 
 .label-icon-container{
-    height: 30px;
+    height: 32px;
     border-radius: 32px;
     font-size: 12px;
     color: #707070;
@@ -15,6 +15,23 @@
     min-width: 50px;
     display: inline-block;
     background-color: #f3f3f3;
+}
+
+.label-icon-container-with-border{
+    height: 32px;
+    border-radius: 32px;
+    font-size: 12px;
+    color: #707070;
+    white-space: nowrap;
+    overflow: hidden;
+    line-height: 30px;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    padding-left: 2px;
+    padding-right: 2px;
+    min-width: 50px;
+    display: inline-block;
+    border: solid 0.7px #eeeeee;
 }
 
 .label-icon-name-container{

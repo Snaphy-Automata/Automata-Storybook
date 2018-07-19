@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import { Icon } from 'semantic-ui-react'
+import { Icon, Input } from 'semantic-ui-react'
 
 import './TaskList.css';
 
-const TaskListHeading = ({ heading, isOpened, onArchiveClicked, onNewTaskClicked, onStateChanged}) => {
+const TaskListHeading = ({ heading, isOpened, onArchiveClicked, onNewTaskClicked, onStateChanged, type}) => {
 
     const getIcon = function(){
         if(isOpened){
@@ -18,7 +18,10 @@ const TaskListHeading = ({ heading, isOpened, onArchiveClicked, onNewTaskClicked
     return (
         <div className="task-list-heading-container">
                 <div className="task-list-heading-icon"> <Icon name={getIcon()} onClick={onStateChanged}></Icon></div>
-                <div className="task-list-heading-title">{heading}</div>
+                <div className="task-list-heading-title">
+                    {type === "fixed" && <div>{heading}</div>}
+                    {type === "custom" && <Input transparent placeholder="Write Section Name" defaultValue="My Bugs"/>}
+                </div>
                 <div className="task-list-heading-archive-container" >
                     <div>
                         <Icon style={{display:"inline"}} name="archive" onClick={onArchiveClicked}></Icon>

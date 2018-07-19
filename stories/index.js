@@ -20,6 +20,10 @@ import SubTask        from '../components/TaskDetail/SubTask';
 import TaskAttachment from '../components/TaskDetail/TaskAttachment';
 import InputElement   from '../components/InputElement';
 import TagElement     from '../components/TagElement';
+import TaskItem       from '../components/TaskList/TaskItem';
+import SelectLabel    from '../components/SelectLabel';
+import TagContainer   from '../components/TagContainer';
+import OverFlowLabel from '../components/OverFlowLabel';
 
 
 
@@ -74,6 +78,27 @@ const items = [
   }
 ]
 
+const optionList = [
+  {key : "Nikita Mittal", text:"Nikita Mittal", value: "Nikita Mittal"},
+  {key : "Mitsu Nohara", text: "Mitsu Nohara", value : "Mitsu Nohara"},
+  {key : "Sakura", text: "Sakura", value: "Sakura"}
+]
+
+
+const totalLabelItemList = [
+  {name: "Issue", isSelected: false, color:"#d55fe0"},
+  {name: "Bug", isSelected: true, color : "#ff9b00"},
+  {name: "Name", isSelected: false, color : "#00c5e4"}
+]
+
+const totalUserItemList = [
+  {name: "Mitsu Nohara", isSelected: false},
+  {name: "Sakura", isSelected: true},
+  {name: "Nora Irie", isSelected: false}
+]
+
+//const selectedOptionList = 
+
 
 
 
@@ -106,6 +131,11 @@ storiesOf('Team Icon', module)
 .add('With Icon', ()=> {   
   return (
       <TeamCircleIcon icon={'users'} onClick={()=>{console.log("Item Has been clicked")}}></TeamCircleIcon>
+  )
+})
+.add('With Image', ()=>{
+  return (
+    <TeamCircleIcon size="tiny" src="dcdc" onClick={()=>{console.log("Item Has been clicked")}}></TeamCircleIcon>
   )
 })
 .add('All Sizes', ()=> {  
@@ -164,7 +194,12 @@ storiesOf('TaskList', module)
 .addDecorator(story => <Provider store={store}>{story()}</Provider>)
 .add('Basic', ()=> {   
   return (
-      <TaskList heading="Active Tasks" onArchiveClicked={()=>{console.log("Archive has been clicked")}} onNewTaskClicked={()=>{console.log("New Task has been Clicked")}}></TaskList>
+      <TaskList heading="Active Tasks" onArchiveClicked={()=>{console.log("Archive has been clicked")}} onNewTaskClicked={()=>{console.log("New Task has been Clicked")}} type="fixed"></TaskList>
+  )
+})
+.add('Custom Section', ()=>{
+  return (
+    <TaskList heading="Active Tasks" onArchiveClicked={()=>{console.log("Archive has been clicked")}} onNewTaskClicked={()=>{console.log("New Task has been Clicked")}} type="custom"></TaskList>
   )
 })
 .add('With Items', ()=>{
@@ -264,6 +299,84 @@ storiesOf("Tag Element", module)
    
   )
 })
+
+storiesOf("Task Item", module)
+.addDecorator(story => <Provider store={store}>{story()}</Provider>)
+.add('New Task', ()=>{
+  return(
+    <div>
+      <TaskItem icon="users" isNew></TaskItem>
+    </div>
+  )
+})
+
+storiesOf("Select Label", module)
+.addDecorator(story => <Provider store={store}>{story()}</Provider>)
+.add('Basic', ()=>{
+  return (
+      <SelectLabel name="Nikita Mittal"/>
+  )
+})
+
+.add('With Select', ()=>{
+  return (
+    <SelectLabel name="Nikita Mittal" isSelected />
+  )
+})
+
+.add('With Color', ()=>{
+  return (
+    <SelectLabel name="Issue" color="#ff9b00"/>
+  )
+})
+
+.add("With Color Select", ()=>{
+  return (
+    <SelectLabel name="Backend" color="#d55fe0" isSelected/>
+  )
+})
+
+
+storiesOf("Tag Container", module)
+.addDecorator(story => <Provider store={store}>{story()}</Provider>)
+.add('Basic', ()=>{
+  return (
+    <div style={{padding:10}}>
+       <TagContainer/>
+    </div>
+   
+  )
+})
+.add('With Label', ()=>{
+  return (
+    <div style={{padding:10}}>
+       <TagContainer type="label" />
+    </div>
+  )
+})
+
+.add('With User', ()=>{
+  return (
+    <div style={{padding:10}}>
+      <TagContainer type="user"/>
+    </div>
+  )
+})
+
+storiesOf("Over Flow Label", module)
+.addDecorator(story => <Provider store={store}>{story()}</Provider>)
+.add("With Color", ()=> {
+  return (
+    <OverFlowLabel name="New Issue" color="#00c5e4"/>
+  )
+})
+.add("With Icon", ()=>{
+  return(
+    <OverFlowLabel name="Mitsu Nohara" src ="dsfcecf"/>
+  )
+})
+
+
 
 
 

@@ -13,6 +13,6 @@ export default {
     GanttChartReducer,
     TaskListReducer,
     InputElementReducer,
-    TagElementReducer
+    TagElementReducer,
 };
 

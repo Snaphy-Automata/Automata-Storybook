@@ -6,15 +6,15 @@ import { Provider } from 'react-redux';
 import 'semantic-ui-css/semantic.min.css';
 
 //Custom Import
-import Button from '../components/Button';
+import Button         from '../components/Button';
 import configureStore from '../store/configureStore';
-import GanttChart from '../components/GanttChart';
+import GanttChart     from '../components/GanttChart';
 import TeamCircleIcon from '../components/TeamCircleIcon';
-import TaskList from '../components/TaskList';
-import Label    from '../components/Label';
-import TaskDetail from '../components/TaskDetail';
-import IconLabel  from '../components/IconLabel';
-import Description from '../components/Description';
+import TaskList       from '../components/TaskList';
+import Label          from '../components/Label';
+import TaskDetail     from '../components/TaskDetail';
+import IconLabel      from '../components/IconLabel';
+import Description    from '../components/Description';
 import CustomCheckbox from '../components/CustomCheckbox';
 import SubTask        from '../components/TaskDetail/SubTask';
 import TaskAttachment from '../components/TaskDetail/TaskAttachment';
@@ -23,7 +23,8 @@ import TagElement     from '../components/TagElement';
 import TaskItem       from '../components/TaskList/TaskItem';
 import SelectLabel    from '../components/SelectLabel';
 import TagContainer   from '../components/TagContainer';
-import OverFlowLabel from '../components/OverFlowLabel';
+import OverFlowLabel  from '../components/OverFlowLabel';
+import LabelDialog    from '../components/LabelDialog';
 
 
 
@@ -314,25 +315,31 @@ storiesOf("Select Label", module)
 .addDecorator(story => <Provider store={store}>{story()}</Provider>)
 .add('Basic', ()=>{
   return (
-      <SelectLabel name="Nikita Mittal"/>
+      <SelectLabel type="add" name="Nikita Mittal"/>
   )
 })
 
 .add('With Select', ()=>{
   return (
-    <SelectLabel name="Nikita Mittal" isSelected />
+    <SelectLabel type="add" name="Nikita Mittal" isSelected />
   )
 })
 
 .add('With Color', ()=>{
   return (
-    <SelectLabel name="Issue" color="#ff9b00"/>
+    <SelectLabel type="add" name="Issue" color="#ff9b00"/>
   )
 })
 
 .add("With Color Select", ()=>{
   return (
-    <SelectLabel name="Backend" color="#d55fe0" isSelected/>
+    <SelectLabel type="add" name="Backend" color="#d55fe0" isSelected/>
+  )
+})
+
+.add("With Edit Icon", ()=>{
+  return (
+    <SelectLabel type="edit" name="Backend" color="#d55fe0" isSelected/>
   )
 })
 
@@ -373,6 +380,14 @@ storiesOf("Over Flow Label", module)
 .add("With Icon", ()=>{
   return(
     <OverFlowLabel name="Mitsu Nohara" src ="dsfcecf"/>
+  )
+})
+
+storiesOf("Label Dialog", module)
+.addDecorator(story => <Provider store={store}>{story()}</Provider>)
+.add("Basic", ()=>{
+  return (
+    <LabelDialog></LabelDialog>
   )
 })
 

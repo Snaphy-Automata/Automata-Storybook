@@ -5,6 +5,7 @@ import GanttChartReducer from '../components/GanttChart/GanttChartReducer';
 import TaskListReducer   from '../components/TaskList/TaskListReducer';
 import InputElementReducer from '../components/InputElement/InputElementReducer';
 import TagElementReducer   from '../components/TagElement/TagElementReducer';
+import LabelDialogReducer  from '../components/LabelDialog/LabelDialogReducer';
 
 
 export default {
@@ -14,5 +15,6 @@ export default {
     TaskListReducer,
     InputElementReducer,
     TagElementReducer,
+    LabelDialogReducer
 };
 

@@ -2,9 +2,9 @@
     width: 100%;
     margin-top: 10px;
     border-style: solid;
-    height: 40px;
     border-width: 0px 0px 1px 0px;
     border-color: #eeeeee;
+    min-height: 40px;
 
 }
 
@@ -12,7 +12,7 @@
     width: 100%;
     margin-top: 10px;
     border: none;
-    height: 40px;
+    min-height: 40px
 }
 
 .tag-container-type-container{
@@ -23,7 +23,7 @@
 }
 
 .tag-container-list-container{
-    width: 80%;
+    width: 86%;
     display: inline-block;
 }
 

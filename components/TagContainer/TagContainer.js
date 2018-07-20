@@ -2,19 +2,50 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Icon, Button } from 'semantic-ui-react';
 import map from 'lodash/map';
+import { SubmissionError, reset } from 'redux-form';
 
 //Custom Import
 import SelectedLabel from '../SelectLabel';
 import OverFlowLabel from '../OverFlowLabel';
+import LabelDialog   from '../LabelDialog';
 
 //Import Action..
-import { onAddButtonClickedAction, addTagElementAction } from '../TagElement/TagElementAction';
+import { onAddButtonClickedAction, addTagElementAction, addLabelAction, editLabelAction } from '../TagElement/TagElementAction';
+import {initializeLabelDialogFormAction} from '../LabelDialog/LabelDialogAction';
 
 //Import CSS
 import './TagContainer.css';
 
 
-const TagContainer = ({ isButtonClicked, onAddButtonClickedAction, addTagElementAction, totalItemList, selectedItemList, type }) => {
+const handleSubmit = function(props, value){
+    const {
+        reset,
+        initializeLabelDialogFormData,
+        editLabelAction,
+        addLabelAction,
+        initializeLabelDialogFormAction
+    } = props;
+
+    if(initializeLabelDialogFormData){
+        editLabelAction(value);
+        initializeLabelDialogFormAction(null);
+        reset('labelCreateForm');
+
+    } else{
+        value = {
+            ...value,
+            isSelected : false
+        }
+        addLabelAction(value);
+        initializeLabelDialogFormAction(null);
+        reset('labelCreateForm');
+    }
+}
+
+
+const TagContainer = (props) => {
+
+    const { isButtonClicked, onAddButtonClickedAction, addTagElementAction, totalItemList, selectedItemList, type, initializeLabelDialogFormData } = props;
     const getClassName = function () {
         let className;
         if (isButtonClicked) {
@@ -39,6 +70,10 @@ const TagContainer = ({ isButtonClicked, onAddButtonClickedAction, addTagElement
     const onAddButtonClicked = function () {
         //console.log("Add Button Clicked", isButtonClicked);
         onAddButtonClickedAction(!isButtonClicked);
+    }
+
+    const onSubmit = function(value){
+        return handleSubmit(props, value);
     }
     return (
         <div>
@@ -83,7 +118,7 @@ const TagContainer = ({ isButtonClicked, onAddButtonClickedAction, addTagElement
                         }
                         return (
                             <div key={index} style={{ display: "inline-block" }}>
-                                <SelectedLabel key={index} style={{ marginRight: 10 }} name={itemObj.name} isSelected={itemObj.isSelected} color={itemObj.color} onClick={selectItemClick}/>
+                                <SelectedLabel key={index} style={{ marginRight: 10, marginBottom:5}} name={itemObj.name} isSelected={itemObj.isSelected} color={itemObj.color} onClick={selectItemClick}/>
                                 {index === totalItemList.length - 1 && type === "label" && <Button size="tiny" basic>
                                     <Icon name="tag" />
                                     Create/Update Label
@@ -97,6 +132,7 @@ const TagContainer = ({ isButtonClicked, onAddButtonClickedAction, addTagElement
                     })
                 }
             </div>}
+            <LabelDialog initialValues={initializeLabelDialogFormData} onSubmit={onSubmit}></LabelDialog>
         </div>
     )
 }
@@ -107,7 +143,8 @@ function mapStateToProps(store) {
     return {
         isButtonClicked: store.TagElementReducer.isButtonClicked,
         totalItemList : store.TagElementReducer.totalTagItemList,
-        selectedItemList : store.TagElementReducer.selectedTagItemList
+        selectedItemList : store.TagElementReducer.selectedTagItemList,
+        initializeLabelDialogFormData : store.LabelDialogReducer.initializeLabelDialogFormData
     }
 }
 
@@ -116,7 +153,11 @@ function mapStateToProps(store) {
 const mapActionsToProps = {
     //map action here
     onAddButtonClickedAction,
-    addTagElementAction
+    addTagElementAction,
+    reset,
+    addLabelAction,
+    editLabelAction,
+    initializeLabelDialogFormAction,
 };
 
 

@@ -11,7 +11,7 @@ const OverFlowLabel = ({name, color, src}) => {
                 <div>{name}</div>
             </div> 
             }
-            {src && <div style={{display:"inline-block", marginRight:10}}>
+            {src && <div style={{display:"inline-block", marginRight:5}}>
                 <IconLabel size="tiny" src="fgvtr" name={name}></IconLabel>
                 </div>}
         </div>

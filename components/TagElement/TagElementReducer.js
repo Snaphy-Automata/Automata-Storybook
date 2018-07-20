@@ -1,7 +1,10 @@
 import {
     ON_ADD_BUTTON_CLICKED,
     OPTIONS_LIST,
-    ON_ADD_TAG_ELEMENT
+    ON_ADD_TAG_ELEMENT,
+    DELETE_LABEL_ACTION,
+    ADD_LABEL_ACTION,
+    EDIT_LABEL_ACTION
 } from './TagElementAction';
 
 
@@ -56,7 +59,6 @@ const TagElementReducer = (state = initialState, action) => {
             if(action.payload.isSelected){
                selectedTagDataList.push(action.payload);
             } else if(action.payload.isSelected === false){
-                //console.log("data Unselected", selectedTagDataList, action.payload);
                 for(var j=0;j<selectedTagDataList.length;j++){
                     if(selectedTagDataList[j].name === action.payload.name){
                         selectedTagDataList.splice(j, 1);
@@ -75,6 +77,73 @@ const TagElementReducer = (state = initialState, action) => {
 
             break;
 
+        }
+        case DELETE_LABEL_ACTION:{
+            let totalItemDataList = [...state.totalTagItemList];
+            let selectedItemDataList = [...state.selectedTagItemList];
+            if(totalItemDataList && totalItemDataList.length){
+                for(var i=0;i<totalItemDataList.length;i++){
+                    if(totalItemDataList[i].name === action.payload.name){
+                        totalItemDataList.splice(i, 1);
+                        break;
+                    }
+                }
+            }
+            if(selectedItemDataList && selectedItemDataList.length){
+                for(var j=0;j<selectedItemDataList.length;j++){
+                    if(selectedItemDataList[i].name === action.payload.name){
+                        selectedItemDataList.splice(i, 1);
+                        break;
+                    }
+                }
+            }
+
+            state = {
+                ...state,
+                selectedTagItemList : selectedItemDataList,
+                totalTagItemList : totalItemDataList
+            }
+            break;
+        }
+        case ADD_LABEL_ACTION :{
+            let totalItemDataList = [...state.totalTagItemList];
+            if(!totalItemDataList){
+                totalItemDataList = [];
+            }
+            totalItemDataList.push(action.payload);
+            state = {
+                ...state,
+                totalTagItemList : totalItemDataList
+            }
+            break;
+        }
+
+        case EDIT_LABEL_ACTION:{
+            let totalItemDataList = [...state.totalTagItemList];
+            let selectedItemDataList = [...state.selectedTagItemList];
+            if(totalItemDataList && totalItemDataList.length){
+                for(var i=0;i<totalItemDataList.length;i++){
+                    if(totalItemDataList[i].name === action.payload.name){
+                        totalItemDataList.splice(i, 1, action.payload);
+                        break;
+                    }
+                }
+            }
+            if(selectedItemDataList && selectedItemDataList.length){
+                for(var j=0;j<selectedItemDataList.length;j++){
+                    if(selectedItemDataList[i].name === action.payload.name){
+                        selectedItemDataList.splice(i, 1, action.payload);
+                        break;
+                    }
+                }
+            }
+
+            state = {
+                ...state,
+                selectedTagItemList : selectedItemDataList,
+                totalTagItemList : totalItemDataList
+            }
+            break;
         }
     }
     return state;

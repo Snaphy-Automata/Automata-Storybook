@@ -8,9 +8,9 @@ import './IconLabel.css';
 
 import TeamCircleIcon from '../TeamCircleIcon';
 
-const IconLabel = ({size, icon, title, src, name, isLabel}) => {
+const IconLabel = ({size, icon, title, src, name, isLabel, onClick}) => {
     return(
-        <div>
+        <div onClick={onClick}>
             {!src && <div className="label-icon-container">
                 <div style={{display:'inline-block', float:"left"}}>
                     {title && <TeamCircleIcon size={size} style={{backgroundColor:"#dddddd"}} title={title} onClick={()=>{console.log("Item Has been clicked")}}></TeamCircleIcon>}

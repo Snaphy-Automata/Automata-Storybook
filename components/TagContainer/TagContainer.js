@@ -23,7 +23,6 @@ const handleSubmit = function(props, value){
         initializeLabelDialogFormData,
         editLabelAction,
         addLabelAction,
-        initializeLabelDialogFormAction
     } = props;
 
     if(initializeLabelDialogFormData){

@@ -99,7 +99,6 @@ const LabelDialog = (props) => {
                                     {!initializeLabelDialogFormData && <SubmitButton basic style={{float:'left'}} size="tiny" disabled = {invalid|| submitting || pristine} content="Create"></SubmitButton>}
                                     {initializeLabelDialogFormData && <SubmitButton basic style={{float:'left'}} size="tiny" disabled = {invalid|| submitting || pristine} content="Update"></SubmitButton>}
                                     <Button type="button" basic color="grey" size="tiny" content="Reset" onClick={onReset}/>
-                                    {/* <Form.Button basic type="submit" color="blue" size="tiny" style={{display:"inline-block"}}>Create/Update</Form.Button> */}
                                     <Button type="button" basic color="red" size="tiny" style={{float:"right", display:"inline-block"}} onClick={deleteLabel}>Delete</Button>
                                 </div>
                             </SnaphyForm>
@@ -113,8 +112,11 @@ const LabelDialog = (props) => {
                                             initializeLabelDialogFormAction(itemObj);
                                         }
                                         return (
-                                            <div key={index} className="label-dialog-label-container" >
-                                                <SelectLabel type="edit" name={itemObj.name} color={itemObj.color} onClick={onEditLabel}/>
+                                            <div key={index} style={{display:"inline-block"}} >
+                                                <div className="label-dialog-label-container">
+                                                    <SelectLabel type="edit" name={itemObj.name} color={itemObj.color} onClick={onEditLabel}/>
+                                                </div>
+                                                
                                             </div>
                                         )
                                     })

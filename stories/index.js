@@ -6,25 +6,27 @@ import { Provider } from 'react-redux';
 import 'semantic-ui-css/semantic.min.css';
 
 //Custom Import
-import Button         from '../components/Button';
-import configureStore from '../store/configureStore';
-import GanttChart     from '../components/GanttChart';
-import TeamCircleIcon from '../components/TeamCircleIcon';
-import TaskList       from '../components/TaskList';
-import Label          from '../components/Label';
-import TaskDetail     from '../components/TaskDetail';
-import IconLabel      from '../components/IconLabel';
-import Description    from '../components/Description';
-import CustomCheckbox from '../components/CustomCheckbox';
-import SubTask        from '../components/TaskDetail/SubTask';
-import TaskAttachment from '../components/TaskDetail/TaskAttachment';
-import InputElement   from '../components/InputElement';
-import TagElement     from '../components/TagElement';
-import TaskItem       from '../components/TaskList/TaskItem';
-import SelectLabel    from '../components/SelectLabel';
-import TagContainer   from '../components/TagContainer';
-import OverFlowLabel  from '../components/OverFlowLabel';
-import LabelDialog    from '../components/LabelDialog';
+import Button            from '../components/Button';
+import configureStore    from '../store/configureStore';
+import GanttChart        from '../components/GanttChart';
+import TeamCircleIcon    from '../components/TeamCircleIcon';
+import TaskList          from '../components/TaskList';
+import Label             from '../components/Label';
+import TaskDetail        from '../components/TaskDetail';
+import IconLabel         from '../components/IconLabel';
+import Description       from '../components/Description';
+import CustomCheckbox    from '../components/CustomCheckbox';
+import SubTask           from '../components/TaskDetail/SubTask';
+import TaskAttachment    from '../components/TaskDetail/TaskAttachment';
+import InputElement      from '../components/InputElement';
+import TagElement        from '../components/TagElement';
+import TaskItem          from '../components/TaskList/TaskItem';
+import SelectLabel       from '../components/SelectLabel';
+import TagContainer      from '../components/TagContainer';
+import OverFlowLabel     from '../components/OverFlowLabel';
+import LabelDialog       from '../components/LabelDialog';
+import InputWithIcon     from '../components/DatePickerElement/InputWithIcon';
+import DatePickerElement from '../components/DatePickerElement';
 
 
 
@@ -233,12 +235,12 @@ storiesOf("Label Icon", module)
 .addDecorator(story => <Provider store={store}>{story()}</Provider>)
 .add('With User', ()=>{
   return (
-    <IconLabel size="mini" title="Nikita Mittal" name="Nikita Mittal" isLabel></IconLabel>
+    <IconLabel size="tiny" title="Nikita Mittal" name="Nikita Mittal" isLabel></IconLabel>
   )
 })
 .add('With Icon', ()=>{
   return (
-    <IconLabel size="mini" icon="calendar minus outline" name="Start Date"></IconLabel>
+    <IconLabel size="tiny" icon="calendar minus outline" name="Start Date"></IconLabel>
   )
 })
 
@@ -388,6 +390,23 @@ storiesOf("Label Dialog", module)
 .add("Basic", ()=>{
   return (
     <LabelDialog></LabelDialog>
+  )
+})
+
+storiesOf("date picker", module)
+.addDecorator(story => <Provider store={store}>{story()}</Provider>)
+.add("Basic", ()=>{
+  return (
+    <InputWithIcon/>
+  )
+})
+
+.add("With Date Picker", ()=> {
+  return (
+    <div style={{padding:20, textAlign:'center'}}>
+      <DatePickerElement/>
+    </div>
+  
   )
 })
 

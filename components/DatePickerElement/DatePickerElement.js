@@ -6,6 +6,10 @@ import 'react-day-picker/lib/style.css';
 import dateFnsFormat from 'date-fns/format';
 import dateFnsParse from 'date-fns/parse';
 import moment from 'moment';
+import MomentLocaleUtils, {
+    formatDate,
+    parseDate,
+  } from 'react-day-picker/moment';
 
 //Custom Import 
 import InputWithIcon from './InputWithIcon';
@@ -26,25 +30,14 @@ const DatePickerElement = (props) => {
         onOpenDatePickerAction(true);
     }
 
-    function parseDate(str, format, locale) {
-        const parsed = dateFnsParse(str, format, { locale });
-        if (DateUtils.isDate(parsed)) {
-          return parsed;
-        }
-        return undefined;
-      }
-      
-      function formatDate(date, format, locale) {
-        return dateFnsFormat(date, format, { locale });
-      }
-
-      const FORMAT = 'DD/MM/YYYY';
-
       const onDayChanged = function(day){
           console.log("Day Changed", day);
-          onOpenDatePickerAction(false);
-          let date =  moment(day).format("DD MMMM")
-          setDateAction(date);
+          if(day){
+            onOpenDatePickerAction(false);
+            let date =  moment(day).format("DD MMMM")
+            setDateAction(date);
+          }
+        
       }
 
       const getDate = function(){
@@ -66,17 +59,18 @@ const DatePickerElement = (props) => {
           return value;
       }
 
+      let format = format || "DD/MM/YYYY";
+
 
     return (
         <div>
             {isDatePickerOpened && <DayPickerInput
             component={InputWithIcon}
             showOverlay
+            inputProps={{...props.input}}
             formatDate={formatDate}
-            format={FORMAT}
             parseDate={parseDate}
-            value = {getData()}
-            placeholder="DD/MM/YYYY"
+            placeholder={format}
             onDayChange={onDayChanged}
             />}
             {!isDatePickerOpened &&  <IconLabel size="tiny" icon="calendar minus outline" name={getDate()} onClick={onOpenDataPicker}></IconLabel>}

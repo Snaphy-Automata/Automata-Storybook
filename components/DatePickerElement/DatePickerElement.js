@@ -75,6 +75,7 @@ const DatePickerElement = (props) => {
             formatDate={formatDate}
             format={FORMAT}
             parseDate={parseDate}
+            value = {getData()}
             placeholder="DD/MM/YYYY"
             onDayChange={onDayChanged}
             />}

@@ -18,10 +18,14 @@
     background-color: #f3f3f3;
 }
 
-.label-icon-container:hover{
+.label-icon-container:hover {
     border-color : #707070;
     border-width: 1px;
     border-style: solid;
+}
+
+.label-icon-container:hover .label-icon-cross-button-container{
+    display:inline-block;
 }
 
 .label-icon-container-with-border{
@@ -51,7 +55,7 @@
 
 
 .label-icon-cross-button-container{
-    display:inline-block;
-    color: lightgray;
+    display:none;
+    color:#707070;
     text-align: center;
 }

@@ -1,12 +1,12 @@
 import React from 'react';
 import {Field, reduxForm} from 'redux-form';
 
-import DatePicker from './DatePicker';
+import CustomDatePicker from './CustomDatePicker';
 
 const DatePickerForm = () =>{
 
     return (
-        <Field width={6} inline  required name="dateValue" component={DatePicker} placeholder="Select Date"></Field>
+        <Field width={6} inline  required name="dateValue" component={CustomDatePicker} placeholder="Select Date"></Field>
     )
 
 }

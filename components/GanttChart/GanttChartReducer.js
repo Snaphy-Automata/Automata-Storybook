@@ -139,7 +139,7 @@ const GanttChartReducer = (state = initialState, action) => {
       const {itemId} = action.payload;
       state = {
         ...state,
-        selectedItemId: [],
+        //selectedItemId: [],
       }
 
       break;

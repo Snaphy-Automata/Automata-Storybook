@@ -19,7 +19,13 @@ import "./GanttChart.css";
 
 const ItemRenderer = (props) => {
     console.log(props);
-    const {item, selected, onItemMouseLeaveAction, onItemMouseEnterAction} = props;
+    const {item, selected, onItemMouseLeaveAction, onItemMouseEnterAction,
+        timelineContext:{
+            visibleTimeStart,
+            visibleTimeEnd,
+            timelineWidth,
+        }
+    } = props;
 
     const onMouseEnter = (event) => {
         onItemMouseEnterAction(item.id);
@@ -30,19 +36,24 @@ const ItemRenderer = (props) => {
         onItemMouseLeaveAction(item.id);
     }
 
+    // let width = (timelineWidth/(visibleTimeEnd-visibleTimeStart))* (item.end - item.start);
+    // width = width - 38;
+    // const style = {
+    //     width: `${width}px`
+    // }
     return (    
-    <div onMouseEnter={onMouseEnter}  onMouseLeave={onMouseLeave} className='custom-item'>
+    <div onMouseEnter={onMouseEnter}  onMouseLeave={onMouseLeave} className='gantt-chart-item-container'>
        
-      <div className="gantt-chart-item-icon left">
+      {selected && <div className="gantt-chart-item-icon left">
         <Icon name="angle left"></Icon>
-      </div>
+      </div>}
     
-      <div className='gantt-chart-item-title'></div>
+      <div  className='gantt-chart-item-title'></div>
       {/* {selected && <p className='tip'>{item.tip}</p>} */}
      
-      <div className="gantt-chart-item-icon right">
+      {selected &&<div className="gantt-chart-item-icon right">
         <Icon name="angle right"></Icon>
-      </div>
+      </div>}
 
     </div>
     )

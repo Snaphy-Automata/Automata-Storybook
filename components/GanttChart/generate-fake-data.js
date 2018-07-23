@@ -12,10 +12,10 @@ export default function (groupCount = 30, itemCount = 30, daysInPast = 30) {
       id: `${i + 1}`,
       title:faker.name.title(),
       //rightTitle: faker.name.lastName(),
-      bgColor: randomColor({ luminosity: 'light', seed: randomSeed + i }),
+      //bgColor: randomColor({ luminosity: 'light', seed: randomSeed + i }),
       icon:{
         title : name,
-        toolTip : name,
+        //toolTip : name,
         onClick : () => ("Items has been clicked")
       }
     })

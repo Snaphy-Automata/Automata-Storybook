@@ -82,6 +82,12 @@
 
 .react-calendar-timeline .rct-item .rct-item-content{
     padding: 0;
+    width: inherit;
+}
+
+
+.gantt-chart-item-container{
+    width: inherit;
 }
 
 
@@ -110,18 +116,23 @@
 
 /* Item Renderer */
 .gantt-chart-item-title{
-    width: 50px;
+    /* width: 50px; */
+    width: calc(100% - 38px);
     display: inline-block;
 
 }
 
 /* Item Renderer ICON */
 .gantt-chart-item-icon{
-    font-size: 16px;
+    font-size: 15px;
+    width: 18px;
+    line-height: 18px;
+    text-align: center;
     color: #fff;
     background-color: #e2ab5833;
     border-radius: 17px;
     display: inline-block;
+    height: 18px;
 }
 
 .gantt-chart-item-icon.left{
@@ -137,6 +148,12 @@
     color: #111;
     background-color: #e2ab5833;
     border-radius: 19px;
+}
+
+/* Info Label on Scroll display */
+.rct-infolabel{
+    display: none;
+    visibility: hidden;
 }
 
 

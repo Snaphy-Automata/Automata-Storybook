@@ -18,6 +18,7 @@ const GroupRenderer = ({group}) => {
         'length': 24,
        
     })
+    //https://github.com/namespace-ee/react-calendar-timeline#grouprenderer
     return (
         <div className="gantt-chart-group-wrapper">
             <div style={{
@@ -29,6 +30,7 @@ const GroupRenderer = ({group}) => {
                 display: "inline-block"
             }}>
                 <div className="gantt-chart-group-title"> {title}</div>
+                {/* <p className="tip">{group.title}</p> */}
             </div>
         </div>
     )

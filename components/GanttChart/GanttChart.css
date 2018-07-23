@@ -59,7 +59,7 @@
 
 /* style for displaying vertical lines for Sat and Sun column */
 .react-calendar-timeline .rct-vertical-lines .rct-vl.rct-day-6, .react-calendar-timeline .rct-vertical-lines .rct-vl.rct-day-0{
-    background-color: rgba(250, 246, 225, 0.5)
+    background-color: rgba(250, 246, 225, 0.2)
 }
 
 .react-calendar-timeline .rct-vertical-lines .rct-vl {

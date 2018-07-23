@@ -24,7 +24,7 @@ export default function (groupCount = 30, itemCount = 30, daysInPast = 30) {
   let items = []
   for (let i = 0; i < itemCount; i++) {
     const startDate = faker.date.recent(daysInPast).valueOf()
-    const startValue = Math.floor(moment(startDate).startOf('day').valueOf() / 10000000) * 10000000
+    const startValue = moment(startDate).startOf('day').valueOf()
     const endValue = moment(moment(startDate).endOf('day')).valueOf()
 
     items.push({

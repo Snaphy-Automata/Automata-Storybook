@@ -87,7 +87,7 @@ class App extends Component {
         dragSnap={60*60*1000*24} //dragging unit set to be 24 hours 1 day
         headerLabelGroupHeight={0} //remvoe top header
         headerLabelHeight={23}
-        itemHeightRatio={0.65}
+        itemHeightRatio={0.75}
         minZoom={60*60*1000*24} //Smallest time that can be zoomed. 1 day
         maxZoom={365.24 * 86400 * 1000} //longest time that can be zoomed 1 year.
         timeSteps={{

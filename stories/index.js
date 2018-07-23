@@ -27,7 +27,6 @@ import OverFlowLabel     from '../components/OverFlowLabel';
 import LabelDialog       from '../components/LabelDialog';
 import InputWithIcon     from '../components/DatePickerElement/InputWithIcon';
 import DatePickerElement from '../components/DatePickerElement';
-import DatePickerForm        from '../components/DatePicker/DatePickerForm';
 import ShareDialog       from '../components/ShareDialog';
 
 
@@ -419,13 +418,6 @@ storiesOf("date picker", module)
   )
 })
 
-.add("Basic Date Picker", ()=>{
-  return (
-    <div style={{padding:20, textAlign:'center'}}>
-      <DatePickerForm/>
-    </div>
-  )
-})
 
 storiesOf("Share Dialog", module)
 .addDecorator(story => <Provider store={store}>{story()}</Provider>)

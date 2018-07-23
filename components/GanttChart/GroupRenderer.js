@@ -13,7 +13,7 @@ import TeamCircleIcon from "../TeamCircleIcon";
 import "./GanttChart.css";
 
 const GroupRenderer = ({group}) => {
-    console.log(group);
+    //console.log(group);
     const title = truncate(group.title,{
         'length': 24,
        

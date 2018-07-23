@@ -4,13 +4,23 @@
  */
 
 import generateFakeData from './generate-fake-data' 
+import moment from 'moment'
 
-import {ON_GANTT_ITEM_MOVED, ON_GANTT_ITEM_RESIZE} from './GanttChartActions';
+//Custom Import
+import month from './month.json';
+
+import {
+  ON_GANTT_ITEM_MOVED, 
+  ON_GANTT_ITEM_RESIZE, 
+  ON_HORIZONTAL_SCROLL
+} from './GanttChartActions';
 
 const { groups, items } = generateFakeData()
-
+const monthInt = moment().month(); //0-11
+const sidebarHeadingTitle = month[monthInt];
 //Set initial state for gridview reducer..
 const initialState = {
+  sidebarHeadingTitle,
   data: {
     groups,
     items,
@@ -62,6 +72,7 @@ const GanttChartReducer = (state = initialState, action) => {
         newItem[index] = targetItem;
       }
 
+      
       state = {
         ...state,
         data: {
@@ -70,6 +81,36 @@ const GanttChartReducer = (state = initialState, action) => {
         }
       }
       
+      break;
+    } //end case..
+    case ON_HORIZONTAL_SCROLL:{
+      const { 
+        visibleTimeStart, 
+        visibleTimeEnd,
+        updateScrollCanvas
+      } = action.payload;
+
+      const currentYear = moment().year(); 
+      //FInd the value of month from unix miliseconds..
+      const monthInt = moment(visibleTimeStart).month(); //0-11
+      const visibleYear = moment(visibleTimeStart).year();
+      let sidebarHeadingTitle;
+      if(visibleYear !== currentYear){
+        sidebarHeadingTitle = `${month[monthInt]} ${visibleYear}`;
+      }else{
+        sidebarHeadingTitle = `${month[monthInt]}`;
+      }
+
+
+      
+
+      state = {
+        ...state,
+        sidebarHeadingTitle,
+      }
+
+      //Now update Scroll Canvas..
+      updateScrollCanvas(visibleTimeStart, visibleTimeEnd);
       break;
     }
 

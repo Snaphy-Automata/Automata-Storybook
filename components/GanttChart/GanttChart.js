@@ -9,6 +9,7 @@ import 'react-calendar-timeline/lib/Timeline.css'
 import {
   onItemResizeAction,
   onItemMoveAction,
+  onHorizontalScrollAction,
 } from "./GanttChartActions";
 import GroupRenderer from "./GroupRenderer";
 
@@ -65,7 +66,7 @@ class App extends Component {
 
   render() {
     const { defaultTimeStart, defaultTimeEnd } = state
-    const { groups, items, onItemResizeAction, onItemMoveAction } = this.props;
+    const { groups, items, onItemResizeAction, onItemMoveAction, onHorizontalScrollAction, sidebarHeadingTitle } = this.props;
 
     return (
       <Timeline
@@ -83,7 +84,7 @@ class App extends Component {
         lineHeight={25}
 
         sidebarWidth={170}
-        sidebarContent={<div>April</div>}
+        sidebarContent={<div>{sidebarHeadingTitle}</div>}
         dragSnap={60*60*1000*24} //dragging unit set to be 24 hours 1 day
         headerLabelGroupHeight={0} //remvoe top header
         headerLabelHeight={23}
@@ -101,6 +102,7 @@ class App extends Component {
         onItemResize={onItemResizeAction}
         onItemMove={onItemMoveAction}
         groupRenderer={GroupRenderer}
+        onTimeChange={onHorizontalScrollAction}
       />
     )
   }
@@ -110,6 +112,7 @@ class App extends Component {
   function mapStateToProps(store) {
 
     return {
+      sidebarHeadingTitle: store.GanttChartReducer.sidebarHeadingTitle,
       groups: store.GanttChartReducer.data.groups,
       items: store.GanttChartReducer.data.items,
     };
@@ -121,7 +124,9 @@ const mapActionsToProps = {
   //map action here
   onItemResizeAction,
   onItemMoveAction,
+  onHorizontalScrollAction,
 };
+
 
 
 

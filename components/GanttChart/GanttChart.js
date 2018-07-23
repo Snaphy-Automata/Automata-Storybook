@@ -10,6 +10,7 @@ import {
   onItemResizeAction,
   onItemMoveAction,
 } from "./GanttChartActions";
+import GroupRenderer from "./GroupRenderer";
 
 //Custom style
 import "./GanttChart.css";
@@ -49,7 +50,7 @@ const defaultTimeStart = moment()
   .toDate()
 const defaultTimeEnd = moment()
   .startOf('day')
-  .add(1, 'day')
+  .add(12, 'day')
   .toDate()
 
 const state = {
@@ -89,10 +90,17 @@ class App extends Component {
         itemHeightRatio={0.65}
         minZoom={60*60*1000*24} //Smallest time that can be zoomed. 1 day
         maxZoom={365.24 * 86400 * 1000} //longest time that can be zoomed 1 year.
+        timeSteps={{
+          day: 1,
+          month: 1,
+          year: 1
+        }}
         canChangeGroup={false} //items cannot be moved outside a group.
+
         //useResizeHandle={true}
         onItemResize={onItemResizeAction}
         onItemMove={onItemMoveAction}
+        groupRenderer={GroupRenderer}
       />
     )
   }

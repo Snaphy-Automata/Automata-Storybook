@@ -11,17 +11,90 @@
     font-size: 11px;
 }
 
+.rct-label{
+    font-size: 11px !important;
+    font-weight: 600;
+    color: #707070 !important;
+}
+
 .react-calendar-timeline .rct-items .rct-item.analysis {
     background-color: #68efad;
+}
+
+/* Odd ROw */
+.react-calendar-timeline .rct-horizontal-lines .rct-hl-odd{
+    background-color: #fff;
 }
 
 .react-calendar-timeline .rct-sidebar-header{
     font-family: 'Lato', sans-serif;
     background-color: #ffffff;
     color: #000000;
+    border-bottom: 1px solid #eeeeee;
+    border-right: 1px solid #ddd;
+    font-size: 12px;
+    font-weight: 600;
+    color: #000000;
+    text-transform: uppercase;
+    padding-left: 7px;
+    height: 23px;
+    line-height: 23px;
 }
+
+.react-calendar-timeline .rct-sidebar{
+    border-right: solid 0.3px #f3f3f3;
+}
+
+.rct-sidebar-row-odd{
+    background: #ffffff !important;
+}
+
+.rct-sidebar-row{
+    border-bottom: 1px solid #eeeeee !important;
+    border-right: 1px solid #ddd;
+    padding-left: 7px !important;
+    
+}
+
 
 /* style for displaying vertical lines for Sat and Sun column */
 .react-calendar-timeline .rct-vertical-lines .rct-vl.rct-day-6, .react-calendar-timeline .rct-vertical-lines .rct-vl.rct-day-0{
     background-color: rgba(250, 246, 225, 0.5)
 }
+
+.react-calendar-timeline .rct-vertical-lines .rct-vl {
+    position: absolute;
+    border-left: 1px solid #eee;
+    z-index: 30;
+}
+
+.react-calendar-timeline .rct-horizontal-lines .rct-hl-even, .react-calendar-timeline .rct-horizontal-lines .rct-hl-odd{
+    border-bottom: 1px solid #eeeeee !important;
+}
+
+
+.react-calendar-timeline .rct-header .rct-label {
+    border-left: 1px solid #eee;
+    color: #707070;
+    background: #ffffff;
+    border-bottom: 1px solid #eee;
+}
+
+
+/* GroupRenderer Component */
+.gantt-chart-group-wrapper{
+    background: #ffffff;
+}
+
+
+.gantt-chart-group-title{
+    font-family: Lato;
+    font-size: 10px;
+    font-weight: 500;
+    text-align: left;
+    color: #707070;
+    padding-left: 8px;
+}
+
+
+/* END GroupRenderer Component */

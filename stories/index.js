@@ -27,7 +27,6 @@ import OverFlowLabel     from '../components/OverFlowLabel';
 import LabelDialog       from '../components/LabelDialog';
 import InputWithIcon     from '../components/DatePickerElement/InputWithIcon';
 import DatePickerElement from '../components/DatePickerElement';
-import DatePickerForm        from '../components/DatePicker/DatePickerForm';
 
 
 

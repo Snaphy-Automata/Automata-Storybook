@@ -12,6 +12,7 @@ import {
   onHorizontalScrollAction,
 } from "./GanttChartActions";
 import GroupRenderer from "./GroupRenderer";
+import ItemRenderer from "./ItemRenderer";
 
 //Custom style
 import "./GanttChart.css";
@@ -97,7 +98,7 @@ class App extends Component {
           year: 1
         }}
         canChangeGroup={false} //items cannot be moved outside a group.
-
+        itemRenderer={ItemRenderer}
         //useResizeHandle={true}
         onItemResize={onItemResizeAction}
         onItemMove={onItemMoveAction}

@@ -33,12 +33,14 @@ export default function (groupCount = 30, itemCount = 30, daysInPast = 30) {
       //title: faker.hacker.phrase(),
       start: startValue,
       end: endValue,
+      status: "pending",
       style:{
-        //backgroundColor:  (moment(startDate).day() === 6 || moment(startDate).day() === 0)? "#ffc16233": "#ff414133",
+        backgroundColor:  "#ffc16233",
+        border: "1px solid #e9b15a33"
       },
       // canMove: startValue > new Date().getTime(),
       // canResize: startValue > new Date().getTime() ? (endValue > new Date().getTime() ? 'both' : 'left') : (endValue > new Date().getTime() ? 'right' : false),
-      className: (moment(startDate).day() === 6 || moment(startDate).day() === 0) ? 'item-weekend' : '',
+      className: (moment(startDate).day() === 6 || moment(startDate).day() === 0) ? 'item-weekend gantt-chart-group-item' : 'gantt-chart-group-item',
       itemProps: {
         'data-tip': faker.hacker.phrase(),
         id: `item-${i}` 

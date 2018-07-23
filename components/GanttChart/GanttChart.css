@@ -97,4 +97,11 @@
 }
 
 
+.gantt-chart-group-item{
+    border-radius: 10px;
+    /* background-color: #ffc16233;
+    border: 1px solid #e9b15a33 !important; */
+}
+
+
 /* END GroupRenderer Component */

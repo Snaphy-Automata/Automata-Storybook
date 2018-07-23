@@ -12,7 +12,9 @@ import month from './month.json';
 import {
   ON_GANTT_ITEM_MOVED, 
   ON_GANTT_ITEM_RESIZE, 
-  ON_HORIZONTAL_SCROLL
+  ON_HORIZONTAL_SCROLL,
+  ON_ITEM_MOUSE_ENTER_ACTION,
+  ON_ITEM_MOUSE_LEAVE_ACTION
 } from './GanttChartActions';
 
 const { groups, items } = generateFakeData()
@@ -111,6 +113,67 @@ const GanttChartReducer = (state = initialState, action) => {
 
       //Now update Scroll Canvas..
       updateScrollCanvas(visibleTimeStart, visibleTimeEnd);
+      break;
+    }
+    case ON_ITEM_MOUSE_ENTER_ACTION:{
+      console.log("Mouse entered");
+      //When mouse is entered inside item area.
+      //Select the item. To start the scrolling without selecting it first.
+      //https://github.com/namespace-ee/react-calendar-timeline/issues/290#issuecomment-391254489
+      const {itemId} = action.payload;
+      //Select the given item id and unselect all else..
+      const oldItemList = state.data.items;
+      const newItem = [];
+
+      if(oldItemList && oldItemList.length){
+        oldItemList.forEach(item => {
+          if(item.id === itemId){
+            console.log(item);
+          }
+
+          newItem.push(item);
+        });
+      }
+
+      state = {
+        ...state,
+        data: {
+          ...state.data,
+          items: newItem,
+        }
+      }
+
+      break;
+    }
+
+    case ON_ITEM_MOUSE_LEAVE_ACTION:{
+      console.log("Mouse leave");
+      //When mouse is leaved inside item area.
+      //Select the item. To start the scrolling without selecting it first.
+      //https://github.com/namespace-ee/react-calendar-timeline/issues/290#issuecomment-391254489
+      const {itemId} = action.payload;
+      //Select the given item id and unselect all else..
+      const oldItemList = state.data.items;
+      const newItem = [];
+
+      if(oldItemList && oldItemList.length){
+        oldItemList.forEach(item => {
+          if(item.id === itemId){
+            console.log(item);
+          }
+
+          newItem.push(item);
+        });
+      }
+
+      state = {
+        ...state,
+        data: {
+          ...state.data,
+          items: newItem,
+        }
+      }
+
       break;
     }
 

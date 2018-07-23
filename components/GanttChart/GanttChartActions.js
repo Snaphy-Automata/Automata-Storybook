@@ -8,6 +8,8 @@
 export const ON_GANTT_ITEM_RESIZE = "ON_ITEM_RESIZE";
 export const ON_GANTT_ITEM_MOVED  = "ON_ITEM_MOVED";
 export const ON_HORIZONTAL_SCROLL = "ON_HORIZONTAL_SCROLL";
+export const ON_ITEM_MOUSE_ENTER_ACTION = "ON_ITEM_ENTER_ACTION";
+export const ON_ITEM_MOUSE_LEAVE_ACTION = "ON_ITEM_LEAVE_ACTION";
 
 //Will trigger when canvas is horizontally scrolled for date change
 //Also change the group item
@@ -54,6 +56,32 @@ export function onItemMoveAction(itemId, dragTime, newGroupOrder){
         dragTime,
         newGroupOrder
       }
+    });
+  }
+}
+
+
+
+export function onItemMouseEnterAction(itemId){
+  return (dispatch) => {
+    dispatch({
+      type: ON_ITEM_MOUSE_ENTER_ACTION,
+      payload:{
+        itemId,
+      }  
+    });
+  }
+}
+
+
+
+export function onItemMouseLeaveAction(itemId){
+  return (dispatch) => {
+    dispatch({
+      type: ON_ITEM_MOUSE_LEAVE_ACTION,
+      payload:{
+        itemId,
+      }  
     });
   }
 }

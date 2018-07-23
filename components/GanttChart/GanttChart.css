@@ -108,12 +108,20 @@
 }
 
 
+/* Item Renderer */
+.gantt-chart-item-title{
+    width: 50px;
+    display: inline-block;
+
+}
+
 /* Item Renderer ICON */
 .gantt-chart-item-icon{
     font-size: 16px;
     color: #fff;
     background-color: #e2ab5833;
     border-radius: 17px;
+    display: inline-block;
 }
 
 .gantt-chart-item-icon.left{

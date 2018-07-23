@@ -80,6 +80,10 @@
     border-bottom: 1px solid #eee;
 }
 
+.react-calendar-timeline .rct-item .rct-item-content{
+    padding: 0;
+}
+
 
 /* GroupRenderer Component */
 .gantt-chart-group-wrapper{
@@ -98,9 +102,33 @@
 
 
 .gantt-chart-group-item{
-    border-radius: 10px;
+    border-radius: 24px;
     /* background-color: #ffc16233;
     border: 1px solid #e9b15a33 !important; */
+}
+
+
+/* Item Renderer ICON */
+.gantt-chart-item-icon{
+    font-size: 16px;
+    color: #fff;
+    background-color: #e2ab5833;
+    border-radius: 17px;
+}
+
+.gantt-chart-item-icon.left{
+    cursor: w-resize;
+}
+
+.gantt-chart-item-icon.right{
+    cursor: e-resize;
+}
+
+.gantt-chart-item-icon.pending{
+    font-size: 16px;
+    color: #111;
+    background-color: #e2ab5833;
+    border-radius: 19px;
 }
 
 

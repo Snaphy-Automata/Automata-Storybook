@@ -10,6 +10,7 @@ import {
   onItemResizeAction,
   onItemMoveAction,
   onHorizontalScrollAction,
+  onItemSelectAction,
 } from "./GanttChartActions";
 import GroupRenderer from "./GroupRenderer";
 import ItemRenderer from "./ItemRenderer";
@@ -67,8 +68,17 @@ class App extends Component {
 
   render() {
     const { defaultTimeStart, defaultTimeEnd } = state
-    const { groups, items, onItemResizeAction, onItemMoveAction, onHorizontalScrollAction, sidebarHeadingTitle } = this.props;
-
+    const { 
+      groups, 
+      items, 
+      onItemResizeAction, 
+      onItemMoveAction, 
+      onHorizontalScrollAction, 
+      sidebarHeadingTitle, 
+      selectedItemId,
+      onItemSelectAction,
+    } = this.props;
+    console.log("Selected ITem ID", selectedItemId);
     return (
       <Timeline
         groups={groups}
@@ -83,7 +93,7 @@ class App extends Component {
         defaultTimeStart={defaultTimeStart}
         defaultTimeEnd={defaultTimeEnd}
         lineHeight={25}
-
+        selected={selectedItemId}
         sidebarWidth={170}
         sidebarContent={<div>{sidebarHeadingTitle}</div>}
         dragSnap={60*60*1000*24} //dragging unit set to be 24 hours 1 day
@@ -104,6 +114,8 @@ class App extends Component {
         onItemMove={onItemMoveAction}
         groupRenderer={GroupRenderer}
         onTimeChange={onHorizontalScrollAction}
+        onItemSelect={onItemSelectAction}
+        showCursorLine={false}
       />
     )
   }
@@ -114,6 +126,7 @@ class App extends Component {
 
     return {
       sidebarHeadingTitle: store.GanttChartReducer.sidebarHeadingTitle,
+      selectedItemId: store.GanttChartReducer.selectedItemId,
       groups: store.GanttChartReducer.data.groups,
       items: store.GanttChartReducer.data.items,
     };
@@ -126,6 +139,7 @@ const mapActionsToProps = {
   onItemResizeAction,
   onItemMoveAction,
   onHorizontalScrollAction,
+  onItemSelectAction,
 };
 
 

@@ -14,7 +14,8 @@ import {
   ON_GANTT_ITEM_RESIZE, 
   ON_HORIZONTAL_SCROLL,
   ON_ITEM_MOUSE_ENTER_ACTION,
-  ON_ITEM_MOUSE_LEAVE_ACTION
+  ON_ITEM_MOUSE_LEAVE_ACTION,
+  ON_ITEM_SELECTED,
 } from './GanttChartActions';
 
 const { groups, items } = generateFakeData()
@@ -23,6 +24,7 @@ const sidebarHeadingTitle = month[monthInt];
 //Set initial state for gridview reducer..
 const initialState = {
   sidebarHeadingTitle,
+  selectedItemId: undefined,
   data: {
     groups,
     items,
@@ -121,26 +123,9 @@ const GanttChartReducer = (state = initialState, action) => {
       //Select the item. To start the scrolling without selecting it first.
       //https://github.com/namespace-ee/react-calendar-timeline/issues/290#issuecomment-391254489
       const {itemId} = action.payload;
-      //Select the given item id and unselect all else..
-      const oldItemList = state.data.items;
-      const newItem = [];
-
-      if(oldItemList && oldItemList.length){
-        oldItemList.forEach(item => {
-          if(item.id === itemId){
-            console.log(item);
-          }
-
-          newItem.push(item);
-        });
-      }
-
       state = {
         ...state,
-        data: {
-          ...state.data,
-          items: newItem,
-        }
+        selectedItemId: [itemId],
       }
 
       break;
@@ -152,30 +137,21 @@ const GanttChartReducer = (state = initialState, action) => {
       //Select the item. To start the scrolling without selecting it first.
       //https://github.com/namespace-ee/react-calendar-timeline/issues/290#issuecomment-391254489
       const {itemId} = action.payload;
-      //Select the given item id and unselect all else..
-      const oldItemList = state.data.items;
-      const newItem = [];
-
-      if(oldItemList && oldItemList.length){
-        oldItemList.forEach(item => {
-          if(item.id === itemId){
-            console.log(item);
-          }
-
-          newItem.push(item);
-        });
-      }
-
       state = {
         ...state,
-        data: {
-          ...state.data,
-          items: newItem,
-        }
+        selectedItemId: [],
       }
 
       break;
     }
+    case ON_ITEM_SELECTED:{
+      const {itemId} = action.payload;
+      state = {
+        ...state,
+        selectedItemIds: [itemId],
+      }
+    }
+
 
   }
 

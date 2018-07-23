@@ -5,7 +5,7 @@
 
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-
+import { Icon } from 'semantic-ui-react';
 
 //Custom Import
 import {
@@ -30,10 +30,20 @@ const ItemRenderer = (props) => {
         onItemMouseLeaveAction(item.id);
     }
 
-    return (
+    return (    
     <div onMouseEnter={onMouseEnter}  onMouseLeave={onMouseLeave} className='custom-item'>
+       
+      <div className="gantt-chart-item-icon left">
+        <Icon name="angle left"></Icon>
+      </div>
+    
       <span className='title'>Hey{item.title}</span>
-      {selected && <p className='tip'>{item.tip}</p>}
+      {/* {selected && <p className='tip'>{item.tip}</p>} */}
+     
+      <div className="gantt-chart-item-icon right">
+        <Icon name="angle right"></Icon>
+      </div>
+
     </div>
     )
 };

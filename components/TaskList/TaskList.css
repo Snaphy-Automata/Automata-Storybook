@@ -2,26 +2,34 @@
 
 .task-list-heading-container{
     width: 100%;
-    padding: 15px
+    padding: 15px;
+    border-style:solid;
+    border-width: 0px 0px 0.5px 0px;
+    border-color: #eee;
     
 }
 
 .task-list-heading-icon{
     display: inline-block;
-    width: 3%
+    width: 3%;
+    cursor: pointer;
 }
 
 .task-list-heading-title{
     display: inline-block;
-    width : 60%;
+    width : 50%;
     font-size: larger;
-    font-style: inherit;
+    padding-left: 5px;
+    font-weight: 600;
 }
 
 .task-list-heading-archive-container{
     display:inline-block;
-    width : 24%;
-    text-align: right
+    width : 29%;
+    color: #707070;
+    font-weight: bold;
+    text-align: right;
+    font-size: 12px;
 }
 
 .task-list-heading-archive-container:hover{
@@ -30,9 +38,12 @@
 
 .task-list-heading-add-new-container{
     display:inline-block;
-    width : 10%;
+    width : 15%;
+    color: #707070;
+    font-weight: bold;
     text-align: right;
-    margin-left: 10px
+    margin-left: 10px;
+    font-size: 12px;
 }
 
 .task-list-heading-add-new-container:hover{

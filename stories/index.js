@@ -28,6 +28,8 @@ import LabelDialog       from '../components/LabelDialog';
 import InputWithIcon     from '../components/DatePickerElement/InputWithIcon';
 import DatePickerElement from '../components/DatePickerElement';
 import DatePickerForm        from '../components/DatePicker/DatePickerForm';
+import ShareDialog       from '../components/ShareDialog';
+
 
 
 
@@ -276,6 +278,12 @@ storiesOf("SubTask", module)
   )
 })
 
+.add('Selected', ()=>{
+  return (
+    <SubTask title="Sub Task2" isSelected=""/>
+  )
+})
+
 storiesOf("Task Attachment", module)
 .addDecorator(story => <Provider store={store}>{story()}</Provider>)
 .add('Basic', ()=>{
@@ -416,6 +424,14 @@ storiesOf("date picker", module)
     <div style={{padding:20, textAlign:'center'}}>
       <DatePickerForm/>
     </div>
+  )
+})
+
+storiesOf("Share Dialog", module)
+.addDecorator(story => <Provider store={store}>{story()}</Provider>)
+.add('Basic', ()=> {
+  return (
+    <ShareDialog/>
   )
 })
 

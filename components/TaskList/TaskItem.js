@@ -61,7 +61,7 @@ const TaskItem = ({ title, icon, status, subTask, attachment, dueDate, isNew }) 
 
     //console.log("Due Date Value", getDuedate(), moment().subtract(1, 'days').format("DD MMMM YYYY"), getDelayedColor());
     return (
-        <div style={{ marginTop: "2px", width: "100%", borderStyle: "solid", borderWidth: "0px 0px 0px 2px", borderColor: getDelayedColor() }}>
+        <div style={{width: "100%", borderStyle: "solid", borderWidth: "0px 0px 0.5px 2px", borderLeftColor: getDelayedColor(), borderBottomColor: "#eeeeee"}}>
             <div className="task-list-item-container">
                 <div className="task-list-item-side-line">
                     <div className="task-list-item-drag-icon">
@@ -70,34 +70,36 @@ const TaskItem = ({ title, icon, status, subTask, attachment, dueDate, isNew }) 
 
                 </div>
                 <div className="task-list-item-icon">
-                    {icon.title && <TeamCircleIcon size="mini" title={icon.title} onClick={() => { console.log("Icon has been clicked") }}></TeamCircleIcon>}
-                    {icon.icon && <TeamCircleIcon size="mini" icon={icon.icon} onClick={() => { console.log("Icon has been clicked") }}></TeamCircleIcon>}
-                    {icon && <TeamCircleIcon size="mini" icon={icon} onClick={() => { console.log("Icon has been clicked") }}></TeamCircleIcon>}
+                    <div>
+                        {icon.title && <TeamCircleIcon size="mini" title={icon.title} onClick={() => { console.log("Icon has been clicked") }}></TeamCircleIcon>}
+                        {icon.icon && <TeamCircleIcon size="mini" icon={icon.icon} onClick={() => { console.log("Icon has been clicked") }}></TeamCircleIcon>}
+                        {/* {icon && <TeamCircleIcon size="mini" icon={icon} onClick={() => { console.log("Icon has been clicked") }}></TeamCircleIcon>} */}
+                    </div>
                 </div>
 
-                {!isNew && <div className="task-list-item-title">{title}</div>}
-                {isNew && <Input transparent placeholder="Write Task" autoFocus></Input>}
-                {!isNew && <div>
+                <div className="task-list-item-title">
+                        {!isNew && <div style={{textOverflow: 'ellipsis', overflow:'hidden'}}>{title}</div>}
+                        {isNew && <Input style={{marginLeft:10}} transparent placeholder="Write Task" autoFocus></Input>}
+                   
+                </div >
+                {!isNew && <div style={{width:'50%', display:'inline-block'}}>
                     <div className="task-list-item-status" style={{ color: status.color }}>{status.title}</div>
                     <div className="task-list-item-sub-task-attachment-container">
-                        {subTask && <div style={{ display: "inline" }}>
+                        {subTask && <div style={{ display: "inline-block", width:"50%"}}>
                             <Icon name="unordered list" style={{ display: "inline" }}></Icon>
-                            <div style={{ display: "inline", marginLeft: "5px" }}>{subTask.completed}/{subTask.total}</div>
+                            <div style={{ display: "inline", marginLeft: "2px" }}>{subTask.completed}/{subTask.total}</div>
                         </div>}
-                        {attachment && <div style={{ display: "inline", marginLeft: "20px" }}>
+                        {attachment && <div style={{ display: "inline-block", width:"50%"}}>
                             <Icon name="attach" style={{ display: "inline" }}></Icon>
-                            <div style={{ display: "inline", marginLeft: "5px" }}>{attachment}</div>
+                            <div style={{ display: "inline", marginLeft: "2px" }}>{attachment}</div>
                         </div>
                         }
                     </div>
                     <div className="task-list-item-tags-container">
                         <div style={{ display: "inline" }}>
                             <div style={{ display: "inline" }}>
-                                <Label title="Bug" color="#ff9b00"></Label>
+                                {/* <Label title="Bug" color="#ff9b00"></Label> */}
                             </div>
-                            {/* <div style={{display: "inline"}}>
-                                    <Label title="..."></Label>
-                            </div> */}
                         </div>
 
                     </div>

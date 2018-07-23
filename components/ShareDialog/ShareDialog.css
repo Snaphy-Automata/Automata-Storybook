@@ -49,7 +49,7 @@
 
 .share-dialog-share-button-container{
     width: 135px;
-    display: inline-block;
+    float: right;
 }
 
 .share-dialog-link-container{
@@ -74,14 +74,13 @@
 }
 
 .share-dialog-edit-view-container{
-    width: 40%;
+    width: 165px;
     display: inline-block;
     margin-left: 20px;
 }
 
 .share-dialog-copy-button-container{
-    width: 10%;
-    margin-left: 40px;
-    display: inline-block;
+    width: 135px;
+    float: right;
 }
 

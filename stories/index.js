@@ -214,6 +214,14 @@ storiesOf('TaskList', module)
   )
 })
 
+.add('With Items Compressed', ()=>{
+  return(
+    <div style={{width:'772px'}}>
+      <TaskList items = {items} heading="Active Tasks" isOpened onArchiveClicked={()=>{console.log("Archive has been clicked")}} onNewTaskClicked={()=>{console.log("New Task has been Clicked")}}></TaskList>
+    </div>
+  )
+})
+
 storiesOf('Task Detail', module)
 .addDecorator(story => <Provider store={store}>{story()}</Provider>)
 .add('Basic', ()=>{

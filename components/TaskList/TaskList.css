@@ -10,8 +10,22 @@
 }
 
 .task-list-heading-container:hover{
-    cursor: pointer;
     background: rgba(197, 175, 247, 0.2)
+}
+
+.task-list-heading-container:hover .task-list-heading-drag-icon{
+    display: block;
+}
+
+.task-list-heading-drag-icon{
+    color: #707070;
+    display: none;
+    margin-left: 8px;
+}
+
+.task-list-heading-drag-container{
+    display: inline-block;
+    width: 3%;
 }
 
 .task-list-heading-icon{
@@ -22,7 +36,7 @@
 
 .task-list-heading-title{
     display: inline-block;
-    width : 50%;
+    width : 47%;
     font-size: larger;
     padding-left: 5px;
     font-weight: 600;

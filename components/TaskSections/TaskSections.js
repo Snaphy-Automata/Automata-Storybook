@@ -42,10 +42,6 @@ const TaskSections = ({ sectionList, populateSectionTaskList }) => {
     };
 
 
-    const onDragSectionEnd = (result) => {
-        console.log("I am getting called", result);
-    }
-
     /**
      * Drag for list
      * @param {*} result 
@@ -57,18 +53,16 @@ const TaskSections = ({ sectionList, populateSectionTaskList }) => {
             return;
         }
 
-        console.log("Different List", result);
-
         //Drag and drop within the list
         if (source.droppableId === destination.droppableId) {
 
+            //Drag and drop of sections..
             if(result.type === "ROW"){
                 const sectionItems = reorder(
                     sectionList,
                     source.index,
                     destination.index
                 )
-                console.log("Section List", sectionItems);
                 populateSectionTaskList(sectionItems);
 
             } else{
@@ -79,7 +73,8 @@ const TaskSections = ({ sectionList, populateSectionTaskList }) => {
                 )
     
                 let sectionDataList = [...sectionList];
-    
+
+                //TODO: Optimize the logic ..avoid loop
                 for (var i = 0; i < sectionDataList.length; i++) {
                     if (sectionDataList[i].sectionId === source.droppableId.toString()) {
                         sectionDataList[i].items = items;
@@ -93,6 +88,7 @@ const TaskSections = ({ sectionList, populateSectionTaskList }) => {
 
            
         } else {
+            //Drag and drop between two list..
             const result = move(
                 getList(source.droppableId, sectionList),
                 getList(destination.droppableId, sectionList),
@@ -101,6 +97,8 @@ const TaskSections = ({ sectionList, populateSectionTaskList }) => {
 
             )
             let sectionDataList = [...sectionList];
+
+            //TODO: Optimize the logic ...avoid loop
             for (var i = 0; i < sectionDataList.length; i++) {
                 if (sectionDataList[i].sectionId === source.droppableId) {
                     sectionDataList[i].items = result[source.droppableId];
@@ -109,9 +107,8 @@ const TaskSections = ({ sectionList, populateSectionTaskList }) => {
                     sectionDataList[i].items = result[destination.droppableId];
                 }
             }
-
-            //console.log(" Droppable Result data", result, result[source.droppableId], result[destination.droppableId], sectionDataList);
-
+            
+             //Call Redux to update both list with new position..
             populateSectionTaskList(sectionDataList)
 
         }
@@ -133,10 +130,9 @@ const TaskSections = ({ sectionList, populateSectionTaskList }) => {
                                             {(provided, snapshot) => (
                                                 <div
                                                     ref={provided.innerRef}
-                                                    {...provided.draggableProps}
-                                                    {...provided.dragHandleProps}>
+                                                    {...provided.draggableProps}>
                                                     <div key={index} style={{ marginBottom: 10, background: "#ffffff" }}>
-                                                        <TaskList heading={section.title} items={section.items} type="custom" sectionId={section.sectionId.toString()} onArchiveClicked={() => { console.log("Archive has been clicked") }} onNewTaskClicked={() => { console.log("New Task has been Clicked") }}></TaskList>
+                                                        <TaskList heading={section.title} items={section.items} type="custom" sectionId={section.sectionId.toString()} provided = {provided} onArchiveClicked={() => { console.log("Archive has been clicked") }} onNewTaskClicked={() => { console.log("New Task has been Clicked") }}></TaskList>
                                                     </div>
 
                                                 </div>
@@ -160,6 +156,12 @@ const TaskSections = ({ sectionList, populateSectionTaskList }) => {
 
 }
 
+
+/**
+ * Get the list accroding to section Id..
+ * @param {*} droppableId 
+ * @param {*} sectionList 
+ */
 export function getList(droppableId, sectionList) {
     let taskList = [];
     if (sectionList) {

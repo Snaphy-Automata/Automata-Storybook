@@ -6,7 +6,7 @@ import { Icon, Input } from 'semantic-ui-react'
 import './TaskList.css';
 import { sectionExpandedAction } from './TaskListActions';
 
-const TaskListHeading = ({ heading, onArchiveClicked, onNewTaskClicked, defaultText, type, items, taskHeadingReducer, sectionId, sectionExpandedAction }) => {
+const TaskListHeading = ({ heading, onArchiveClicked, onNewTaskClicked, defaultText, type, items, taskHeadingReducer, sectionId, sectionExpandedAction, provided }) => {
 
 
     const taskHeadingConfig = taskHeadingReducer[sectionId];
@@ -25,7 +25,11 @@ const TaskListHeading = ({ heading, onArchiveClicked, onNewTaskClicked, defaultT
 
     return (
         <div>
-            <div className="task-list-heading-container">
+            <div className="task-list-heading-container"> 
+                <div className="task-list-heading-drag-container">
+                    <div className="task-list-heading-drag-icon" {...provided.dragHandleProps}><Icon name="compress"></Icon></div>
+                </div>
+               
                 <div className="task-list-heading-icon"> <Icon name={getIcon()} onClick={onStateChanged}></Icon></div>
                 <div className="task-list-heading-title">
                     {type === "fixed" && <div>{heading}</div>}

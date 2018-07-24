@@ -57,9 +57,6 @@ const TaskItem = ({ title, icon, status, subTask, attachment, dueDate, isNew, pr
         return delayedColor;
     }
 
-
-
-    //console.log("Due Date Value", getDuedate(), moment().subtract(1, 'days').format("DD MMMM YYYY"), getDelayedColor());
     return (
         <div style={{width: "100%", borderBottom: "1px solid #eeeeee"}}>
             <div style={{borderLeftColor: getDelayedColor(), borderLeftStyle:"solid", borderLeftWidth: "2px", height:'80%'}}>
@@ -96,6 +93,7 @@ const TaskItem = ({ title, icon, status, subTask, attachment, dueDate, isNew, pr
                             </div>
                             }
                         </div>
+                        {/* TODO: Populate Labels list */}
                         <div className="task-list-item-tags-container">
                             <div style={{ display: "inline" }}>
                                 <div style={{ display: "inline" }}>

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import { Icon } from 'semantic-ui-react'
 import map from 'lodash/map';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
@@ -23,7 +22,7 @@ const TaskList = (props) => {
 
     return (
         <div>
-            <TaskListHeading heading={props.heading} onArchiveClicked={props.onArchiveClicked} onNewTaskClicked={props.onNewTaskClicked} type={props.type} sectionId={props.sectionId}></TaskListHeading>
+            <TaskListHeading heading={props.heading} onArchiveClicked={props.onArchiveClicked} onNewTaskClicked={props.onNewTaskClicked} type={props.type} sectionId={props.sectionId} provided = {props.provided}></TaskListHeading>
             {isSectionOpened && props.items && props.items.length &&
                 <Droppable droppableId={props.sectionId}>
                     {(provided, snapshot) => (

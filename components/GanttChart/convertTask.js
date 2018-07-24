@@ -62,6 +62,8 @@ const enhanceTask = (task) => {
     taskList = taskList || [];
     for(let i=0; i< taskList.length; i++){
         const task = enhanceTask(taskList[i]);
+        task.startDate = moment(task.startDate).startOf('day').valueOf();
+        task.endDate = moment(task.endDate).endOf('day').valueOf()
         newTaskList.push(task);
     }
 

@@ -26,8 +26,8 @@ var keys = {
   groupTitleKey: 'title',
   groupRightTitleKey: 'rightTitle',
   itemIdKey: 'id',
-  itemTitleKey: 'title',
-  itemDivTitleKey: 'title',
+  //itemTitleKey: 'title',
+  //itemDivTitleKey: 'title',
   itemGroupKey: 'id',
   itemTimeStartKey: 'startDate',
   itemTimeEndKey: 'endDate'

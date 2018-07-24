@@ -37,14 +37,14 @@ const getTaskData = (assignedTo) => {
   data.isCompleted = isCompleted;
   if(isCompleted){
     //Completed date and start end date is past..
-    data.completedOn = new Date(faker.date.past()).toISOString();
+    data.completedOn = moment(data.startDate).add(4, 'day');
     if(isArchived){
-      data.endDate = new Date(faker.date.future()).toISOString();
+      data.endDate = moment(data.startDate).add(4, 'day');
     }else{
-      data.endDate = new Date(faker.date.past()).toISOString();
+      data.endDate = moment(data.startDate).add(2, 'day');
     }
   }else{
-    data.endDate = new Date(faker.date.recent()).toISOString();
+    data.endDate = moment(data.startDate).add(2, 'day');
   }
   return data;
 }

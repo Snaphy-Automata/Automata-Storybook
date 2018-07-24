@@ -9,6 +9,11 @@
     
 }
 
+.task-list-heading-container:hover{
+    cursor: pointer;
+    background: rgba(197, 175, 247, 0.2)
+}
+
 .task-list-heading-icon{
     display: inline-block;
     width: 3%;

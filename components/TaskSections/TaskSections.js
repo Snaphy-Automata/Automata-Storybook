@@ -143,12 +143,6 @@ const TaskSections = ({ sectionList, populateSectionTaskList }) => {
                                             )}
 
                                         </Draggable>
-                                        //      <div key={index} style={{ marginBottom: 10, background: "#ffffff" }}>
-                                        //      <TaskList heading={section.title} items={section.items} type="custom" sectionId={section.sectionId.toString()} onArchiveClicked={() => { console.log("Archive has been clicked") }} onNewTaskClicked={() => { console.log("New Task has been Clicked") }}></TaskList>
-                                        //  </div>
-
-
-
                                     )
                                 })
                             }

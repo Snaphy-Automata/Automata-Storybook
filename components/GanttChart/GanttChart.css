@@ -107,18 +107,6 @@
 }
 
 
-.gantt-chart-group-item{
-    border-radius: 24px;
-    /* background-color: #ffc16233;
-    border: 1px solid #e9b15a33 !important; */
-}
-
-
-.gantt-chart-group-item.pending{
-    background-color: #ffc16233;
-    border: 1px solid #e9b15a33;
-}
-
 
 /* Item Renderer */
 .gantt-chart-item-title{
@@ -135,7 +123,6 @@
     line-height: 18px;
     text-align: center;
     color: #fff;
-    background-color: #e2ab5833;
     border-radius: 17px;
     display: inline-block;
     height: 18px;
@@ -149,13 +136,6 @@
     cursor: e-resize;
 }
 
-.gantt-chart-item-icon.pending{
-    font-size: 16px;
-    color: #111;
-    background-color: #e2ab5833;
-    border: 1px solid #e9b15a33;
-    border-radius: 19px;
-}
 
 
 /* Info Label on Scroll display */
@@ -166,3 +146,111 @@
 
 
 /* END GroupRenderer Component */
+
+
+
+/* Colors */
+.gantt-chart-group-item{
+    border-radius: 24px;
+    /* background-color: #ffc16233;
+    border: 1px solid #e9b15a33 !important; */
+}
+
+
+/* Pending */
+.gantt-chart-group-item.pending{
+    background-color: #ffc16233;
+    border: 1px solid #e9b15a33;
+}
+
+
+.gantt-chart-group-item.pending.selected{
+    background-color: #ffc16233;
+    border: 1px solid #e9b15a10;
+}
+
+
+
+.gantt-chart-item-icon.pending{
+    background-color: #e2ab5833;
+    border: 1px solid #e9b15a33;
+}
+
+/* UnAssigned */
+.gantt-chart-group-item.unassigned{
+    background-color: #75818d;
+    border: 1px solid #75818d;
+    opacity: 0.26;
+}
+
+
+.gantt-chart-group-item.unassigned.selected{
+    background-color: #75818d;
+    border: 1px solid #75818d;
+}
+
+.gantt-chart-item-icon.unassigned{
+    background-color: #75818d;
+    border: 1px solid #75818d;
+}
+
+
+/* Completed */
+.gantt-chart-group-item.completed{
+    background-color: #5ee2a033;
+    border: 1px solid #5ee2a033;
+    opacity: 0.26;
+}
+
+
+.gantt-chart-group-item.completed.selected{
+    background-color: #5ee2a033;
+    border: 1px solid #5ee2a033;
+}
+
+.gantt-chart-item-icon.completed{
+    background-color: #5ee2a033;
+    border: 1px solid #5ee2a033;
+}
+
+
+/* In Progress */
+.gantt-chart-group-item.in_progress{
+    background-color: #a177ff33;
+    border: 1px solid #a177ff33;
+    opacity: 0.26;
+}
+
+
+.gantt-chart-group-item.in_progress.selected{
+    background-color: #a177ff33;
+    border: 1px solid #a177ff33;
+}
+
+.gantt-chart-item-icon.in_progress{
+    background-color: #a177ff33;
+    border: 1px solid #a177ff33;
+}
+
+
+
+/* Delayed */
+.gantt-chart-group-item.delayed{
+    background-color: #ff414133;
+    border: 1px solid #ff414133;
+    opacity: 0.26;
+}
+
+
+.gantt-chart-group-item.delayed.selected{
+    background-color: #ff414133;
+    border: 1px solid #ff414133;
+}
+
+.gantt-chart-item-icon.delayed{
+    background-color: #ff414133;
+    border: 1px solid #ff414133;
+}
+
+
+

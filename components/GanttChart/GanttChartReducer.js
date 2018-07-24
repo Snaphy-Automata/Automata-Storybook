@@ -8,7 +8,7 @@ import moment from 'moment'
 
 //Custom Import
 import month from './month.json';
-
+import {convertTask} from "./convertTask";
 import {
   ON_GANTT_ITEM_MOVED, 
   ON_GANTT_ITEM_RESIZE, 
@@ -18,7 +18,9 @@ import {
   ON_ITEM_SELECTED,
 } from './GanttChartActions';
 
-const { groups, items } = generateFakeData()
+let taskList   = generateFakeData();
+taskList       = convertTask(taskList);
+console.log(taskList);
 const monthInt = moment().month(); //0-11
 const sidebarHeadingTitle = month[monthInt];
 //Set initial state for gridview reducer..
@@ -26,15 +28,13 @@ const initialState = {
   sidebarHeadingTitle,
   selectedItemId: undefined,
   data: {
-    groups,
-    items,
+    taskList,
   }
 };
 
 const GanttChartReducer = (state = initialState, action) => {
   switch (action.type){
     case ON_GANTT_ITEM_MOVED:{
-      console.log("I am here");
       const {
         itemId,
         dragTime,
@@ -118,7 +118,6 @@ const GanttChartReducer = (state = initialState, action) => {
       break;
     }
     case ON_ITEM_MOUSE_ENTER_ACTION:{
-      console.log("Mouse entered");
       //When mouse is entered inside item area.
       //Select the item. To start the scrolling without selecting it first.
       //https://github.com/namespace-ee/react-calendar-timeline/issues/290#issuecomment-391254489
@@ -132,7 +131,6 @@ const GanttChartReducer = (state = initialState, action) => {
     }
 
     case ON_ITEM_MOUSE_LEAVE_ACTION:{
-      console.log("Mouse leave");
       //When mouse is leaved inside item area.
       //Select the item. To start the scrolling without selecting it first.
       //https://github.com/namespace-ee/react-calendar-timeline/issues/290#issuecomment-391254489

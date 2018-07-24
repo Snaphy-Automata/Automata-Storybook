@@ -114,6 +114,12 @@
 }
 
 
+.gantt-chart-group-item.pending{
+    background-color: #ffc16233;
+    border: 1px solid #e9b15a33;
+}
+
+
 /* Item Renderer */
 .gantt-chart-item-title{
     /* width: 50px; */
@@ -147,8 +153,10 @@
     font-size: 16px;
     color: #111;
     background-color: #e2ab5833;
+    border: 1px solid #e9b15a33;
     border-radius: 19px;
 }
+
 
 /* Info Label on Scroll display */
 .rct-infolabel{

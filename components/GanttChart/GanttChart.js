@@ -5,6 +5,7 @@ import Timeline from 'react-calendar-timeline/lib'
 import 'react-calendar-timeline/lib/Timeline.css'
 
 
+
 //Custom Import
 import {
   onItemResizeAction,
@@ -14,6 +15,7 @@ import {
 } from "./GanttChartActions";
 import GroupRenderer from "./GroupRenderer";
 import ItemRenderer from "./ItemRenderer";
+
 
 //Custom style
 import "./GanttChart.css";
@@ -26,9 +28,9 @@ var keys = {
   itemIdKey: 'id',
   itemTitleKey: 'title',
   itemDivTitleKey: 'title',
-  itemGroupKey: 'group',
-  itemTimeStartKey: 'start',
-  itemTimeEndKey: 'end'
+  itemGroupKey: 'id',
+  itemTimeStartKey: 'startDate',
+  itemTimeEndKey: 'endDate'
 }
 
 const defaultHeaderLabelFormats =
@@ -69,8 +71,7 @@ class App extends Component {
   render() {
     const { defaultTimeStart, defaultTimeEnd } = state
     const { 
-      groups, 
-      items, 
+      taskList, 
       onItemResizeAction, 
       onItemMoveAction, 
       onHorizontalScrollAction, 
@@ -81,8 +82,8 @@ class App extends Component {
     console.log("Selected ITem ID", selectedItemId);
     return (
       <Timeline
-        groups={groups}
-        items={items}
+        groups={taskList}
+        items={taskList}
         keys={keys}
         itemsSorted
         itemTouchSendsClick={false}
@@ -127,8 +128,7 @@ class App extends Component {
     return {
       sidebarHeadingTitle: store.GanttChartReducer.sidebarHeadingTitle,
       selectedItemId: store.GanttChartReducer.selectedItemId,
-      groups: store.GanttChartReducer.data.groups,
-      items: store.GanttChartReducer.data.items,
+      taskList: store.GanttChartReducer.data.taskList,
     };
 }
 
@@ -141,9 +141,5 @@ const mapActionsToProps = {
   onHorizontalScrollAction,
   onItemSelectAction,
 };
-
-
-
-
   
 export default connect(mapStateToProps, mapActionsToProps)(App);

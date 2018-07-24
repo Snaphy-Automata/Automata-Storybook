@@ -11,7 +11,7 @@ const TaskListHeading = ({ heading, onArchiveClicked, onNewTaskClicked, defaultT
 
     const taskHeadingConfig = taskHeadingReducer[sectionId];
     const isSectionOpened = taskHeadingConfig && taskHeadingConfig.isOpened ? true : false;
-    console.log("Section Opened", isSectionOpened);
+   // console.log("Section Opened", isSectionOpened);
     const getIcon = function(){
         if(isSectionOpened){
             return `angle down`
@@ -21,7 +21,7 @@ const TaskListHeading = ({ heading, onArchiveClicked, onNewTaskClicked, defaultT
     }
 
     const onStateChanged = () => {
-       console.log("Section getting called");
+       //console.log("Section getting called");
         sectionExpandedAction(sectionId, !isSectionOpened);
     }
 

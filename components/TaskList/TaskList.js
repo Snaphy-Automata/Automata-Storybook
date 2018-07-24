@@ -10,27 +10,128 @@ import './TaskList.css';
 
 import TaskListHeading from './TaskListHeading';
 import TaskItem       from './TaskItem'
+import {getList}      from '../TaskSections/TaskSections'
 
 import {expandTaskListAction, populateTaskListAction, populateSectionTaskList} from './TaskListActions';
 
 const TaskList = (props) => {
 
     const onDragEnd = (result) => {
-          // dropped outside the list
-        if (!result.destination) {
+        const {source, destination} = result;
+
+       
+
+        // dropped outside the list
+        if (!destination) {
             return;
         }
+
+        console.log("Different List", result);
+        
+        //Drag and drop within the list
+        if(source.droppableId === destination.droppableId){
+          
+            const items = reorder(
+                props.items,
+                source.index,
+                destination.index
+            )
+
+            let sectionDataList = [...props.sectionList];
+         
+            for(var i=0;i<sectionDataList.length;i++){
+                if(sectionDataList[i].sectionId === props.sectionId.toString()){
+                    sectionDataList[i].items = items;
+                    break;
+                }
+            }
+            console.log("Drag End Result",items, props.sectionId.toString(), sectionDataList);
+
+             //Call Redux to update the list with new position..
+            props.populateSectionTaskList(sectionDataList);
+        } else{
+            const result = move(
+                getList(source.droppableId),
+                getList(destination.droppableId),
+                source,
+                destination
+
+            )
+
+            console.log(" Droppable Result data", result);
+
+          //  props.populateSectionTaskList(props.sectionId, )
+
+        }
     
-        const items = reorder(
-            props.items,
-            result.source.index,
-            result.destination.index
-        );
+        // const items = reorder(
+        //     props.items,
+        //     result.source.index,
+        //     result.destination.index
+        // );
 
-        //Call Redux to update the list with new position..
+        // //Call Redux to update the list with new position..
 
-        props.populateSectionTaskList(props.sectionId, items);
+        // props.populateSectionTaskList(props.sectionId, items);
     }
+
+    // onDragEnd = result => {
+    //     const { source, destination } = result;
+
+    //     // dropped outside the list
+    //     if (!destination) {
+    //         return;
+    //     }
+
+    //     if (source.droppableId === destination.droppableId) {
+    //         const items = reorder(
+    //             this.getList(source.droppableId),
+    //             source.index,
+    //             destination.index
+    //         );
+
+    //         let state = { items };
+
+    //         if (source.droppableId === 'droppable2') {
+    //             state = { selected: items };
+    //         }
+
+    //         this.setState(state);
+    //     } else {
+    //         const result = move(
+    //             this.getList(source.droppableId),
+    //             this.getList(destination.droppableId),
+    //             source,
+    //             destination
+    //         );
+
+    //         this.setState({
+    //             items: result.droppable,
+    //             selected: result.droppable2
+    //         });
+    //     }
+    // };
+
+    /**
+     * Move item from list to another list
+     * @param {*} source 
+     * @param {*} destination 
+     * @param {*} droppableSource 
+     * @param {*} droppableDestination 
+     */
+    const move = (source, destination, droppableSource, droppableDestination) => {
+        const sourceClone = Array.from(source);
+        const destClone = Array.from(destination);
+        const [removed] = sourceClone.splice(droppableSource.index, 1);
+    
+        destClone.splice(droppableDestination.index, 0, removed);
+    
+        const result = {};
+        result[droppableSource.droppableId] = sourceClone;
+        result[droppableDestination.droppableId] = destClone;
+    
+        return result;
+    };
 
 
     // function to reorder the list after draging the item to particualr position..
@@ -49,8 +150,8 @@ const TaskList = (props) => {
     return (
         <div>
             <TaskListHeading heading={props.heading} onArchiveClicked={props.onArchiveClicked} onNewTaskClicked={props.onNewTaskClicked} type={props.type} sectionId={props.sectionId}></TaskListHeading>
-            {isSectionOpened && props.items && props.items.length && <DragDropContext onDragEnd={onDragEnd}>
-                <Droppable droppableId="droppable">
+            {isSectionOpened && props.items && props.items.length &&
+                <Droppable droppableId={props.sectionId}>
                     {(provided, snapshot) => (
                         <div
                         ref={provided.innerRef}>
@@ -72,12 +173,14 @@ const TaskList = (props) => {
                                 
                             })
                         }
+                         {provided.placeholder}
 
                         </div>
                     )}
+                    
                 </Droppable>
 
-            </DragDropContext>}
+           }
             {/* {props.isOpened && props.items && props.items.length && <div>
 
                 {
@@ -99,6 +202,7 @@ const TaskList = (props) => {
     return {
        // isOpened : store.TaskListReducer.isOpened,
        // items : store.TaskListReducer.taskList,
+        sectionList : store.TaskListReducer.sectionList,
         taskListReducer
     };
 }
@@ -107,7 +211,8 @@ const TaskList = (props) => {
 //Map Redux Actions to Props..
 const mapActionsToProps = {
   //map action 
-  populateSectionTaskList
+  populateSectionTaskList,
+  getList
  // expandTaskListAction,
  // populateTaskListAction
 };

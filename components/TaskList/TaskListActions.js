@@ -17,14 +17,11 @@ export function sectionExpandedAction(sectionKey, isOpened){
     }
 }
 
-export function populateSectionTaskList(sectionKey, taskList){
+export function populateSectionTaskList(sectionList){
     return (dispatch) => {
         dispatch({
             type : SECTION_TASK_LIST,
-            payload : {
-                sectionKey,
-                taskList
-            }
+            payload : sectionList
         })
     }
 }

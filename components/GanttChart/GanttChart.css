@@ -159,34 +159,37 @@
 
 /* Pending */
 .gantt-chart-group-item.pending{
-    background-color: #ffc16233;
-    border: 1px solid #e9b15a33;
+    background-color: #ffc162;
+    border: 1px solid #e9b15a;
+    opacity: 0.30;
 }
 
 
 .gantt-chart-group-item.pending.selected{
-    background-color: #ffc16233;
-    border: 1px solid #e9b15a10;
+    background-color: #ffc162;
+    border: 1px solid #e9b15a;
+    opacity: 0.40;
 }
 
 
 
 .gantt-chart-item-icon.pending{
-    background-color: #e2ab5833;
-    border: 1px solid #e9b15a33;
+    background-color: #e2ab58;
+    border: 1px solid #e9b15a;
 }
 
 /* UnAssigned */
 .gantt-chart-group-item.unassigned{
     background-color: #75818d;
     border: 1px solid #75818d;
-    opacity: 0.26;
+    opacity: 0.30;
 }
 
 
 .gantt-chart-group-item.unassigned.selected{
     background-color: #75818d;
     border: 1px solid #75818d;
+    opacity: 0.40;
 }
 
 .gantt-chart-item-icon.unassigned{
@@ -197,59 +200,62 @@
 
 /* Completed */
 .gantt-chart-group-item.completed{
-    background-color: #5ee2a033;
-    border: 1px solid #5ee2a033;
-    opacity: 0.26;
+    background-color: #5ee2a0;
+    border: 1px solid #5ee2a0;
+    opacity: 0.30;
 }
 
 
 .gantt-chart-group-item.completed.selected{
-    background-color: #5ee2a033;
-    border: 1px solid #5ee2a033;
+    opacity: 0.40;
+    background-color: #5ee2a0;
+    border: 1px solid #5ee2a0;
 }
 
 .gantt-chart-item-icon.completed{
-    background-color: #5ee2a033;
-    border: 1px solid #5ee2a033;
+    background-color: #5ee2a0;
+    border: 1px solid #5ee2a0;
 }
 
 
 /* In Progress */
 .gantt-chart-group-item.in_progress{
-    background-color: #a177ff33;
-    border: 1px solid #a177ff33;
-    opacity: 0.26;
+    background-color: #a177ff;
+    border: 1px solid #a177ff;
+    opacity: 0.30;
 }
 
 
 .gantt-chart-group-item.in_progress.selected{
-    background-color: #a177ff33;
-    border: 1px solid #a177ff33;
+    background-color: #a177ff;
+    border: 1px solid #a177ff;
+    opacity: 0.40;
 }
 
 .gantt-chart-item-icon.in_progress{
-    background-color: #a177ff33;
-    border: 1px solid #a177ff33;
+    background-color: #a177ff;
+    border: 1px solid #a177ff;
 }
 
 
 
 /* Delayed */
 .gantt-chart-group-item.delayed{
-    background-color: #ff414133;
-    border: 1px solid #ff414133;
-    opacity: 0.26;
+    background-color: #ff4141;
+    border: 1px solid #ff4141;
+    opacity: 0.30;
 }
 
 
 .gantt-chart-group-item.delayed.selected{
-    background-color: #ff414133;
-    border: 1px solid #ff414133;
+    background-color: #ff4141;
+    border: 1px solid #ff4141;
+    opacity: 0.40;
 }
 
 .gantt-chart-item-icon.delayed{
-    background-color: #ff414133;
-    border: 1px solid #ff414133;
+    background-color: #e03a3a;
+    border: 1px solid #e03a3a;
 }
 
 

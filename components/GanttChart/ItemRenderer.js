@@ -13,6 +13,8 @@ import {
     onItemMouseLeaveAction,
   } from "./GanttChartActions";
 
+import {getStatusClass} from "./convertTask";
+
 //Custom Style..
 import "./GanttChart.css";
 
@@ -26,6 +28,8 @@ const ItemRenderer = (props) => {
             timelineWidth,
         }
     } = props;
+
+    const statusClass = getStatusClass(item);
 
     const onMouseEnter = (event) => {
         onItemMouseEnterAction(item.id);
@@ -44,14 +48,14 @@ const ItemRenderer = (props) => {
     return (    
     <div onMouseEnter={onMouseEnter}  onMouseLeave={onMouseLeave} className='gantt-chart-item-container'>
        
-      {selected && <div className="gantt-chart-item-icon left">
+      {selected && <div className={`gantt-chart-item-icon ${statusClass} left`}>
         <Icon name="angle left"></Icon>
       </div>}
     
       <div  className='gantt-chart-item-title'></div>
       {/* {selected && <p className='tip'>{item.tip}</p>} */}
      
-      {selected &&<div className="gantt-chart-item-icon right">
+      {selected &&<div className={`gantt-chart-item-icon ${statusClass} right`}>
         <Icon name="angle right"></Icon>
       </div>}
 

@@ -10,7 +10,7 @@ const initialState = {
     isOpened: false,
     sectionList: [
         {
-            sectionId: "1",
+            sectionId: "section1",
             title: "Active Tasks",
             items: [
                 {
@@ -108,7 +108,7 @@ const initialState = {
 
         },
         {
-            sectionId: "2",
+            sectionId: "section2",
             title: "All Tasks",
             items: [
                 {

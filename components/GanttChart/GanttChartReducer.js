@@ -8,7 +8,7 @@ import moment from 'moment'
 
 //Custom Import
 import month from './month.json';
-import {convertTask} from "./convertTask";
+import {convertTask, enhanceTask} from "./convertTask";
 import {
   ON_GANTT_ITEM_MOVED, 
   ON_GANTT_ITEM_RESIZE, 
@@ -46,6 +46,10 @@ const GanttChartReducer = (state = initialState, action) => {
       const oldTimeDiff =  targetItem.endDate - targetItem.startDate;
       targetItem.startDate = dragTime;
       targetItem.endDate = dragTime + oldTimeDiff;
+
+      const task = enhanceTask(targetItem);
+      newItem[index] = task;
+      
       state = {
         ...state,
         data: {
@@ -70,7 +74,9 @@ const GanttChartReducer = (state = initialState, action) => {
           targetItem.endDate = time;
         }
 
-        newItem[index] = targetItem;
+        const task = enhanceTask(targetItem);
+
+        newItem[index] = task;
       }
 
       
@@ -100,15 +106,10 @@ const GanttChartReducer = (state = initialState, action) => {
       }else{
         sidebarHeadingTitle = `${month[monthInt]}`;
       }
-
-
-      
-
       state = {
         ...state,
         sidebarHeadingTitle,
       }
-
       //Now update Scroll Canvas..
       updateScrollCanvas(visibleTimeStart, visibleTimeEnd);
       break;

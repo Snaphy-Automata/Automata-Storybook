@@ -61,85 +61,88 @@ const TaskItem = ({ title, icon, status, subTask, attachment, dueDate, isNew, pr
 
     //console.log("Due Date Value", getDuedate(), moment().subtract(1, 'days').format("DD MMMM YYYY"), getDelayedColor());
     return (
-        <div style={{width: "100%", borderStyle: "solid", borderWidth: "0px 0px 0.5px 2px", borderLeftColor: getDelayedColor(), borderBottomColor: "#eeeeee"}}>
-            <div className="task-list-item-container">
-                <div className="task-list-item-side-line">
-                    <div className="task-list-item-drag-icon" {...provided.dragHandleProps}>
-                        <Icon name="compress"></Icon>
-                    </div>
-
-                </div>
-                <div className="task-list-item-icon">
-                    <div>
-                        {icon.title && <TeamCircleIcon size="mini" title={icon.title} onClick={() => { console.log("Icon has been clicked") }}></TeamCircleIcon>}
-                        {icon.icon && <TeamCircleIcon size="mini" icon={icon.icon} onClick={() => { console.log("Icon has been clicked") }}></TeamCircleIcon>}
-                        {/* {icon && <TeamCircleIcon size="mini" icon={icon} onClick={() => { console.log("Icon has been clicked") }}></TeamCircleIcon>} */}
-                    </div>
-                </div>
-
-                <div className="task-list-item-title">
-                        {!isNew && <div style={{textOverflow: 'ellipsis', overflow:'hidden'}}>{title}</div>}
-                        {isNew && <Input style={{marginLeft:10}} transparent placeholder="Write Task" autoFocus></Input>}
-                   
-                </div >
-                {!isNew && <div style={{width:'50%', display:'inline-block'}}>
-                    <div className="task-list-item-status" style={{ color: status.color }}>{status.title}</div>
-                    <div className="task-list-item-sub-task-attachment-container">
-                        {subTask && <div style={{ display: "inline-block", width:"50%"}}>
-                            <Icon name="unordered list" style={{ display: "inline" }}></Icon>
-                            <div style={{ display: "inline", marginLeft: "2px" }}>{subTask.completed}/{subTask.total}</div>
-                        </div>}
-                        {attachment && <div style={{ display: "inline-block", width:"50%"}}>
-                            <Icon name="attach" style={{ display: "inline" }}></Icon>
-                            <div style={{ display: "inline", marginLeft: "2px" }}>{attachment}</div>
+        <div style={{width: "100%", borderBottom: "1px solid #eeeeee"}}>
+            <div style={{borderLeftColor: getDelayedColor(), borderLeftStyle:"solid", borderLeftWidth: "2px", height:'80%'}}>
+                <div className="task-list-item-container">
+                    <div className="task-list-item-side-line">
+                        <div className="task-list-item-drag-icon" {...provided.dragHandleProps}>
+                            <Icon name="compress"></Icon>
                         </div>
-                        }
+
                     </div>
-                    <div className="task-list-item-tags-container">
-                        <div style={{ display: "inline" }}>
+                    <div className="task-list-item-icon">
+                        <div>
+                            {icon.title && <TeamCircleIcon size="mini" title={icon.title} onClick={() => { console.log("Icon has been clicked") }}></TeamCircleIcon>}
+                            {icon.icon && <TeamCircleIcon size="mini" icon={icon.icon} onClick={() => { console.log("Icon has been clicked") }}></TeamCircleIcon>}
+                            {/* {icon && <TeamCircleIcon size="mini" icon={icon} onClick={() => { console.log("Icon has been clicked") }}></TeamCircleIcon>} */}
+                        </div>
+                    </div>
+
+                    <div className="task-list-item-title">
+                            {!isNew && <div style={{textOverflow: 'ellipsis', overflow:'hidden'}}>{title}</div>}
+                            {isNew && <Input style={{marginLeft:10}} transparent placeholder="Write Task" autoFocus></Input>}
+                    
+                    </div >
+                    {!isNew && <div style={{width:'50%', display:'inline-block'}}>
+                        <div className="task-list-item-status" style={{ color: status.color }}>{status.title}</div>
+                        <div className="task-list-item-sub-task-attachment-container">
+                            {subTask && <div style={{ display: "inline-block", width:"50%"}}>
+                                <Icon name="unordered list" style={{ display: "inline" }}></Icon>
+                                <div style={{ display: "inline", marginLeft: "2px" }}>{subTask.completed}/{subTask.total}</div>
+                            </div>}
+                            {attachment && <div style={{ display: "inline-block", width:"50%"}}>
+                                <Icon name="attach" style={{ display: "inline" }}></Icon>
+                                <div style={{ display: "inline", marginLeft: "2px" }}>{attachment}</div>
+                            </div>
+                            }
+                        </div>
+                        <div className="task-list-item-tags-container">
                             <div style={{ display: "inline" }}>
-                                {/* <Label title="Bug" color="#ff9b00"></Label> */}
+                                <div style={{ display: "inline" }}>
+                                    {/* <Label title="Bug" color="#ff9b00"></Label> */}
+                                </div>
                             </div>
+
                         </div>
-
-                    </div>
-                    <div className="task-list-item-date-container">
-                        {getDuedate() === "Today" &&
-                            <div>
-                                <Icon name="calendar minus outline" style={{ display: "inline" }}></Icon>
-                                <div style={{ display: "inline", marginLeft: "5px", color: "#1ed0c1" }}>{getDuedate()}</div>
-                            </div>
-                        }
-                        {getDuedate() === "Yesterday" &&
-                            <div>
-                                <Icon name="calendar minus outline" style={{ display: "inline" }}></Icon>
-                                <div style={{ display: "inline", marginLeft: "5px", color: "#ff1744" }}>{getDuedate()}</div>
-                            </div>
-                        }
-                        {getDuedate() === "Tommorow" &&
-                            <div>
-                                <Icon name="calendar minus outline" style={{ display: "inline" }}></Icon>
-                                <div style={{ display: "inline", marginLeft: "5px", color: "#1ed0c1" }}>{getDuedate()}</div>
-                            </div>
-                        }
-                        {getDuedate() !== "Today" && getDuedate() !== "Yesterday" && getDuedate() !== "Tomorrow" && isDelayedDate() === false &&
-                            <div>
-                                <Icon name="calendar minus outline" style={{ display: "inline" }}></Icon>
-                                <div style={{ display: "inline", marginLeft: "5px", color: "#9e9e9e" }}>{getDuedate()}</div>
-                            </div>
-                        }
-                        {getDuedate() !== "Today" && getDuedate() !== "Yesterday" && getDuedate() !== "Tomorrow" && isDelayedDate() === true &&
-                            <div>
-                                <Icon name="calendar minus outline" style={{ display: "inline" }}></Icon>
-                                <div style={{ display: "inline", marginLeft: "5px", color: "#ff1744" }}>{getDuedate()}</div>
-                            </div>
-                        }
+                        <div className="task-list-item-date-container">
+                            {getDuedate() === "Today" &&
+                                <div>
+                                    <Icon name="calendar minus outline" style={{ display: "inline" }}></Icon>
+                                    <div style={{ display: "inline", marginLeft: "5px", color: "#1ed0c1" }}>{getDuedate()}</div>
+                                </div>
+                            }
+                            {getDuedate() === "Yesterday" &&
+                                <div>
+                                    <Icon name="calendar minus outline" style={{ display: "inline" }}></Icon>
+                                    <div style={{ display: "inline", marginLeft: "5px", color: "#ff1744" }}>{getDuedate()}</div>
+                                </div>
+                            }
+                            {getDuedate() === "Tommorow" &&
+                                <div>
+                                    <Icon name="calendar minus outline" style={{ display: "inline" }}></Icon>
+                                    <div style={{ display: "inline", marginLeft: "5px", color: "#1ed0c1" }}>{getDuedate()}</div>
+                                </div>
+                            }
+                            {getDuedate() !== "Today" && getDuedate() !== "Yesterday" && getDuedate() !== "Tomorrow" && isDelayedDate() === false &&
+                                <div>
+                                    <Icon name="calendar minus outline" style={{ display: "inline" }}></Icon>
+                                    <div style={{ display: "inline", marginLeft: "5px", color: "#9e9e9e" }}>{getDuedate()}</div>
+                                </div>
+                            }
+                            {getDuedate() !== "Today" && getDuedate() !== "Yesterday" && getDuedate() !== "Tomorrow" && isDelayedDate() === true &&
+                                <div>
+                                    <Icon name="calendar minus outline" style={{ display: "inline" }}></Icon>
+                                    <div style={{ display: "inline", marginLeft: "5px", color: "#ff1744" }}>{getDuedate()}</div>
+                                </div>
+                            }
 
 
 
 
-                    </div>
-                </div>}
+                        </div>
+                    </div>}
+
+                </div>
 
             </div>
 

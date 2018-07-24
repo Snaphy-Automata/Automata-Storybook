@@ -4,15 +4,25 @@ import {connect} from 'react-redux';
 import { Icon, Input } from 'semantic-ui-react'
 
 import './TaskList.css';
+import {sectionExpandedAction} from './TaskListActions';
 
-const TaskListHeading = ({ heading, isOpened, onArchiveClicked, onNewTaskClicked, onStateChanged, defaultText, type, items}) => {
+const TaskListHeading = ({ heading, onArchiveClicked, onNewTaskClicked, defaultText, type, items, taskHeadingReducer, sectionId, sectionExpandedAction}) => {
 
+
+    const taskHeadingConfig = taskHeadingReducer[sectionId];
+    const isSectionOpened = taskHeadingConfig && taskHeadingConfig.isOpened ? true : false;
+    console.log("Section Opened", isSectionOpened);
     const getIcon = function(){
-        if(isOpened){
+        if(isSectionOpened){
             return `angle down`
         } else{
             return `angle right`
         }
+    }
+
+    const onStateChanged = () => {
+       console.log("Section getting called");
+        sectionExpandedAction(sectionId, !isSectionOpened);
     }
 
     return (
@@ -39,10 +49,10 @@ const TaskListHeading = ({ heading, isOpened, onArchiveClicked, onNewTaskClicked
                 </div>
 
             </div>
-            {isOpened && !items && <div style={{padding: "10px 15px 10px 15px", fontWeight: 500, color: "#9e9e9e", fontSize: 16}}>
+            {isSectionOpened && !items && <div style={{padding: "10px 15px 10px 15px", fontWeight: 500, color: "#9e9e9e", fontSize: 16}}>
                {defaultText} 
             </div>}
-            {isOpened && items && items.length === 0 &&  <div style={{padding: "10px 15px 10px 15px", fontWeight: 500, color: "#9e9e9e", fontSize: 16}}>
+            {isSectionOpened && items && items.length === 0 &&  <div style={{padding: "10px 15px 10px 15px", fontWeight: 500, color: "#9e9e9e", fontSize: 16}}>
                {defaultText} 
             </div>}
 
@@ -53,7 +63,22 @@ const TaskListHeading = ({ heading, isOpened, onArchiveClicked, onNewTaskClicked
 
 }
 
-export default TaskListHeading;
+// Retrieve data from store as props
+function mapStateToProps(store) {
+    const taskHeadingReducer = store.TaskListReducer;
+    return {
+       taskHeadingReducer
+    };
+}
+
+//Map Redux Actions to Props..
+const mapActionsToProps = {
+    //map action here
+    sectionExpandedAction
+  };
+  
+
+export default connect(mapStateToProps, mapActionsToProps)(TaskListHeading);
 // import React from 'react';
 // import PropTypes from 'prop-types';
 // import {connect} from 'react-redux';

@@ -11,16 +11,9 @@ import './TaskList.css';
 import TaskListHeading from './TaskListHeading';
 import TaskItem       from './TaskItem'
 
-import {expandTaskListAction, populateTaskListAction} from './TaskListActions';
+import {expandTaskListAction, populateTaskListAction, populateSectionTaskList} from './TaskListActions';
 
 const TaskList = (props) => {
-
-    console.log("Task List Props Data", props);
-
-    const onStateChangedFunction = function(){
-        console.log("Method called", props.isOpened);
-        props.expandTaskListAction(!props.isOpened);
-    }
 
     const onDragEnd = (result) => {
           // dropped outside the list
@@ -35,10 +28,8 @@ const TaskList = (props) => {
         );
 
         //Call Redux to update the list with new position..
-        props.populateTaskListAction(items);
-        // this.setState({
-        //     items,
-        // });
+
+        props.populateSectionTaskList(props.sectionId, items);
     }
 
 
@@ -50,12 +41,15 @@ const TaskList = (props) => {
     
         return result;
     };
+
+    const taskHeadingConfig = props.taskListReducer[props.sectionId];
+    const isSectionOpened = taskHeadingConfig && taskHeadingConfig.isOpened ? true : false;
   
 
     return (
         <div>
-            <TaskListHeading heading={props.heading} isOpened={props.isOpened} onArchiveClicked={props.onArchiveClicked} onNewTaskClicked={props.onNewTaskClicked} onStateChanged={onStateChangedFunction} type={props.type}></TaskListHeading>
-            {props.isOpened && props.items && props.items.length && <DragDropContext onDragEnd={onDragEnd}>
+            <TaskListHeading heading={props.heading} onArchiveClicked={props.onArchiveClicked} onNewTaskClicked={props.onNewTaskClicked} type={props.type} sectionId={props.sectionId}></TaskListHeading>
+            {isSectionOpened && props.items && props.items.length && <DragDropContext onDragEnd={onDragEnd}>
                 <Droppable droppableId="droppable">
                     {(provided, snapshot) => (
                         <div
@@ -101,19 +95,21 @@ const TaskList = (props) => {
 
   // Retrieve data from store as props
   function mapStateToProps(store) {
-
+      const taskListReducer = store.TaskListReducer
     return {
-        isOpened : store.TaskListReducer.isOpened,
-        items : store.TaskListReducer.taskList
+       // isOpened : store.TaskListReducer.isOpened,
+       // items : store.TaskListReducer.taskList,
+        taskListReducer
     };
 }
 
 
 //Map Redux Actions to Props..
 const mapActionsToProps = {
-  //map action here
-  expandTaskListAction,
-  populateTaskListAction
+  //map action 
+  populateSectionTaskList
+ // expandTaskListAction,
+ // populateTaskListAction
 };
 
 

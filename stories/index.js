@@ -29,6 +29,7 @@ import InputWithIcon     from '../components/DatePickerElement/InputWithIcon';
 import DatePickerElement from '../components/DatePickerElement';
 import ShareDialog       from '../components/ShareDialog';
 import DragAndDrop       from '../components/DragAndDrop';
+import TaskSections      from '../components/TaskSections';
 
 
 
@@ -257,14 +258,14 @@ storiesOf('TaskList', module)
 .add('With Items', ()=>{
  console.log("Items List", items);
   return (
-    <TaskList heading="Active Tasks" isOpened onArchiveClicked={()=>{console.log("Archive has been clicked")}} onNewTaskClicked={()=>{console.log("New Task has been Clicked")}}></TaskList>
+    <TaskList heading="Active Tasks" sectionId="1" onArchiveClicked={()=>{console.log("Archive has been clicked")}} onNewTaskClicked={()=>{console.log("New Task has been Clicked")}}></TaskList>
   )
 })
 
 .add('With Items Compressed', ()=>{
   return(
     <div style={{width:'772px'}}>
-      <TaskList heading="Active Tasks" isOpened onArchiveClicked={()=>{console.log("Archive has been clicked")}} onNewTaskClicked={()=>{console.log("New Task has been Clicked")}}></TaskList>
+      <TaskList heading="Active Tasks" sectionId="1" onArchiveClicked={()=>{console.log("Archive has been clicked")}} onNewTaskClicked={()=>{console.log("New Task has been Clicked")}}></TaskList>
     </div>
   )
 })
@@ -489,6 +490,13 @@ storiesOf("Drag And Drop", module)
     <DragAndDrop/>
   )
 })
+
+.add('With Sections', ()=> {
+  return(
+    <TaskSections/>
+  )
+})
+
 
 
 

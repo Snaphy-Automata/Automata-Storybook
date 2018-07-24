@@ -1,6 +1,8 @@
 import {
     ON_TASK_LIST_EXAPANDED,
-    TASK_LIST
+    TASK_LIST,
+    ON_SECTION_EXPANDED,
+    SECTION_TASK_LIST
 } from './TaskListActions';
 
 
@@ -115,6 +117,27 @@ const TaskListReducer = (state = initialState, action) => {
                 ...state,
                 taskList : action.payload
             }
+            break;
+        }
+        case ON_SECTION_EXPANDED:{
+            state = {
+                ...state,
+                [action.payload.sectionKey]:{
+                    ...[action.payload.sectionKey],
+                    isOpened : action.payload.isOpened
+                }
+            }
+            break;
+        }
+        case SECTION_TASK_LIST:{
+            state = {
+                ...state,
+                [action.payload.sectionKey]: {
+                    ...[action.payload.sectionKey],
+                    taskList : action.payload.taskList
+                }
+            }
+            break;
         }
             
 

@@ -40,37 +40,34 @@ const GanttChartReducer = (state = initialState, action) => {
         dragTime,
         newGroupOrder
       } = action.payload;
-      const oldItemList = state.data.items;
+      const oldTaskList = state.data.taskList;
       const newItem = [];
-      let {targetItem, index} = fetchTargetItem(oldItemList, newItem, itemId);
-      const oldTimeDiff =  targetItem.end - targetItem.start;
-      targetItem.start = dragTime;
-      targetItem.end = dragTime + oldTimeDiff;
-      console.log(dragTime, newGroupOrder, targetItem);
-
+      let {targetItem, index} = fetchTargetItem(oldTaskList, newItem, itemId);
+      const oldTimeDiff =  targetItem.endDate - targetItem.startDate;
+      targetItem.startDate = dragTime;
+      targetItem.endDate = dragTime + oldTimeDiff;
       state = {
         ...state,
         data: {
-          groups: state.data.groups,
-          items: newItem,
+          taskList: newItem
         }
       }
       break;
     }
     case ON_GANTT_ITEM_RESIZE:{
       const {itemId, time, edge} = action.payload;
-      const oldItemList = state.data.items;
+      const oldTaskList = state.data.taskList;
       const newItem = [];
-      let {targetItem, index} = fetchTargetItem(oldItemList, newItem, itemId);
+      let {targetItem, index} = fetchTargetItem(oldTaskList, newItem, itemId);
       //First find the item..
       if(targetItem && index !== -1){
         console.log("Target Item", targetItem);
         console.log(time, edge);
         if(edge === "left"){
           //Start date modified
-          targetItem.start = time;
+          targetItem.startDate = time;
         }else{
-          targetItem.end = time;
+          targetItem.endDate = time;
         }
 
         newItem[index] = targetItem;
@@ -80,8 +77,7 @@ const GanttChartReducer = (state = initialState, action) => {
       state = {
         ...state,
         data: {
-          groups: state.data.groups,
-          items: newItem,
+          taskList: newItem
         }
       }
       

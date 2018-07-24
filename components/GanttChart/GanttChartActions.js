@@ -12,6 +12,8 @@ export const ON_ITEM_MOUSE_ENTER_ACTION = "ON_ITEM_ENTER_ACTION";
 export const ON_ITEM_MOUSE_LEAVE_ACTION = "ON_ITEM_LEAVE_ACTION";
 export const ON_ITEM_SELECTED           = "ON_ITEM_SELECTED_ACTION";
 export const ON_TASK_LOAD_ACTION        = "ON_TASK_LOAD_ACTION";
+export const INITIALIZE_GANTT_WITH_DATA = "INITIALIZE_GANTT_WITH_DATA";
+
 
 //Will trigger when canvas is horizontally scrolled for date change
 //Also change the group item
@@ -100,15 +102,17 @@ export function onItemSelectAction(itemId){
   }
 }
 
-/**
- * When a list of task is loaded..
- * @param {*} taskList 
- */
-export function loadTaskAction(taskList, assigneeList){
-  return (dispatch)({
-    type: ON_TASK_LOAD_ACTION,
-    payload:{
-      taskList,
-    }
-  })
+
+
+
+export function initializeGanttWithDataAction(taskList, assignedTo){
+  return (dispatch) => {
+    dispatch({
+      type: INITIALIZE_GANTT_WITH_DATA,
+      payload:{
+        taskList,
+        assignedTo,
+      }
+    })
+  }
 }

@@ -16,17 +16,17 @@ import {
   ON_ITEM_MOUSE_ENTER_ACTION,
   ON_ITEM_MOUSE_LEAVE_ACTION,
   ON_ITEM_SELECTED,
+  INITIALIZE_GANTT_WITH_DATA,
 } from './GanttChartActions';
 
-let taskList   = generateFakeData();
-taskList       = convertTask(taskList);
-console.log(taskList);
+let taskList   = [];
 const monthInt = moment().month(); //0-11
 const sidebarHeadingTitle = month[monthInt];
 //Set initial state for gridview reducer..
 const initialState = {
   sidebarHeadingTitle,
   selectedItemId: undefined,
+  assignedTo:[],
   data: {
     taskList,
   }
@@ -49,7 +49,7 @@ const GanttChartReducer = (state = initialState, action) => {
 
       const task = enhanceTask(targetItem);
       newItem[index] = task;
-      
+
       state = {
         ...state,
         data: {
@@ -58,6 +58,7 @@ const GanttChartReducer = (state = initialState, action) => {
       }
       break;
     }
+    //ON Task Date Resize
     case ON_GANTT_ITEM_RESIZE:{
       const {itemId, time, edge} = action.payload;
       const oldTaskList = state.data.taskList;
@@ -65,8 +66,6 @@ const GanttChartReducer = (state = initialState, action) => {
       let {targetItem, index} = fetchTargetItem(oldTaskList, newItem, itemId);
       //First find the item..
       if(targetItem && index !== -1){
-        console.log("Target Item", targetItem);
-        console.log(time, edge);
         if(edge === "left"){
           //Start date modified
           targetItem.startDate = time;
@@ -76,7 +75,7 @@ const GanttChartReducer = (state = initialState, action) => {
 
         const task = enhanceTask(targetItem);
 
-        newItem[index] = task;
+        newItem[index] = targetItem;
       }
 
       
@@ -119,24 +118,25 @@ const GanttChartReducer = (state = initialState, action) => {
       //Select the item. To start the scrolling without selecting it first.
       //https://github.com/namespace-ee/react-calendar-timeline/issues/290#issuecomment-391254489
       const {itemId} = action.payload;
-      state = {
-        ...state,
-        selectedItemId: [itemId],
-      }
 
+      if(!state.selectedItemId || state.selectedItemId[0] !== itemId){
+        state = {
+          ...state,
+          selectedItemId: [itemId],
+        }
+      }
       break;
     }
-
     case ON_ITEM_MOUSE_LEAVE_ACTION:{
       //When mouse is leaved inside item area.
       //Select the item. To start the scrolling without selecting it first.
       //https://github.com/namespace-ee/react-calendar-timeline/issues/290#issuecomment-391254489
       const {itemId} = action.payload;
-      state = {
-        ...state,
-        //selectedItemId: [],
-      }
-
+      // state = {
+      //   ...state,
+      //   //selectedItemId: [],
+      // }
+      //Do nothing..
       break;
     }
     case ON_ITEM_SELECTED:{
@@ -145,8 +145,20 @@ const GanttChartReducer = (state = initialState, action) => {
         ...state,
         selectedItemIds: [itemId],
       }
-    }
 
+      break;
+    }
+    case INITIALIZE_GANTT_WITH_DATA:{
+      const taskItems = convertTask(action.payload.taskList);
+      state = {
+        ...state,
+        data:{
+          taskList: taskItems,
+        },
+        assignedTo: action.payload.assignedTo,
+      }
+    }
+    break;
 
   }
 

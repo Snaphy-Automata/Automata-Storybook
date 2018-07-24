@@ -21,14 +21,12 @@ const STATUS_OBJ = {
  * Will enhance taskObj data.
  * @param {*} taskObj 
  */
-export const enhanceTask = (taskObj) => {
-    const task      = getDates(taskObj);
+export const enhanceTask = (task) => {
     const startDate = task.startDate;
     const endDate   = task.endDate;
     const status    = task.status; 
     let className = (moment(startDate).day() === 6 || moment(startDate).day() === 0) ? 'item-weekend gantt-chart-group-item' : 'gantt-chart-group-item';
-    const statusClass = getStatusClass(task);    
-    console.log(statusClass);
+    const statusClass = getStatusClass(task);
     task.className = `${className} ${statusClass}`;
     task.itemProps =  {
         'data-tip': task.title,
@@ -47,7 +45,8 @@ export const enhanceTask = (taskObj) => {
      const newTaskList = [];
     taskList = taskList || [];
     for(let i=0; i< taskList.length; i++){
-        const task = enhanceTask(taskList[i]);
+        let task = getDates(taskList[i]);
+        task = enhanceTask(task);
         newTaskList.push(task);
     }
     return newTaskList;

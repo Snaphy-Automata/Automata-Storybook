@@ -111,21 +111,22 @@
 /* Item Renderer */
 .gantt-chart-item-title{
     /* width: 50px; */
-    width: calc(100% - 38px);
+    width: calc(100% - 32px);
     display: inline-block;
 
 }
 
 /* Item Renderer ICON */
 .gantt-chart-item-icon{
-    font-size: 15px;
-    width: 18px;
-    line-height: 18px;
+    font-size: 13px;
+    width: 10px;
+    /* float: right; */
+    line-height: 10px;
     text-align: center;
     color: #fff;
     border-radius: 17px;
     display: inline-block;
-    height: 18px;
+    height: 10px;
 }
 
 .gantt-chart-item-icon.left{

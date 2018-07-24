@@ -20,7 +20,6 @@ import "./GanttChart.css";
 
 
 const ItemRenderer = (props) => {
-    console.log(props);
     const {item, selected, onItemMouseLeaveAction, onItemMouseEnterAction,
         timelineContext:{
             visibleTimeStart,

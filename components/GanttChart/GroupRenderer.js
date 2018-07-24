@@ -16,15 +16,17 @@ const GroupRenderer = ({group}) => {
     //console.log(group);
     const title = truncate(group.title,{
         'length': 24,
-       
-    })
+    });
+
+    const icon = getAssignedToIcon(group);
+
     //https://github.com/namespace-ee/react-calendar-timeline#grouprenderer
     return (
         <div className="gantt-chart-group-wrapper">
             <div style={{
                 display: "inline-block"
             }}>
-                <TeamCircleIcon size="mini" {...group.icon}></TeamCircleIcon>
+                <TeamCircleIcon size="mini" {...icon}></TeamCircleIcon>
             </div>
             <div style={{
                 display: "inline-block"
@@ -35,6 +37,23 @@ const GroupRenderer = ({group}) => {
         </div>
     )
 };
+
+/**
+ * Will return the Assigned to icon..
+ * TODO: 24th Add icon to assigned or user name based on assigned to or some other..
+ * //Also display unsassigned if cursor hover over it.
+ */
+const getAssignedToIcon = (task) => {
+    const iconName = "user";
+    const icon = {
+        //icon: iconName,
+        title : "Robins",
+        //toolTip : name,
+        onClick : () => ("Items has been clicked")
+    }
+
+    return icon;
+}
 
 
 

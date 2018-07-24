@@ -29,6 +29,10 @@ import InputWithIcon     from '../components/DatePickerElement/InputWithIcon';
 import DatePickerElement from '../components/DatePickerElement';
 
 
+//Data
+import ganttFakeData     from '../data/generateGanttFakeData'; 
+
+
 
 const store = configureStore();
 
@@ -109,7 +113,7 @@ storiesOf('GanttChart', module)
   .addDecorator(story => <Provider store={store}>{story()}</Provider>)
   .add('GanttChart', ()=> {   
     return (
-        <GanttChart></GanttChart>
+        <GanttChart tasks={ganttFakeData()} assignedTo={[]} ></GanttChart>
     )
   })
   .add('with text', () => (

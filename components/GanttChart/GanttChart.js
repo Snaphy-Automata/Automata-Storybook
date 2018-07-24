@@ -3,7 +3,7 @@ import moment from 'moment'
 import {connect} from 'react-redux';
 import Timeline from 'react-calendar-timeline/lib'
 import 'react-calendar-timeline/lib/Timeline.css'
-
+import PropTypes from 'prop-types';
 
 
 //Custom Import
@@ -12,10 +12,11 @@ import {
   onItemMoveAction,
   onHorizontalScrollAction,
   onItemSelectAction,
+  initializeGanttWithDataAction,
 } from "./GanttChartActions";
 import GroupRenderer from "./GroupRenderer";
 import ItemRenderer from "./ItemRenderer";
-
+import {convertTask, enhanceTask} from "./convertTask";
 
 //Custom style
 import "./GanttChart.css";
@@ -68,6 +69,20 @@ class App extends Component {
     super(props)
   }
 
+  componentDidMount(){
+    const { 
+      tasks,
+      assignedTo,
+      initializeGanttWithDataAction,
+    } = this.props;
+    initializeGanttWithDataAction(tasks, assignedTo);    
+  }
+
+
+  componentWillReceiveProps(nextProps){
+
+  }
+
   render() {
     const { defaultTimeStart, defaultTimeEnd } = state
     const { 
@@ -79,7 +94,6 @@ class App extends Component {
       selectedItemId,
       onItemSelectAction,
     } = this.props;
-    console.log("Selected ITem ID", selectedItemId);
     return (
       <Timeline
         groups={taskList}
@@ -100,7 +114,7 @@ class App extends Component {
         dragSnap={60*60*1000*24} //dragging unit set to be 24 hours 1 day
         headerLabelGroupHeight={0} //remvoe top header
         headerLabelHeight={23}
-        itemHeightRatio={0.75}
+        itemHeightRatio={0.70}
         minZoom={60*60*1000*24} //Smallest time that can be zoomed. 1 day
         maxZoom={365.24 * 86400 * 1000} //longest time that can be zoomed 1 year.
         timeSteps={{
@@ -140,6 +154,16 @@ const mapActionsToProps = {
   onItemMoveAction,
   onHorizontalScrollAction,
   onItemSelectAction,
+  initializeGanttWithDataAction,
 };
+
+
+
+App.propTypes = {
+  tasks: PropTypes.array.isRequired,
+  assignedTo: PropTypes.array.isRequired,
+};
+
+
   
 export default connect(mapStateToProps, mapActionsToProps)(App);

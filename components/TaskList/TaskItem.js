@@ -8,7 +8,7 @@ import './TaskList.css';
 import TeamCircleIcon from '../TeamCircleIcon'
 import Label from '../Label';
 
-const TaskItem = ({ title, icon, status, subTask, attachment, dueDate, isNew }) => {
+const TaskItem = ({ title, icon, status, subTask, attachment, dueDate, isNew, provided }) => {
 
     const getDuedate = function () {
         let data;
@@ -64,7 +64,7 @@ const TaskItem = ({ title, icon, status, subTask, attachment, dueDate, isNew }) 
         <div style={{width: "100%", borderStyle: "solid", borderWidth: "0px 0px 0.5px 2px", borderLeftColor: getDelayedColor(), borderBottomColor: "#eeeeee"}}>
             <div className="task-list-item-container">
                 <div className="task-list-item-side-line">
-                    <div className="task-list-item-drag-icon">
+                    <div className="task-list-item-drag-icon" {...provided.dragHandleProps}>
                         <Icon name="compress"></Icon>
                     </div>
 

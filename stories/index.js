@@ -113,11 +113,9 @@ const totalUserItemList = [
 storiesOf('GanttChart', module)
   .addDecorator(story => <Provider store={store}>{story()}</Provider>)
   .add('GanttChart', ()=> {   
-    //const visibleTimeStart = moment().startOf('day').valueOf();
-    //const visibleTimeEnd = moment().add(12, 'day').endOf('day').valueOf();
-    //console.log(visibleTimeStart, visibleTimeEnd);
+
     return (
-        <GanttChart   assignedTo={[]} ></GanttChart>
+        <GanttChart tasks={ganttFakeData()}></GanttChart>
     );
   })
   .add('with text', () => (

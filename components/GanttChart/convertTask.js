@@ -32,7 +32,6 @@ export const enhanceTask = (task) => {
         'data-tip': task.title,
         id: `item-${task.id}` 
     }
-
     return task;
 };
   

@@ -19,19 +19,25 @@ import {
   INITIALIZE_GANTT_WITH_DATA,
 } from './GanttChartActions';
 
-let taskList   = convertTask(generateFakeData());
-const monthInt = moment().month(); //0-11
-const sidebarHeadingTitle = month[monthInt];
+//Will reuturn current month..
+const sidebarTitle = () => {
+  const monthInt = moment().month(); //0-11
+  const sidebarHeadingTitle = month[monthInt];
+  return sidebarHeadingTitle;
+}
+
+
 //Set initial state for gridview reducer..
 const initialState = {
-  sidebarHeadingTitle,
+  sidebarHeadingTitle: sidebarTitle(),
   selectedItemId: undefined,
   assignedTo:[],
   data: {
-    taskList,
+    taskList:[],
   },
   displayStartTime: moment().add(1, 'day').startOf('day').valueOf(),
-  displayEndTime: moment().add(1, 'day').endOf('day').valueOf()
+  displayEndTime: moment().add(1, 'day').endOf('day').valueOf(),
+  isTaskLoaded: false,
 };
 
 const GanttChartReducer = (state = initialState, action) => {
@@ -154,12 +160,10 @@ const GanttChartReducer = (state = initialState, action) => {
       const taskItems = convertTask(action.payload.taskList);
       state = {
         ...state,
+        isTaskLoaded: true,
         data:{
           taskList: taskItems,
-        },
-        displayStartTime: action.payload.visibleTimeStart,
-        displayEndTime: action.payload.visibleTimeEnd,
-        assignedTo: action.payload.assignedTo,
+        }
       }
       break;
     }

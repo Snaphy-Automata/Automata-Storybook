@@ -105,14 +105,17 @@ export function onItemSelectAction(itemId){
 
 
 
-export function initializeGanttWithDataAction(taskList, assignedTo){
+export function initializeGanttWithDataAction(taskList, assignedTo, visibleTimeStart, visibleTimeEnd){
   return (dispatch) => {
     dispatch({
       type: INITIALIZE_GANTT_WITH_DATA,
       payload:{
         taskList,
         assignedTo,
+        visibleTimeStart,
+        visibleTimeEnd,
       }
     })
   }
 }
+

@@ -19,7 +19,7 @@ import {
   INITIALIZE_GANTT_WITH_DATA,
 } from './GanttChartActions';
 
-let taskList   = [];
+let taskList   = convertTask(generateFakeData());
 const monthInt = moment().month(); //0-11
 const sidebarHeadingTitle = month[monthInt];
 //Set initial state for gridview reducer..
@@ -29,7 +29,9 @@ const initialState = {
   assignedTo:[],
   data: {
     taskList,
-  }
+  },
+  displayStartTime: moment().add(1, 'day').startOf('day').valueOf(),
+  displayEndTime: moment().add(1, 'day').endOf('day').valueOf()
 };
 
 const GanttChartReducer = (state = initialState, action) => {
@@ -94,7 +96,7 @@ const GanttChartReducer = (state = initialState, action) => {
         visibleTimeEnd,
         updateScrollCanvas
       } = action.payload;
-
+      console.log("I am scrolling",visibleTimeStart, visibleTimeEnd);
       const currentYear = moment().year(); 
       //FInd the value of month from unix miliseconds..
       const monthInt = moment(visibleTimeStart).month(); //0-11
@@ -155,10 +157,13 @@ const GanttChartReducer = (state = initialState, action) => {
         data:{
           taskList: taskItems,
         },
+        displayStartTime: action.payload.visibleTimeStart,
+        displayEndTime: action.payload.visibleTimeEnd,
         assignedTo: action.payload.assignedTo,
       }
+      break;
     }
-    break;
+    
 
   }
 

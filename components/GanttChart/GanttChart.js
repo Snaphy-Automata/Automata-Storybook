@@ -12,11 +12,9 @@ import {
   onItemMoveAction,
   onHorizontalScrollAction,
   onItemSelectAction,
-  initializeGanttWithDataAction,
 } from "./GanttChartActions";
 import GroupRenderer from "./GroupRenderer";
 import ItemRenderer from "./ItemRenderer";
-import {convertTask, enhanceTask} from "./convertTask";
 
 //Custom style
 import "./GanttChart.css";
@@ -34,8 +32,7 @@ var keys = {
   itemTimeEndKey: 'endDate'
 }
 
-const defaultHeaderLabelFormats =
-  {
+const defaultHeaderLabelFormats = {
     yearShort: 'YY',
     yearLong: 'YYYY',
     monthShort: 'MM/YY',
@@ -55,7 +52,7 @@ const defaultTimeStart = moment()
   .startOf('day')
   .toDate()
 const defaultTimeEnd = moment()
-  .startOf('day')
+  .endOf('day')
   .add(12, 'day')
   .toDate()
 
@@ -64,86 +61,71 @@ const state = {
   defaultTimeEnd
 }
 
-class App extends Component {
-  constructor(props) {
-    super(props)
-  }
+const GanttChart = (props) => {
+  const { defaultTimeStart, defaultTimeEnd } = state
+  const { 
+    taskList, 
+    onItemResizeAction, 
+    onItemMoveAction, 
+    onHorizontalScrollAction, 
+    sidebarHeadingTitle, 
+    selectedItemId,
+    onItemSelectAction,
+  } = props;
 
-  componentDidMount(){
-    const { 
-      tasks,
-      assignedTo,
-      initializeGanttWithDataAction,
-    } = this.props;
-    initializeGanttWithDataAction(tasks, assignedTo);    
-  }
+  const items = [...taskList];
+  console.log("I am loading");
+  return (
+    <Timeline
+      groups={taskList}
+      items={items}
+      keys={keys}
+      itemsSorted
+      itemTouchSendsClick={false}
+      stackItems
+      showCursorLine
+      canMove={true}
+      canResize={"both"}
+      defaultTimeStart={defaultTimeStart}
+      defaultTimeEnd={defaultTimeEnd}
+      lineHeight={25}
+      selected={selectedItemId}
+      sidebarWidth={170}
+      sidebarContent={<div>{sidebarHeadingTitle}</div>}
+      dragSnap={60*60*1000*24} //dragging unit set to be 24 hours 1 day
+      headerLabelGroupHeight={0} //remvoe top header
+      headerLabelHeight={23}
+      itemHeightRatio={0.70}
+      minZoom={60*60*1000*24} //Smallest time that can be zoomed. 1 day
+      maxZoom={365.24 * 86400 * 1000} //longest time that can be zoomed 1 year.
+      timeSteps={{
+        day: 1,
+        month: 1,
+        year: 1
+      }}
+      canChangeGroup={false} //items cannot be moved outside a group.
+      itemRenderer={ItemRenderer}
+      useResizeHandle={true}
+      onItemResize={onItemResizeAction}
+      onItemMove={onItemMoveAction}
+      groupRenderer={GroupRenderer}
+      onTimeChange={onHorizontalScrollAction}
+      onItemSelect={onItemSelectAction}
+      showCursorLine={false}
+    />
+  ) 
+};
 
 
-  componentWillReceiveProps(nextProps){
 
-  }
+// Retrieve data from store as props
+function mapStateToProps(store) {
 
-  render() {
-    const { defaultTimeStart, defaultTimeEnd } = state
-    const { 
-      taskList, 
-      onItemResizeAction, 
-      onItemMoveAction, 
-      onHorizontalScrollAction, 
-      sidebarHeadingTitle, 
-      selectedItemId,
-      onItemSelectAction,
-    } = this.props;
-    return (
-      <Timeline
-        groups={taskList}
-        items={taskList}
-        keys={keys}
-        itemsSorted
-        itemTouchSendsClick={false}
-        stackItems
-        showCursorLine
-        canMove={true}
-        canResize={"both"}
-        defaultTimeStart={defaultTimeStart}
-        defaultTimeEnd={defaultTimeEnd}
-        lineHeight={25}
-        selected={selectedItemId}
-        sidebarWidth={170}
-        sidebarContent={<div>{sidebarHeadingTitle}</div>}
-        dragSnap={60*60*1000*24} //dragging unit set to be 24 hours 1 day
-        headerLabelGroupHeight={0} //remvoe top header
-        headerLabelHeight={23}
-        itemHeightRatio={0.70}
-        minZoom={60*60*1000*24} //Smallest time that can be zoomed. 1 day
-        maxZoom={365.24 * 86400 * 1000} //longest time that can be zoomed 1 year.
-        timeSteps={{
-          day: 1,
-          month: 1,
-          year: 1
-        }}
-        canChangeGroup={false} //items cannot be moved outside a group.
-        itemRenderer={ItemRenderer}
-        //useResizeHandle={true}
-        onItemResize={onItemResizeAction}
-        onItemMove={onItemMoveAction}
-        groupRenderer={GroupRenderer}
-        onTimeChange={onHorizontalScrollAction}
-        onItemSelect={onItemSelectAction}
-        showCursorLine={false}
-      />
-    )
-  }
-}
-
-  // Retrieve data from store as props
-  function mapStateToProps(store) {
-
-    return {
-      sidebarHeadingTitle: store.GanttChartReducer.sidebarHeadingTitle,
-      selectedItemId: store.GanttChartReducer.selectedItemId,
-      taskList: store.GanttChartReducer.data.taskList,
-    };
+  return {
+    sidebarHeadingTitle: store.GanttChartReducer.sidebarHeadingTitle,
+    selectedItemId: store.GanttChartReducer.selectedItemId,
+    taskList: store.GanttChartReducer.data.taskList,
+  };
 }
 
 
@@ -154,16 +136,15 @@ const mapActionsToProps = {
   onItemMoveAction,
   onHorizontalScrollAction,
   onItemSelectAction,
-  initializeGanttWithDataAction,
 };
 
 
 
-App.propTypes = {
-  tasks: PropTypes.array.isRequired,
+GanttChart.propTypes = {
+  //tasks: PropTypes.array.isRequired,
   assignedTo: PropTypes.array.isRequired,
 };
 
 
   
-export default connect(mapStateToProps, mapActionsToProps)(App);
+export default connect(mapStateToProps, mapActionsToProps)(GanttChart);

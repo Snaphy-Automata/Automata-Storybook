@@ -2,6 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { Provider } from 'react-redux';
+import moment from "moment";
 
 import 'semantic-ui-css/semantic.min.css';
 
@@ -29,9 +30,9 @@ import InputWithIcon     from '../components/DatePickerElement/InputWithIcon';
 import DatePickerElement from '../components/DatePickerElement';
 
 
+
 //Data
 import ganttFakeData     from '../data/generateGanttFakeData'; 
-
 
 
 const store = configureStore();
@@ -112,9 +113,12 @@ const totalUserItemList = [
 storiesOf('GanttChart', module)
   .addDecorator(story => <Provider store={store}>{story()}</Provider>)
   .add('GanttChart', ()=> {   
+    //const visibleTimeStart = moment().startOf('day').valueOf();
+    //const visibleTimeEnd = moment().add(12, 'day').endOf('day').valueOf();
+    //console.log(visibleTimeStart, visibleTimeEnd);
     return (
-        <GanttChart tasks={ganttFakeData()} assignedTo={[]} ></GanttChart>
-    )
+        <GanttChart   assignedTo={[]} ></GanttChart>
+    );
   })
   .add('with text', () => (
     <Button onClick={action('clicked')} 

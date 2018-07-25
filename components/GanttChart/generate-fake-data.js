@@ -31,18 +31,19 @@ const getTaskData = (assignedTo) => {
   const isCompleted = status === "completed";
 
   data.isArchived = isArchived;
-  data.startDate = status !== undefined ? new Date(faker.date.past()).toISOString():  undefined;
+  data.startDate = status !== undefined ? new Date().toISOString():  undefined;
   data.isCompleted = isCompleted;
+  const date = getRandomInt(1, 12)
   if(isCompleted){
     //Completed date and start end date is past..
-    data.completedOn = moment(data.startDate).add(4, 'day');
+    data.completedOn = moment(data.startDate).add(date, 'day');
     if(isArchived){
-      data.endDate = moment(data.startDate).add(4, 'day');
+      data.endDate = moment(data.startDate).add(date, 'day');
     }else{
-      data.endDate = moment(data.startDate).add(2, 'day');
+      data.endDate = moment(data.startDate).add(date, 'day');
     }
   }else{
-    data.endDate = moment(data.startDate).add(2, 'day');
+    data.endDate = moment(data.startDate).add(date, 'day');
   }
   return data;
 }

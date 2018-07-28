@@ -50,7 +50,7 @@ const GanttChartReducer = (state = initialState, action) => {
         dragTime,
         newGroupOrder
       } = action.payload;
-      const oldTaskList = state.data.taskList;
+      const oldTaskList = state.data.items;
       const newItem = [];
       let {targetItem, index} = fetchTargetItem(oldTaskList, newItem, itemId);
       const oldTimeDiff =  targetItem.endDate - targetItem.startDate;
@@ -61,7 +61,8 @@ const GanttChartReducer = (state = initialState, action) => {
       state = {
         ...state,
         data: {
-          taskList: newItem
+          ...state.data,
+          items: newItem
         }
       }
       break;
@@ -69,7 +70,7 @@ const GanttChartReducer = (state = initialState, action) => {
     //ON Task Date Resize
     case ON_GANTT_ITEM_RESIZE:{
       const {itemId, time, edge} = action.payload;
-      const oldTaskList = state.data.taskList;
+      const oldTaskList = state.data.items;
       const newItem = [];
       let {targetItem, index} = fetchTargetItem(oldTaskList, newItem, itemId);
       //First find the item..
@@ -86,7 +87,8 @@ const GanttChartReducer = (state = initialState, action) => {
       state = {
         ...state,
         data: {
-          taskList: newItem
+          ...state.data,
+          items: newItem,
         }
       }     
       break;
@@ -151,12 +153,13 @@ const GanttChartReducer = (state = initialState, action) => {
       break;
     }
     case INITIALIZE_GANTT_WITH_DATA:{
-      const taskItems = convertTask(action.payload.taskList);
+      const {groups, items} = convertTask(action.payload.taskList);
       state = {
         ...state,
         isTaskLoaded: true,
         data:{
-          taskList: taskItems,
+          groups: groups,
+          items: items,
         }
       }
       break;

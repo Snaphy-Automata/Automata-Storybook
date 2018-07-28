@@ -3,7 +3,7 @@
  * 24th July 2018
  */
 import moment from 'moment'
-
+import uniqueId from 'lodash/uniqueId';
 
 
 
@@ -28,6 +28,12 @@ export const enhanceTask = (task) => {
     let className = (moment(startDate).day() === 6 || moment(startDate).day() === 0) ? 'item-weekend gantt-chart-group-item' : 'gantt-chart-group-item';
     const statusClass = getStatusClass(task);
     task.className = `${className} ${statusClass}`;
+    if(task.isCompletedType){
+        task.className = `${className} gantt-chart-group-item-completed-type`;
+    }else{
+        task.className = `${className} gantt-chart-group-item-type`;
+    }
+
     task.itemProps =  {
         'data-tip': task.title,
         id: `item-${task.id}` 
@@ -41,14 +47,24 @@ export const enhanceTask = (task) => {
  * Will convert a task to task list format
  */
  export const convertTask = (taskList, assigneeList) => {
-     const newTaskList = [];
+     const newTaskList = [], groups=[];
     taskList = taskList || [];
     for(let i=0; i< taskList.length; i++){
         let task = getDates(taskList[i]);
+        let newData = {...task};
+        newData.id = uniqueId(`${newData.id}_`);
+        newData.isCompletedType  = true;
+        newData.endDate = moment().endOf('day');
+        const group = {...task};
+        groups.push(task);
+        task.groupId = group.id;
+        newData.groupId = group.id;
         task = enhanceTask(task);
+        newData = enhanceTask(newData);
         newTaskList.push(task);
+        newTaskList.push(newData);
     }
-    return newTaskList;
+    return {items: newTaskList, groups: groups};
 };
 
 

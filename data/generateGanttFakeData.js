@@ -44,6 +44,8 @@ const getTaskData = (assignedTo) => {
   }else{
     data.endDate = moment(data.startDate).add(2, 'day');
   }
+
+
   return data;
 }
 
@@ -52,6 +54,7 @@ export default function(groupCount = 30, daysInPast = 30){
   let taskList = [];
   for(let i=0; i< groupCount; i++){
     const task = getTaskData();
+   
     taskList.push(task);
   }
 

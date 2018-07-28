@@ -27,7 +27,7 @@ var keys = {
   itemIdKey: 'id',
   //itemTitleKey: 'title',
   //itemDivTitleKey: 'title',
-  itemGroupKey: 'id',
+  itemGroupKey: 'groupId',
   itemTimeStartKey: 'startDate',
   itemTimeEndKey: 'endDate'
 }
@@ -64,7 +64,8 @@ const state = {
 const GanttChart = (props) => {
   const { defaultTimeStart, defaultTimeEnd } = state
   const { 
-    taskList, 
+    groups,
+    items, 
     onItemResizeAction, 
     onItemMoveAction, 
     onHorizontalScrollAction, 
@@ -101,12 +102,12 @@ const GanttChart = (props) => {
 
   return (
     <Timeline
-      groups={taskList}
-      items={taskList}
+      groups={groups}
+      items={items}
       keys={keys}
       itemsSorted
       itemTouchSendsClick={false}
-      stackItems
+      stackItems={false}
       showCursorLine
       canMove={true}
       canResize={"both"}
@@ -119,7 +120,7 @@ const GanttChart = (props) => {
       dragSnap={60*60*1000*24} //dragging unit set to be 24 hours 1 day
       headerLabelGroupHeight={0} //remvoe top header
       headerLabelHeight={23}
-      itemHeightRatio={0.70}
+      itemHeightRatio={1}
       minZoom={60*60*1000*24} //Smallest time that can be zoomed. 1 day
       maxZoom={365.24 * 86400 * 1000} //longest time that can be zoomed 1 year.
       timeSteps={{
@@ -148,7 +149,8 @@ function mapStateToProps(store) {
   return {
     sidebarHeadingTitle: store.GanttChartReducer.sidebarHeadingTitle,
     selectedItemId: store.GanttChartReducer.selectedItemId,
-    taskList: store.GanttChartReducer.data.taskList,
+    items: store.GanttChartReducer.data.items,
+    groups: store.GanttChartReducer.data.groups,
   };
 }
 

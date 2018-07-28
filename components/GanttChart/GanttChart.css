@@ -7,6 +7,10 @@
     /* border-top: 1px solid #eee; */
 }
 
+.react-calendar-timeline .rct-item{
+    border: none;
+}
+
 .rct-sidebar{
     font-size: 11px;
 }
@@ -86,9 +90,6 @@
 }
 
 
-.gantt-chart-item-container{
-    width: inherit;
-}
 
 
 /* GroupRenderer Component */
@@ -108,7 +109,121 @@
 
 
 
-/* Item Renderer */
+/*----------- Item Renderer------ */
+
+
+.gantt-chart-item-container{
+    width: inherit;
+    background-color: red;
+    opacity: 0.36;
+    border-radius: 10px;
+    height: 16px;
+    position: relative;
+    top: 4px;
+    line-height: 18px;
+}
+
+
+
+.gantt-chart-item-container.pending{
+    background-color: #ffc162;
+    border: 1px solid #e9b15a;
+    opacity: 0.30;
+}
+
+
+.gantt-chart-item-container.pending.selected{
+    background-color: #ffc162;
+    border: 1px solid #e9b15a;
+    opacity: 0.40;
+}
+
+
+
+.gantt-chart-item-icon.pending{
+    background-color: #e2ab58;
+    border: 1px solid #e9b15a;
+}
+
+
+.gantt-chart-item-container.unassigned{
+    background-color: #75818d;
+    border: 1px solid #75818d;
+    opacity: 0.30;
+}
+
+
+.gantt-chart-item-container.unassigned.selected{
+    background-color: #75818d;
+    border: 1px solid #75818d;
+    opacity: 0.40;
+}
+
+.gantt-chart-item-icon.unassigned{
+    background-color: #75818d;
+    border: 1px solid #75818d;
+}
+
+
+.gantt-chart-item-container.completed{
+    background-color: #5ee2a0;
+    border: 1px solid #5ee2a0;
+    opacity: 0.30;
+}
+
+
+.gantt-chart-item-container.completed.selected{
+    opacity: 0.40;
+    background-color: #5ee2a0;
+    border: 1px solid #5ee2a0;
+}
+
+.gantt-chart-item-icon.completed{
+    background-color: #5ee2a0;
+    border: 1px solid #5ee2a0;
+}
+
+
+
+.gantt-chart-item-container.in_progress{
+    background-color: #a177ff;
+    border: 1px solid #a177ff;
+    opacity: 0.30;
+}
+
+
+.gantt-chart-item-container.in_progress.selected{
+    background-color: #a177ff;
+    border: 1px solid #a177ff;
+    opacity: 0.40;
+}
+
+.gantt-chart-item-icon.in_progress{
+    background-color: #a177ff;
+    border: 1px solid #a177ff;
+}
+
+
+
+.gantt-chart-item-container.delayed{
+    background-color: #ff4141;
+    border: 1px solid #ff4141;
+    opacity: 0.30;
+}
+
+
+.gantt-chart-item-container.delayed.selected{
+    background-color: #ff4141;
+    border: 1px solid #ff4141;
+    opacity: 0.40;
+}
+
+.gantt-chart-item-icon.delayed{
+    background-color: #e03a3a;
+    border: 1px solid #e03a3a;
+}
+
+
 .gantt-chart-item-title{
     /* width: 50px; */
     width: calc(100% - 32px);
@@ -119,7 +234,7 @@
 /* Item Renderer ICON */
 .gantt-chart-item-icon{
     font-size: 13px;
-    width: 10px;
+    width: 16px;
     /* float: right; */
     line-height: 10px;
     text-align: center;
@@ -137,6 +252,31 @@
     cursor: e-resize;
 }
 
+.gantt-chart-item-completed-container{
+    width: inherit;
+    height: 100%;
+    background-color:#2ecc71;
+}
+
+.gantt-chart-group-item-completed-type{
+    /* z-index: -999 !important; */
+    opacity: 0.35;
+    pointer-events: none;
+}
+
+
+.gantt-chart-group-item-type{
+    z-index: 99999 !important;
+}
+
+/* .gantt-chart-item-completed-box{
+    width: 100%;
+    background-color:#2ecc71;
+    height: 100%;
+} */
+
+/* ---------END ITEM-RENDERER------ */
+
 
 
 /* Info Label on Scroll display */
@@ -153,12 +293,15 @@
 /* Colors */
 .gantt-chart-group-item{
     border-radius: 24px;
+    background-color: transparent !important;
+    background: transparent;
+    border: none;
     /* background-color: #ffc16233;
     border: 1px solid #e9b15a33 !important; */
 }
 
+/* 
 
-/* Pending */
 .gantt-chart-group-item.pending{
     background-color: #ffc162;
     border: 1px solid #e9b15a;
@@ -179,7 +322,7 @@
     border: 1px solid #e9b15a;
 }
 
-/* UnAssigned */
+
 .gantt-chart-group-item.unassigned{
     background-color: #75818d;
     border: 1px solid #75818d;
@@ -199,7 +342,6 @@
 }
 
 
-/* Completed */
 .gantt-chart-group-item.completed{
     background-color: #5ee2a0;
     border: 1px solid #5ee2a0;
@@ -219,7 +361,7 @@
 }
 
 
-/* In Progress */
+
 .gantt-chart-group-item.in_progress{
     background-color: #a177ff;
     border: 1px solid #a177ff;
@@ -240,7 +382,6 @@
 
 
 
-/* Delayed */
 .gantt-chart-group-item.delayed{
     background-color: #ff4141;
     border: 1px solid #ff4141;
@@ -258,6 +399,13 @@
     background-color: #e03a3a;
     border: 1px solid #e03a3a;
 }
+*/
+/* END Color */
+
+.react-calendar-timeline .rct-item.selected{
+    background: transparent;
+    border: none;
+}
 
 
 .gantt-chart-top-subheading-container{
@@ -274,5 +422,6 @@
     background: transparent !important;
 }
 
+ 
 
 

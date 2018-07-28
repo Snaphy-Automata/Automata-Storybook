@@ -4,7 +4,7 @@
 .react-calendar-timeline{
     font-family: 'Lato', sans-serif;
     color: #707070;
-    border-top: 1px solid #eee;
+    /* border-top: 1px solid #eee; */
 }
 
 .rct-sidebar{

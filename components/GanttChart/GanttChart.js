@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import {
     onTaskInitAction,
   } from "./GanttChartActions";
-
+import GanttChartSubHeading from './GanttChartSubHeading';
 import GanttTimeline from './GanttTimeline';
 import TaskListHeading from '../TaskList/TaskListHeading';
 
@@ -37,7 +37,7 @@ class GanttChart extends Component {
         if(isTaskLoaded){
             return (
                 <div>
-                    <TaskListHeading></TaskListHeading>
+                    <TaskListHeading heading="Project Plan" isOpened={true} type="fixed" subHeadingComponent={<GanttChartSubHeading />} ></TaskListHeading>
                     <GanttTimeline onTaskResized={onTaskResized} onItemMoved={onItemMoved}></GanttTimeline>
                 </div>
             )

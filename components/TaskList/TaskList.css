@@ -1,26 +1,51 @@
 /* Created By Nikita Mittal */
+.task-list-heading-wrapper{
+    display: inline-block;
+    cursor: pointer;
+}
 
 .task-list-heading-container{
     width: 100%;
-    padding: 15px
-    
+    padding: 12px;
+    padding-left: 26px;
+    color: #000000;
+    font-size: 15px;
+    font-weight: 600;
 }
+
+/* https://stackoverflow.com/questions/826782/how-to-disable-text-selection-highlighting */
+.task-not-selectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
 
 .task-list-heading-icon{
     display: inline-block;
-    width: 3%
+    /* width: 3% */
+    font-size: 16px;
 }
 
 .task-list-heading-title{
     display: inline-block;
-    width : 60%;
+    /* width : 60%; */
     font-size: larger;
     font-style: inherit;
+    padding-left: 15px;
+}
+
+.task-list-sub-heading-wrapper{
+    float: right;
+    font-size: 11px;
+    color: #4d4f5c;
+    font-weight: bold;
 }
 
 .task-list-heading-archive-container{
     display:inline-block;
-    width : 24%;
     text-align: right
 }
 
@@ -30,9 +55,12 @@
 
 .task-list-heading-add-new-container{
     display:inline-block;
-    width : 10%;
     text-align: right;
-    margin-left: 10px
+    margin-left: 26px;
+}
+
+.on-subheading-hover:hover{
+    color: #28292f
 }
 
 .task-list-heading-add-new-container:hover{

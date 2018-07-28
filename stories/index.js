@@ -519,7 +519,27 @@ storiesOf('Circular Label', module)
     <div style={{
       margin: "10px"
     }}>
-      <CircularLabel title="progress"/>
+      <CircularLabel colorCode="#ffc16233" title="yellow"/>
+      <CircularLabel colorCode="#ff414133" title="red"/>
+      <CircularLabel colorCode="#a177ff33" title="purple"/>
+      <CircularLabel colorCode="#5ee2a033" title="green"/>
+      <CircularLabel colorCode="#75818d" title="grey"/>
+    </div>
+  )
+})
+.add('Sizes', ()=>{
+  return (
+    <div style={{
+      margin: "10px"
+    }}>
+      <div>
+        Size = mini|tiny|small|large|big|huge|massive
+      </div>
+      <CircularLabel colorCode="#ffc16233" title="yellow"/>
+      <CircularLabel size="mini" colorCode="#ff414133" title="red"/>
+      <CircularLabel colorCode="#a177ff33" title="purple"/>
+      <CircularLabel colorCode="#5ee2a033" title="green"/>
+      <CircularLabel colorCode="#75818d" title="grey"/>
     </div>
   )
 })

@@ -8,15 +8,32 @@ import PropTypes from 'prop-types';
 //Custom import..
 import "./CircularLabel.css";
 
-const CircularLabel = ({colorCode, title, style, className}) => {
+//size = mini | tiny | small | large | big | huge | massive
+
+//Color code mapping..
+const colorCodeCss =  {
+    "#ffc16233": "yellow",
+    "#a177ff33": "purple",
+    "#5ee2a033": "green",
+    "#ff414133": "red",
+    "#75818d": "grey"
+};
+
+const CircularLabel = ({colorCode, title, style, className, size}) => {
     className = className || "";
     className = `circular-label-container ${className}`;
-    return (
-        <div style={style} className={className}>
-            <div className="circular-label-circular-icon">
+    size = size || "mini";
+    const iconColor = colorCodeCss[colorCode] || "";
 
-            </div>
-            <div className="circular-label-circular-text">
+    const iconClass = `circular-label-circular-icon ${iconColor} ${size}`;
+
+
+    const labelTextClass = `circular-label-circular-text ${size}`
+
+    return (
+        <div  style={style} className={className}>
+            <div className={iconClass}/>
+            <div className={labelTextClass}>
                 {title}
             </div>
         </div>
@@ -27,6 +44,7 @@ const CircularLabel = ({colorCode, title, style, className}) => {
 CircularLabel.propTypes = {
    title: PropTypes.string.isRequired,
    colorCode: PropTypes.string.isRequired,
+   size: PropTypes.string,
 };
 
 

@@ -1,24 +1,44 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import { Icon, Input } from 'semantic-ui-react'
 
 import './TaskList.css';
+import { sectionExpandedAction } from './TaskListActions';
 
-const TaskListHeading = ({ heading, isOpened, onArchiveClicked, onNewTaskClicked, onStateChanged, type, subHeadingComponent, headingClassName}) => {
 
-    const getIcon = function(){
-        if(isOpened){
+const TaskListHeading = ({ heading, onArchiveClicked, onNewTaskClicked, defaultText, type, items, taskHeadingReducer, sectionId, sectionExpandedAction, provided, subHeadingComponent, headingClassName, onTabButtonClick }) => {
+
+
+    const taskHeadingConfig = taskHeadingReducer[sectionId];
+    const isSectionOpened = taskHeadingConfig && taskHeadingConfig.isOpened ? true : false;
+    const getIcon = function () {
+        if (isSectionOpened) {
             return `angle down`
-        } else{
+        } else {
             return `angle right`
         }
     }
     headingClassName = headingClassName || "";
     headingClassName = `task-list-heading-container ${headingClassName}`
 
+    const onStateChanged = () => {
+        const isTabOpen = !isSectionOpened;
+        //This method will get called from the parent..
+        onTabButtonClick? onTabButtonClick(isTabOpen): null;
+        sectionExpandedAction(sectionId, isTabOpen);
+    }
+
     return (
-        <div className={headingClassName}>
+        <div>
+             {/* 
+                FIXME: 28th July Robins
+                Drag and Drop code commented.
+                <div className="task-list-heading-drag-container">
+                    <div className="task-list-heading-drag-icon" {...provided.dragHandleProps}><Icon name="compress"></Icon></div>
+                </div> */}
+               
+            <div className={headingClassName}>
                 <div onClick={onStateChanged} className={"task-list-heading-wrapper task-not-selectable"}>
                     <div className="task-list-heading-icon"> <Icon name={getIcon()} ></Icon></div>
                     <div className="task-list-heading-title">
@@ -47,11 +67,45 @@ const TaskListHeading = ({ heading, isOpened, onArchiveClicked, onNewTaskClicked
                 {
                     subHeadingComponent && subHeadingComponent
                 }
-
+                {
+                    isSectionOpened && !items && !subHeadingComponent &&
+                    <div style={{ padding: "10px 15px 10px 15px", fontWeight: 500, color: "#9e9e9e", fontSize: 16 }}>
+                        {defaultText}
+                    </div>
+                }
+                {
+                    isSectionOpened && items && items.length === 0 &&  !subHeadingComponent &&
+                    <div style={{ padding: "10px 15px 10px 15px", fontWeight: 500, color: "#9e9e9e", fontSize: 16 }}>
+                        {defaultText}
+                    </div>
+                }
             </div>
+        </div>
     )
 
 
 }
 
-export default TaskListHeading;
+// Retrieve data from store as props
+function mapStateToProps(store) {
+    const taskHeadingReducer = store.TaskListReducer;
+    return {
+        taskHeadingReducer
+    };
+}
+
+//Map Redux Actions to Props..
+const mapActionsToProps = {
+    //map action here
+    sectionExpandedAction
+};
+
+TaskListHeading.propTypes = {
+    heading: PropTypes.string.isRequired,
+    type : PropTypes.string.isRequired, //custom || fixed
+    sectionId : PropTypes.string.isRequired,
+    onTabButtonClick: PropTypes.func, //Func will listen to tab button click.
+}
+
+
+export default connect(mapStateToProps, mapActionsToProps)(TaskListHeading);

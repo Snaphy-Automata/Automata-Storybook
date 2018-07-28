@@ -1,12 +1,13 @@
 import { reducer as formReducer } from 'redux-form';
 
-import ButtonReducer from '../components/Button/ButtonReducer';
-import GanttChartReducer from '../components/GanttChart/GanttChartReducer';
-import TaskListReducer   from '../components/TaskList/TaskListReducer';
-import InputElementReducer from '../components/InputElement/InputElementReducer';
-import TagElementReducer   from '../components/TagElement/TagElementReducer';
-import LabelDialogReducer  from '../components/LabelDialog/LabelDialogReducer';
-import DatePickerReducer from '../components/DatePickerElement/DatePickerReducer';
+import ButtonReducer         from '../components/Button/ButtonReducer';
+import GanttChartReducer     from '../components/GanttChart/GanttChartReducer';
+import TaskListReducer       from '../components/TaskList/TaskListReducer';
+import InputElementReducer   from '../components/InputElement/InputElementReducer';
+import TagElementReducer     from '../components/TagElement/TagElementReducer';
+import LabelDialogReducer    from '../components/LabelDialog/LabelDialogReducer';
+import DatePickerReducer     from '../components/DatePickerElement/DatePickerReducer';
+import TaskSectionsReducer   from '../components/TaskSections/TaskSectionsReducer';
 
 
 export default {
@@ -17,6 +18,7 @@ export default {
     InputElementReducer,
     TagElementReducer,
     LabelDialogReducer,
-    DatePickerReducer
+    DatePickerReducer,
+    TaskSectionsReducer
 };
 

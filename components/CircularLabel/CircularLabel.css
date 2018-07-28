@@ -1,0 +1,29 @@
+/*
+Created by Robins 
+28th July 2018 
+*/
+
+
+.circular-label-container{
+    display: inline-block;
+}
+
+.circular-label-circular-icon{
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    background-color: #ffc16233;
+    border-radius: 5px;
+}
+
+
+.circular-label-circular-text{
+    height: 10px;
+    font-family: Lato;
+    font-size: 10px;
+    text-align: left;
+    color: #707070;
+    text-transform: uppercase;
+    display: inline-block;
+    padding-left: 8px;
+}

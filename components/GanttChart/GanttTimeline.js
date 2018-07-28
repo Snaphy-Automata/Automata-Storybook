@@ -62,7 +62,6 @@ const state = {
 }
 
 const GanttChart = (props) => {
-  console.log("I am loading");
   const { defaultTimeStart, defaultTimeEnd } = state
   const { 
     taskList, 
@@ -72,7 +71,33 @@ const GanttChart = (props) => {
     sidebarHeadingTitle, 
     selectedItemId,
     onItemSelectAction,
+
+    //Method called from outside from gantt-chart
+    onItemMoved,
+    onTaskResized,
   } = props;
+
+  /**
+   * On Task Resize Task is saved and moved to new position..
+   */
+  const onItemResize = (itemId, time, edge) => {
+    onItemResizeAction(itemId, time, edge);
+    onTaskResized? onTaskResized(itemId, time, edge): null;
+  }
+
+  /**
+   * Will get called when a item is moved inside gantt.
+   * @param {*} itemId 
+   * @param {*} dragTime 
+   * @param {*} newGroupOrder 
+   */
+  const onItemMoveFunc = (itemId, dragTime, newGroupOrder) => {
+    onItemMoveAction(itemId, dragTime, newGroupOrder);
+    onItemMoved? onItemMoved(itemId, dragTime, newGroupOrder): null;
+  }
+
+  
+
 
   return (
     <Timeline
@@ -105,8 +130,8 @@ const GanttChart = (props) => {
       canChangeGroup={false} //items cannot be moved outside a group.
       itemRenderer={ItemRenderer}
       useResizeHandle={true}
-      onItemResize={onItemResizeAction}
-      onItemMove={onItemMoveAction}
+      onItemResize={onItemResize}
+      onItemMove={onItemMoveFunc}
       groupRenderer={GroupRenderer}
       onTimeChange={onHorizontalScrollAction}
       onItemSelect={onItemSelectAction}
@@ -140,8 +165,8 @@ const mapActionsToProps = {
 
 
 GanttChart.propTypes = {
-  //tasks: PropTypes.array.isRequired,
-  //assignedTo: PropTypes.array.isRequired,
+  onTaskResized: PropTypes.func.isRequired,
+  onItemMoved: PropTypes.func.isRequired,
 };
 
 

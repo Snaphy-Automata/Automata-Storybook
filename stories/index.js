@@ -114,8 +114,17 @@ storiesOf('GanttChart', module)
   .addDecorator(story => <Provider store={store}>{story()}</Provider>)
   .add('GanttChart', ()=> {   
 
+    const onResize = (itemId, time, edge) => {
+      console.log("On Resize");
+    }
+
+    const onItemMoved=(itemId, dragTime, newGroupOrder) => {
+      console.log("On Date change");
+    }
+
+
     return (
-        <GanttChart tasks={ganttFakeData()}></GanttChart>
+        <GanttChart  onTaskResized={onResize} onItemMoved={onItemMoved} tasks={ganttFakeData()}></GanttChart>
     );
   })
   .add('with text', () => (

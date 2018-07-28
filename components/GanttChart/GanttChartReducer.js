@@ -3,7 +3,6 @@
  * 11th July 2018
  */
 
-import generateFakeData from './generate-fake-data' 
 import moment from 'moment'
 
 //Custom Import
@@ -17,7 +16,12 @@ import {
   ON_ITEM_MOUSE_LEAVE_ACTION,
   ON_ITEM_SELECTED,
   INITIALIZE_GANTT_WITH_DATA,
+  ON_GANTT_NEW_TASK_ADDED,
+  ON_GANTT_CHART_TASK_FOCUSED,
+  ON_GANTT_CHART_TASK_UPDATED,
 } from './GanttChartActions';
+
+
 
 //Will reuturn current month..
 const sidebarTitle = () => {
@@ -35,8 +39,6 @@ const initialState = {
   data: {
     taskList:[],
   },
-  displayStartTime: moment().add(1, 'day').startOf('day').valueOf(),
-  displayEndTime: moment().add(1, 'day').endOf('day').valueOf(),
   isTaskLoaded: false,
 };
 
@@ -54,10 +56,8 @@ const GanttChartReducer = (state = initialState, action) => {
       const oldTimeDiff =  targetItem.endDate - targetItem.startDate;
       targetItem.startDate = dragTime;
       targetItem.endDate = dragTime + oldTimeDiff;
-
       const task = enhanceTask(targetItem);
       newItem[index] = task;
-
       state = {
         ...state,
         data: {
@@ -80,20 +80,15 @@ const GanttChartReducer = (state = initialState, action) => {
         }else{
           targetItem.endDate = time;
         }
-
         const task = enhanceTask(targetItem);
-
         newItem[index] = targetItem;
       }
-
-      
       state = {
         ...state,
         data: {
           taskList: newItem
         }
-      }
-      
+      }     
       break;
     } //end case..
     case ON_HORIZONTAL_SCROLL:{
@@ -102,7 +97,6 @@ const GanttChartReducer = (state = initialState, action) => {
         visibleTimeEnd,
         updateScrollCanvas
       } = action.payload;
-      console.log("I am scrolling",visibleTimeStart, visibleTimeEnd);
       const currentYear = moment().year(); 
       //FInd the value of month from unix miliseconds..
       const monthInt = moment(visibleTimeStart).month(); //0-11
@@ -167,8 +161,35 @@ const GanttChartReducer = (state = initialState, action) => {
       }
       break;
     }
-    
+    case ON_GANTT_NEW_TASK_ADDED:{
+      //WIll get called when a new task has been added
+      //With old position index and new position index.
+      /**
+        * 
+        payload:{
+          task,
+          oldPosition,
+          newPosition,
+          highlight,
+        }
+      **/
+      //TODO: 28th July 2018
+      //Add items to list   
 
+      break;
+    }
+    case ON_GANTT_CHART_TASK_FOCUSED:{
+      ///Will get called when a new gantt chart task is focused.
+      //Will scroll the group to a specific position and task date will also get in visible calendar area.
+
+      break;
+    }
+    case ON_GANTT_CHART_TASK_UPDATED:{
+      //WIll get called when a task gets updated..
+
+
+      break;
+    }
   }
 
   return state;

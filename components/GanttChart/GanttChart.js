@@ -25,21 +25,18 @@ class GanttChart extends Component {
             tasks,
             onTaskInitAction,
         } = this.props;
-        console.log("Tasks", tasks);
         onTaskInitAction(tasks);
     }
 
     render(){
-        
         const {
             isTaskLoaded,
+            onTaskResized,
+            onItemMoved,
         } = this.props;
-
-        
-
         if(isTaskLoaded){
             return (
-                <GanttTimeline></GanttTimeline>
+                <GanttTimeline onTaskResized={onTaskResized} onItemMoved={onItemMoved}></GanttTimeline>
             )
         }else{
             //Load loading component..
@@ -48,7 +45,6 @@ class GanttChart extends Component {
             )
         }
     }
-
 }
 
 
@@ -59,20 +55,22 @@ function mapStateToProps(store) {
     return {
         isTaskLoaded: store.GanttChartReducer.isTaskLoaded,
     };
-  }
+}
   
   
-  //Map Redux Actions to Props..
-  const mapActionsToProps = {
+//Map Redux Actions to Props..
+const mapActionsToProps = {
     //map action here
     onTaskInitAction,
-  };
-  
-  
-  
-  GanttChart.propTypes = {
-    //tasks: PropTypes.array.isRequired,
-  };
-  
+};
+
+
+
+GanttChart.propTypes = {
+    tasks: PropTypes.array.isRequired,
+    onTaskResized: PropTypes.func.isRequired,
+    onItemMoved: PropTypes.func.isRequired,
+};
+
 
 export default connect(mapStateToProps, mapActionsToProps)(GanttChart);

@@ -19,7 +19,7 @@ const colorCodeCss =  {
     "#75818d": "grey"
 };
 
-const CircularLabel = ({colorCode, title, style, className, size}) => {
+const CircularLabel = ({colorCode, title, style, className, size, iconStyle}) => {
     className = className || "";
     className = `circular-label-container ${className}`;
     size = size || "mini";
@@ -27,13 +27,17 @@ const CircularLabel = ({colorCode, title, style, className, size}) => {
 
     const iconClass = `circular-label-circular-icon ${iconColor} ${size}`;
 
+    iconStyle = {
+        backgroundColor: colorCode,
+        ...iconStyle,
+    }
 
     const labelTextClass = `circular-label-circular-text ${size}`
 
     return (
         <div  style={style} className={className}>
-            <div className={iconClass}/>
-            <div className={labelTextClass}>
+            <div style={iconStyle} className={iconClass}/>
+            <div  className={labelTextClass}>
                 {title}
             </div>
         </div>
@@ -45,6 +49,7 @@ CircularLabel.propTypes = {
    title: PropTypes.string.isRequired,
    colorCode: PropTypes.string.isRequired,
    size: PropTypes.string,
+   iconStyle: PropTypes.object
 };
 
 

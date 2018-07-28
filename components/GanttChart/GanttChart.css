@@ -270,5 +270,9 @@
     padding-left: 7px !important;
 }
 
+.gantt-chart-top-heading-title:hover{
+    background: transparent !important;
+}
+
 
 

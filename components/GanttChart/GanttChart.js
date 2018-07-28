@@ -12,7 +12,7 @@ import {
   } from "./GanttChartActions";
 
 import GanttTimeline from './GanttTimeline';
-
+import TaskListHeading from '../TaskList/TaskListHeading';
 
 class GanttChart extends Component {
 
@@ -36,7 +36,10 @@ class GanttChart extends Component {
         } = this.props;
         if(isTaskLoaded){
             return (
-                <GanttTimeline onTaskResized={onTaskResized} onItemMoved={onItemMoved}></GanttTimeline>
+                <div>
+                    <TaskListHeading></TaskListHeading>
+                    <GanttTimeline onTaskResized={onTaskResized} onItemMoved={onItemMoved}></GanttTimeline>
+                </div>
             )
         }else{
             //Load loading component..

@@ -37,7 +37,7 @@ class GanttChart extends Component {
         if(isTaskLoaded){
             return (
                 <div>
-                    <TaskListHeading heading="Project Plan" isOpened={true} type="fixed" subHeadingComponent={<GanttChartSubHeading />} ></TaskListHeading>
+                    <TaskListHeading headingClassName="gantt-chart-top-heading-title" heading="Project Plan" isOpened={true} type="fixed" subHeadingComponent={<GanttChartSubHeading />} ></TaskListHeading>
                     <GanttTimeline onTaskResized={onTaskResized} onItemMoved={onItemMoved}></GanttTimeline>
                 </div>
             )

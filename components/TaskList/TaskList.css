@@ -9,7 +9,7 @@
     padding: 12px;
     padding-left: 26px;
     color: #000000;
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 600;
 }
 
@@ -26,7 +26,7 @@
 .task-list-heading-icon{
     display: inline-block;
     /* width: 3% */
-    font-size: 16px;
+    font-size: 15px;
 }
 
 .task-list-heading-title{
@@ -34,7 +34,7 @@
     /* width : 60%; */
     font-size: larger;
     font-style: inherit;
-    padding-left: 15px;
+    padding-left: 10px;
 }
 
 .task-list-sub-heading-wrapper{

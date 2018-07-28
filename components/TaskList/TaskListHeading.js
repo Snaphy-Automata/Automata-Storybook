@@ -5,7 +5,7 @@ import { Icon, Input } from 'semantic-ui-react'
 
 import './TaskList.css';
 
-const TaskListHeading = ({ heading, isOpened, onArchiveClicked, onNewTaskClicked, onStateChanged, type, subHeadingComponent}) => {
+const TaskListHeading = ({ heading, isOpened, onArchiveClicked, onNewTaskClicked, onStateChanged, type, subHeadingComponent, headingClassName}) => {
 
     const getIcon = function(){
         if(isOpened){
@@ -14,10 +14,12 @@ const TaskListHeading = ({ heading, isOpened, onArchiveClicked, onNewTaskClicked
             return `angle right`
         }
     }
+    headingClassName = headingClassName || "";
+    headingClassName = `task-list-heading-container ${headingClassName}`
 
     return (
-        <div className="task-list-heading-container">
-                <div onClick={onStateChanged} className="task-list-heading-wrapper task-not-selectable">
+        <div className={headingClassName}>
+                <div onClick={onStateChanged} className={"task-list-heading-wrapper task-not-selectable"}>
                     <div className="task-list-heading-icon"> <Icon name={getIcon()} ></Icon></div>
                     <div className="task-list-heading-title">
                         {type === "fixed" && <div>{heading}</div>}

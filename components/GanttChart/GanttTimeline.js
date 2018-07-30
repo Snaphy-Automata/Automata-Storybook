@@ -12,6 +12,7 @@ import {
   onItemMoveAction,
   onHorizontalScrollAction,
   onItemSelectAction,
+  onTaskFocusAction,
 } from "./GanttChartActions";
 import GroupRenderer from "./GroupRenderer";
 import ItemRenderer from "./ItemRenderer";
@@ -72,7 +73,7 @@ const GanttChart = (props) => {
     sidebarHeadingTitle, 
     selectedItemId,
     onItemSelectAction,
-
+    onTaskFocusAction,
     //Method called from outside from gantt-chart
     onItemMoved,
     onTaskResized,
@@ -97,8 +98,12 @@ const GanttChart = (props) => {
     onItemMoved? onItemMoved(itemId, dragTime, newGroupOrder): null;
   }
 
+  setTimeout(()=>{
+    const task = groups[groups.length -1];
+    console.log("Focusing Task");
+    onTaskFocusAction(task.id);
+  }, 5000);
   
-
 
   return (
     <Timeline
@@ -162,6 +167,7 @@ const mapActionsToProps = {
   onItemMoveAction,
   onHorizontalScrollAction,
   onItemSelectAction,
+  onTaskFocusAction,
 };
 
 

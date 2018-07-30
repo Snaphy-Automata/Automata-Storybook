@@ -14,6 +14,7 @@ export const INITIALIZE_GANTT_WITH_DATA  = "INITIALIZE_GANTT_WITH_DATA";
 export const ON_GANTT_NEW_TASK_ADDED     = "ON_GANTT_NEW_TASK_ADDED";
 export const ON_GANTT_CHART_TASK_FOCUSED = "ON_GANTT_CHART_TASK_FOCUSED";
 export const ON_GANTT_CHART_TASK_UPDATED = "ON_GANTT_CHART_TASK_UPDATED";
+export const ON_TASK_FOCUSED             = "ON_TASK_FOCUSED";
 
 //Will trigger when canvas is horizontally scrolled for date change
 //Also change the group item
@@ -164,5 +165,18 @@ export function onTaskUpdated(task, highlight = true){
         task,
       }
     });
+  }
+}
+
+
+export function onTaskFocusAction(taskId){
+  return (dispatch) => {
+    dispatch({
+      type: ON_TASK_FOCUSED,
+      payload:{
+        taskId,
+        window,
+      }
+    })
   }
 }

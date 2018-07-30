@@ -7,7 +7,7 @@ import moment from 'moment'
 
 //Custom Import
 import month from './month.json';
-import {convertTask, enhanceTask} from "./convertTask";
+import {convertTask, enhanceTask, findPos} from "./convertTask";
 import {
   ON_GANTT_ITEM_MOVED, 
   ON_GANTT_ITEM_RESIZE, 
@@ -19,6 +19,7 @@ import {
   ON_GANTT_NEW_TASK_ADDED,
   ON_GANTT_CHART_TASK_FOCUSED,
   ON_GANTT_CHART_TASK_UPDATED,
+  ON_TASK_FOCUSED,
 } from './GanttChartActions';
 
 
@@ -190,6 +191,19 @@ const GanttChartReducer = (state = initialState, action) => {
     case ON_GANTT_CHART_TASK_UPDATED:{
       //WIll get called when a task gets updated..
 
+
+      break;
+    }
+
+    case ON_TASK_FOCUSED:{
+      //WIll highlight the task going to be edited and will scroll it to the required position..
+      //https://github.com/namespace-ee/react-calendar-timeline/issues/177
+      const {taskId, window} = action.payload;
+      if(window !== undefined){
+        //Display it to the bottom of the canvas..
+        const canvasHeight = 162;
+        window.scroll(0,findPos(document.getElementById(taskId)) - canvasHeight);
+      }
 
       break;
     }

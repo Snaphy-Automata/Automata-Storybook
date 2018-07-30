@@ -17,6 +17,24 @@ const STATUS_OBJ = {
     delayed: "delayed",
 }
 
+
+/**
+ * WIll find the position for an group item.
+ * Which needs to be selected.
+ * https://github.com/namespace-ee/react-calendar-timeline/issues/177#issuecomment-344236188
+ * @param {*} obj 
+ */
+export function findPos(obj) {
+    var curtop = 0;
+    if (obj.offsetParent) {
+        do {
+            curtop += obj.offsetTop;
+        } while (obj = obj.offsetParent);
+    return [curtop];
+    }
+}
+
+
 /**
  * Will enhance taskObj data.
  * @param {*} taskObj 

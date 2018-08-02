@@ -392,6 +392,22 @@ storiesOf("Task Item", module)
     </div>
   )
 })
+.add('Task Data', ()=>{
+  const statusObj = {
+    title : "Completed",
+    color : "#1ed0c1"
+  }
+
+  const subTask = {
+    total : 15,
+    completed : 10
+  }
+  return (
+    <div>
+      <TaskItem id="1" title="My New Task"  status={statusObj} subTask= {subTask} attachment="4" dueDate="10 July"   ></TaskItem>
+    </div>
+  )
+})
 
 storiesOf("Select Label", module)
 .addDecorator(story => <Provider store={store}>{story()}</Provider>)

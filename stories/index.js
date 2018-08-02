@@ -67,6 +67,9 @@ const items = [
     dueDate : {
       date : "2018-07-10T01:14:00Z",
       onClick : "Date has been clicked"
+    },
+    startDate: {
+      date: "2018-07-01T01:14:00Z"
     }
   },
   {
@@ -89,7 +92,10 @@ const items = [
     dueDate : {
       date : "2018-07-23T01:14:00Z",
       onClick : "Date has been clicked"
-    }
+    },
+    startDate: {
+      date: "2018-07-01T01:14:00Z"
+  }
   },
   {
     id : 3,
@@ -111,7 +117,10 @@ const items = [
     dueDate : {
       date : "2018-07-23T01:14:00Z",
       onClick : "Date has been clicked"
-    }
+    },
+    startDate: {
+      date: "2018-07-01T01:14:00Z"
+  }
   },
   {
     id : 4,
@@ -133,7 +142,10 @@ const items = [
     dueDate : {
       date : "2018-07-23T01:14:00Z",
       onClick : "Date has been clicked"
-    }
+    },
+    startDate: {
+      date: "2018-07-01T01:14:00Z"
+  }
   }
 ]
 

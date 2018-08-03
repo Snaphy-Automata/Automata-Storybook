@@ -38,116 +38,11 @@ import CircularLabel     from '../components/CircularLabel';
 
 //Data
 import ganttFakeData     from '../data/generateGanttFakeData'; 
-
+import {items, labelObj, memberObj, statusObj}  from '../data/taskListData';
 
 const store = configureStore();
 
 
-const items = [
-  {
-    id : 1,
-    title : "This is the first issue to be solved",
-    icon:{
-      title : "Nikita",
-      toolTip : "Nikita",
-      onClick : "Items has been clicked"
-    },
-    status: {
-      title: "Completed",
-      color : "#1ed0c1"
-    },
-    subTask:{
-      total : 9,
-      completed: 4
-    },
-    attachment: 3,
-    labels : [
-      {title : "Bug", color : "#ff9b00", onClick:"Bug"}
-    ],
-    dueDate : {
-      date : "2018-07-10T01:14:00Z",
-      onClick : "Date has been clicked"
-    },
-    startDate: {
-      date: "2018-07-01T01:14:00Z"
-    }
-  },
-  {
-    id : 2,
-    title : "Disable the button after clicking and then enable the button after getting response",
-    icon: {
-      icon : "users",
-      toolTip : "Nikita, Mitsu, Sakura",
-      onClick : "Items has been clicked"
-    },
-    status : {
-      title : "In Progress",
-      color : "#3b86ff"
-    },
-    subTask:{
-      total : 15,
-      completed : 10
-    },
-    attachment : 6,
-    dueDate : {
-      date : "2018-07-23T01:14:00Z",
-      onClick : "Date has been clicked"
-    },
-    startDate: {
-      date: "2018-07-01T01:14:00Z"
-  }
-  },
-  {
-    id : 3,
-    title : "Not able to login",
-    icon: {
-      icon : "users",
-      toolTip : "Nikita, Mitsu, Sakura",
-      onClick : "Items has been clicked"
-    },
-    status : {
-      title : "In Progress",
-      color : "#3b86ff"
-    },
-    subTask:{
-      total : 15,
-      completed : 10
-    },
-    attachment : 6,
-    dueDate : {
-      date : "2018-07-23T01:14:00Z",
-      onClick : "Date has been clicked"
-    },
-    startDate: {
-      date: "2018-07-01T01:14:00Z"
-  }
-  },
-  {
-    id : 4,
-    title : "Logout not working properly",
-    icon: {
-      icon : "users",
-      toolTip : "Nikita, Mitsu, Sakura",
-      onClick : "Items has been clicked"
-    },
-    status : {
-      title : "In Progress",
-      color : "#3b86ff"
-    },
-    subTask:{
-      total : 15,
-      completed : 10
-    },
-    attachment : 6,
-    dueDate : {
-      date : "2018-07-23T01:14:00Z",
-      onClick : "Date has been clicked"
-    },
-    startDate: {
-      date: "2018-07-01T01:14:00Z"
-  }
-  }
-]
 
 const optionList = [
   {key : "Nikita Mittal", text:"Nikita Mittal", value: "Nikita Mittal"},
@@ -400,24 +295,13 @@ storiesOf("Task Item", module)
 .add('New Task', ()=>{
   return(
     <div>
-      <TaskItem icon="users" isNew></TaskItem>
+      <TaskItem isNew></TaskItem>
     </div>
   )
 })
 .add('Task Data', ()=>{
-  const statusObj = {
-    title : "Completed",
-    color : "#1ed0c1"
-  }
-
-  const subTask = {
-    total : 15,
-    completed : 10
-  }
   return (
-    <div>
-      <TaskItem id="1" title="My New Task"  status={statusObj} subTask= {subTask} attachment="4" dueDate="10 July"   ></TaskItem>
-    </div>
+      <TaskItem task={items[0]} isActiveTaskSection  memberObj={memberObj} statusObj={statusObj} labelObj ={labelObj}></TaskItem>
   )
 })
 

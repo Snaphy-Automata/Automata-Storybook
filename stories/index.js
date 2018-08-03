@@ -301,7 +301,11 @@ storiesOf("Task Item", module)
 })
 .add('Task Data', ()=>{
   return (
+    <div>
       <TaskItem task={items[0]} isActiveTaskSection  memberObj={memberObj} statusObj={statusObj} labelObj ={labelObj}></TaskItem>
+      <TaskItem isNew/>
+    </div>
+      
   )
 })
 

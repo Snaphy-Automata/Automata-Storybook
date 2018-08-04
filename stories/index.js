@@ -32,6 +32,7 @@ import ShareDialog       from '../components/ShareDialog';
 import DragAndDrop       from '../components/DragAndDrop';
 import TaskSections      from '../components/TaskSections';
 import CircularLabel     from '../components/CircularLabel';
+import AssignedUserDialog from '../components/AssignedUserDialog';
 
 
 
@@ -181,7 +182,8 @@ storiesOf('TaskList', module)
 .add('With Items', ()=>{
  console.log("Items List", items);
   return (
-    <TaskList heading="Active Tasks" sectionId="1" onArchiveClicked={()=>{console.log("Archive has been clicked")}} onNewTaskClicked={()=>{console.log("New Task has been Clicked")}}></TaskList>
+    <TaskList taskList={items} memberObj={memberObj} statusObj={statusObj} labelObj ={labelObj}></TaskList>
+    // <TaskList heading="Active Tasks" sectionId="1" onArchiveClicked={()=>{console.log("Archive has been clicked")}} onNewTaskClicked={()=>{console.log("New Task has been Clicked")}}></TaskList>
   )
 })
 
@@ -457,6 +459,14 @@ storiesOf('Circular Label', module)
       <CircularLabel colorCode="#5ee2a033" title="green"/>
       <CircularLabel colorCode="#75818d" title="grey"/>
     </div>
+  )
+})
+
+storiesOf('AssignedUser Dialog')
+.addDecorator(story => <Provider store={store}>{story()}</Provider>)
+.add('Basic', () => {
+  return (
+    <AssignedUserDialog/>
   )
 })
 

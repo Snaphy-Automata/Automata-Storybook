@@ -46,17 +46,17 @@ export const statusObj = {
     completed:{
         id: "completed",
         title: "completed",
-        colorCode: "#ff4141"
+        colorCode: "#1ed0c1"
     },
     in_progress:{
         id: "in_progress",
         title: "in progress",
-        colorCode: "#ff4141"
+        colorCode: "#3b86ff"
     },
     pending:{
         id: "pending",
         title: "pending",
-        colorCode: "#ff4141"
+        colorCode: "#ffc162"
     }
 }
 
@@ -77,7 +77,7 @@ export const memberObj = {
 
 
 
-export const items = times(30, (index)=> {
+export const items = times(200, (index)=> {
 
     let assignedTo = [];
 
@@ -102,7 +102,7 @@ export const items = times(30, (index)=> {
     }
     
 
-    const statusId = getRandomInt(0, 1)? STATUS[getRandomInt(0, STATUS.length-1)]: undefined;
+    let statusId = getRandomInt(0, 1)? STATUS[getRandomInt(0, STATUS.length-1)]: undefined;
     let labels = [];
     if(getRandomInt(0, 1)){
         const randomLabelIndex = times(getRandomInt(1, LABELS.length), index => {
@@ -120,9 +120,14 @@ export const items = times(30, (index)=> {
     let endDate = getRandomInt(0, 1)? moment(faker.date.future(getPastDateRandom)): undefined;
     //const endDate = moment().subtract(1, 'day');
 
+    if(endDate && getRandomBoolean()){
+        endDate = moment().subtract(1, 'day');
+    }
+
     const isCompleted = getRandomInt(0, 1)? true: false;
     let completedOn;
     if(isCompleted){
+        statusId = "completed";
         completedOn = moment.utc();
     }
 

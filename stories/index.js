@@ -33,6 +33,7 @@ import DragAndDrop       from '../components/DragAndDrop';
 import TaskSections      from '../components/TaskSections';
 import CircularLabel     from '../components/CircularLabel';
 import AssignedUserDialog from '../components/AssignedUserDialog';
+import ChangeDateDialog from '../components/ChangeDateDialog';
 
 
 
@@ -467,6 +468,14 @@ storiesOf('AssignedUser Dialog')
 .add('Basic', () => {
   return (
     <AssignedUserDialog/>
+  )
+})
+
+storiesOf('Change Date Dialog')
+.addDecorator(story => <Provider store={store}>{story()}</Provider>)
+.add('Basic', () => {
+  return (
+    <ChangeDateDialog/>
   )
 })
 

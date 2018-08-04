@@ -4,12 +4,42 @@ import times from "lodash/times";
 
 
 const STATUS = ["completed", "in_progress", "pending"];
-const LABELS = ["bugs", "feature"];
+//const LABELS = ["bugs", "feature"];
 const MEMBERS = ["user1", "user2"];
 
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+
+const getRandomBoolean = ()=>{
+    return Math.random() < 0.4;
+}
+
+
+const getLabelObj = () => {
+    const labelList = [];
+    const labelObj = [];
+    times(20, (index)=> {
+        const title = faker.name.firstName();
+        const id    = faker.random.uuid();
+        const colorCode = faker.internet.color();
+        labelList.push(id);
+        labelObj[id]  = {
+            id,
+            title,
+            colorCode,
+        }
+    });
+
+    return {labelList, labelObj}
+}
+
+const labelDataObj = getLabelObj();
+const LABELS = labelDataObj.labelList;
+
+export const labelObj = labelDataObj.labelObj;
+
 
 
 export const statusObj = {
@@ -45,32 +75,42 @@ export const memberObj = {
 }
 
 
-export const labelObj = {
-    bugs:{
-        id: "bugs",
-        title: "bugs",
-        colorCode: "#ff4141"
-    },
-    feature:{
-        id: "feature",
-        title: "feature",
-        colorCode: "#ff4141"
-    },
-    
-}
 
 
 export const items = times(30, (index)=> {
 
-    const assignedTo = times(getRandomInt(1, MEMBERS.length), index => {
-        return MEMBERS[index];
-    });
+    let assignedTo = [];
+
+    let subtaskObj;
+    let attachmentObj;
+    if(getRandomBoolean()){
+        subtaskObj = {
+            total: 50,
+            completed: getRandomInt(1, 50)
+        }
+    }
+
+    if(getRandomBoolean()){
+        attachmentObj = {
+            total: getRandomInt(0, 10)
+        }
+    }
+    if(getRandomInt(0,1)){
+        assignedTo = times(getRandomInt(1, MEMBERS.length), index => {
+            return MEMBERS[index];
+        });
+    }
+    
 
     const statusId = getRandomInt(0, 1)? STATUS[getRandomInt(0, STATUS.length-1)]: undefined;
     let labels = [];
     if(getRandomInt(0, 1)){
-        labels = times(getRandomInt(1, LABELS.length), index => {
-            return LABELS[index];
+        const randomLabelIndex = times(getRandomInt(1, LABELS.length), index => {
+            return getRandomInt(1, LABELS.length);
+        });
+
+        labels = times(randomLabelIndex.length, index => {
+            return LABELS[randomLabelIndex[index]];
         });
     }
     
@@ -102,13 +142,8 @@ export const items = times(30, (index)=> {
         durationInMs: 20000,
         durationInText: "2h",
         stats:{
-            subtask:{
-                total: 50,
-                completed: getRandomInt(1, 50)
-            },
-            attachment:{
-                total: getRandomInt(0, 10)
-            },
+            subtask:subtaskObj,
+            attachment:attachmentObj,
             comment: {
                 total: getRandomInt(0, 10)
             }

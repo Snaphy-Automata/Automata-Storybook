@@ -66,15 +66,18 @@ export const items = times(30, (index)=> {
         return MEMBERS[index];
     });
 
-    const statusId = STATUS[getRandomInt(0, STATUS.length-1)];
+    const statusId = getRandomInt(0, 1)? STATUS[getRandomInt(0, STATUS.length-1)]: undefined;
+    let labels = [];
+    if(getRandomInt(0, 1)){
+        labels = times(getRandomInt(1, LABELS.length), index => {
+            return LABELS[index];
+        });
+    }
     
-    const labels = times(getRandomInt(1, LABELS.length), index => {
-        return LABELS[index];
-    });
 
     const getPastDateRandom = getRandomInt(1, 10);
     const startDate = getRandomInt(0, 1)? moment(faker.date.past(getPastDateRandom)): undefined;
-    let endDate = getRandomInt(0, 1)? moment(faker.date.future(getPastDateRandom)): moment(faker.date.past(getRandomInt(1, 10)));
+    let endDate = getRandomInt(0, 1)? moment(faker.date.future(getPastDateRandom)): undefined;
     //const endDate = moment().subtract(1, 'day');
 
     const isCompleted = getRandomInt(0, 1)? true: false;
@@ -85,7 +88,7 @@ export const items = times(30, (index)=> {
 
     return {
         id : faker.random.uuid(),
-        title : faker.name.title(),
+        title : faker.lorem.sentences(),
         assignedTo,
         position: faker.random.number(),
         labels,

@@ -5,7 +5,7 @@ import times from "lodash/times";
 
 const STATUS = ["completed", "in_progress", "pending"];
 //const LABELS = ["bugs", "feature"];
-const MEMBERS = ["user1", "user2"];
+export const MEMBERS = ["user1", "user2"];
 
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;

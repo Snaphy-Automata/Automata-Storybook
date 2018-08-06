@@ -77,7 +77,7 @@ export const memberObj = {
 
 
 
-export const items = times(100, (index)=> {
+export const items = times(10000, (index)=> {
 
     let assignedTo = [];
 

@@ -31,10 +31,10 @@ import DatePickerElement from '../components/DatePickerElement';
 import ShareDialog       from '../components/ShareDialog';
 import DragAndDrop       from '../components/DragAndDrop';
 import TaskSections      from '../components/TaskSections';
-import CircularLabel     from '../components/CircularLabel';
+import CircularLabel      from '../components/CircularLabel';
 import AssignedUserDialog from '../components/AssignedUserDialog';
-import ChangeDateDialog from '../components/ChangeDateDialog';
-
+import ChangeDateDialog   from '../components/ChangeDateDialog';
+import VirtualList        from '../components/TaskList/VirtualList';
 
 
 
@@ -187,6 +187,12 @@ storiesOf('TaskList', module)
     // <TaskList heading="Active Tasks" sectionId="1" onArchiveClicked={()=>{console.log("Archive has been clicked")}} onNewTaskClicked={()=>{console.log("New Task has been Clicked")}}></TaskList>
   )
 })
+.add('Virtual List', ()=>{
+   return (
+     <VirtualList taskList={items} memberObj={memberObj} statusObj={statusObj} labelObj ={labelObj}></VirtualList>
+   )
+ })
+
 
 .add('With Items Compressed', ()=>{
   return(

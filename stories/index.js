@@ -427,7 +427,8 @@ storiesOf("Drag And Drop", module)
 })
 .add('With Sections', ()=> {
   return(
-    <TaskSections/>
+    <div>Implement With Sections</div>
+    // <TaskSections/>
   )
 })
 

@@ -31,16 +31,17 @@ import DatePickerElement from '../components/DatePickerElement';
 import ShareDialog       from '../components/ShareDialog';
 import DragAndDrop       from '../components/DragAndDrop';
 import TaskSections      from '../components/TaskSections';
-import CircularLabel     from '../components/CircularLabel';
-import AssignedUserDialog from '../components/AssignedUserDialog';
-import ChangeDateDialog from '../components/ChangeDateDialog';
-
+import CircularLabel        from '../components/CircularLabel';
+import AssignedUserDialog   from '../components/AssignedUserDialog';
+import ChangeDateDialog     from '../components/ChangeDateDialog';
+import VirtualList          from '../components/TaskList/VirtualList';
+import TaskListDnd          from '../components/TaskList/TaskListDnd';
 
 
 
 //Data
 import ganttFakeData     from '../data/generateGanttFakeData'; 
-import {items, labelObj, memberObj, statusObj}  from '../data/taskListData';
+import ALL_DATA from '../data/taskListData';
 
 const store = configureStore();
 
@@ -172,21 +173,24 @@ storiesOf('TaskList', module)
 .addDecorator(story => <Provider store={store}>{story()}</Provider>)
 .add('Basic', ()=> {   
   return (
-      <TaskList heading="Active Tasks" onArchiveClicked={()=>{console.log("Archive has been clicked")}} onNewTaskClicked={()=>{console.log("New Task has been Clicked")}} type="fixed"></TaskList>
+      <TaskList allData={ALL_DATA}></TaskList>
   )
 })
 .add('Custom Section', ()=>{
   return (
-    <TaskList heading="Active Tasks" onArchiveClicked={()=>{console.log("Archive has been clicked")}} onNewTaskClicked={()=>{console.log("New Task has been Clicked")}} type="custom"></TaskList>
+    <TaskList allData={ALL_DATA}></TaskList>
   )
 })
 .add('With Items', ()=>{
- console.log("Items List", items);
   return (
-    <TaskList taskList={items} memberObj={memberObj} statusObj={statusObj} labelObj ={labelObj}></TaskList>
-    // <TaskList heading="Active Tasks" sectionId="1" onArchiveClicked={()=>{console.log("Archive has been clicked")}} onNewTaskClicked={()=>{console.log("New Task has been Clicked")}}></TaskList>
+    <TaskList allData={ALL_DATA}></TaskList>
   )
 })
+.add('With Virtual Items', ()=>{
+   return (
+     <VirtualList allData={ALL_DATA}></VirtualList>
+   )
+ })
 
 .add('With Items Compressed', ()=>{
   return(
@@ -477,6 +481,14 @@ storiesOf('Change Date Dialog')
 .add('Basic', () => {
   return (
     <ChangeDateDialog/>
+  )
+})
+
+storiesOf("Task List Dnd")
+.addDecorator(story => <Provider store={store}>{story()}</Provider>)
+.add('Basic', () => {
+  return (
+    <TaskListDnd taskList={ALL_DATA}/>
   )
 })
 

@@ -31,10 +31,13 @@ import DatePickerElement from '../components/DatePickerElement';
 import ShareDialog       from '../components/ShareDialog';
 import DragAndDrop       from '../components/DragAndDrop';
 import TaskSections      from '../components/TaskSections';
-import CircularLabel     from '../components/CircularLabel';
-import AssignedUserDialog from '../components/AssignedUserDialog';
-import ChangeDateDialog from '../components/ChangeDateDialog';
-import VirtualList       from '../components/TaskList/VirtualList';
+import CircularLabel        from '../components/CircularLabel';
+import AssignedUserDialog   from '../components/AssignedUserDialog';
+import ChangeDateDialog     from '../components/ChangeDateDialog';
+import VirtualList          from '../components/TaskList/VirtualList';
+import TaskListDnd          from '../components/TaskList/TaskListDnd';
+import AllTasks             from '../components/AllTasks';
+import ListHandle           from '../components/AllTasks/ListHandle';
 
 
 
@@ -480,6 +483,29 @@ storiesOf('Change Date Dialog')
 .add('Basic', () => {
   return (
     <ChangeDateDialog/>
+  )
+})
+
+storiesOf("Task List Dnd")
+.addDecorator(story => <Provider store={store}>{story()}</Provider>)
+.add('Basic', () => {
+  return (
+    <TaskListDnd taskList={ALL_DATA}/>
+  )
+})
+
+
+storiesOf("All Tasks")
+.addDecorator(story => <Provider store={store}>{story()}</Provider>)
+.add('Basic', ()=> {
+  return(
+    <AllTasks></AllTasks>
+  )
+})
+
+.add("Key Fucntionality", ()=>{
+  return(
+    <ListHandle></ListHandle>
   )
 })
 

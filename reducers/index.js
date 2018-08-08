@@ -8,6 +8,7 @@ import TagElementReducer     from '../components/TagElement/TagElementReducer';
 import LabelDialogReducer    from '../components/LabelDialog/LabelDialogReducer';
 import DatePickerReducer     from '../components/DatePickerElement/DatePickerReducer';
 import TaskSectionsReducer   from '../components/TaskSections/TaskSectionsReducer';
+import ModelDataReducer      from '../components/ModelData/ModelDataReducer';
 
 
 export default {
@@ -19,6 +20,7 @@ export default {
     TagElementReducer,
     LabelDialogReducer,
     DatePickerReducer,
-    TaskSectionsReducer
+    TaskSectionsReducer,
+    ModelDataReducer
 };
 

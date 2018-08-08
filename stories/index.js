@@ -36,6 +36,8 @@ import AssignedUserDialog   from '../components/AssignedUserDialog';
 import ChangeDateDialog     from '../components/ChangeDateDialog';
 import VirtualList          from '../components/TaskList/VirtualList';
 import TaskListDnd          from '../components/TaskList/TaskListDnd';
+import AllTasks             from '../components/AllTasks';
+import ListHandle           from '../components/AllTasks/ListHandle';
 
 
 
@@ -489,6 +491,21 @@ storiesOf("Task List Dnd")
 .add('Basic', () => {
   return (
     <TaskListDnd taskList={ALL_DATA}/>
+  )
+})
+
+
+storiesOf("All Tasks")
+.addDecorator(story => <Provider store={store}>{story()}</Provider>)
+.add('Basic', ()=> {
+  return(
+    <AllTasks></AllTasks>
+  )
+})
+
+.add("Key Fucntionality", ()=>{
+  return(
+    <ListHandle></ListHandle>
   )
 })
 

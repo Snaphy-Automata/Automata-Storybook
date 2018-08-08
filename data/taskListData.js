@@ -178,7 +178,7 @@ const sections = times(1, index => {
     const sectionObj = {
         id,
         title : faker.name.firstName(),
-        tasks:getTasks(id, 15),
+        tasks:getTasks(id, 500),
         isProtected: true,
     }
 

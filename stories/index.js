@@ -38,6 +38,8 @@ import VirtualList          from '../components/TaskList/VirtualList';
 import TaskListDnd          from '../components/TaskList/TaskListDnd';
 import AllTasks             from '../components/AllTasks';
 import ListHandle           from '../components/AllTasks/ListHandle';
+import ArrowKeyStepperTest  from '../components/AllTasks/ArrowKeyStepperTest';
+import DurationForm         from '../components/DurationForm';
 
 
 
@@ -499,13 +501,28 @@ storiesOf("All Tasks")
 .addDecorator(story => <Provider store={store}>{story()}</Provider>)
 .add('Basic', ()=> {
   return(
-    <AllTasks></AllTasks>
+    <TaskList allDate={ALL_DATA}></TaskList>
+    // <AllTasks></AllTasks>
   )
 })
 
 .add("Key Fucntionality", ()=>{
   return(
     <ListHandle></ListHandle>
+  )
+})
+
+.add("ArrowKeyStepper", ()=>{
+  return(
+    <ArrowKeyStepperTest></ArrowKeyStepperTest>
+  )
+})
+
+storiesOf("Duration Form")
+.addDecorator(story => <Provider store={store}>{story()}</Provider>)
+.add('Basic', ()=>{
+  return(
+    <DurationForm></DurationForm>
   )
 })
 

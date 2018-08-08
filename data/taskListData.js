@@ -172,15 +172,20 @@ const getTasks = (sectionId, limit) => {
     return taskList;
 }
 
+const totalTaskIndex = 0;
+const taskLimit = 100;
 
 const sections = times(2, index => {
     const id = faker.random.uuid();
+    const tasks = getTasks(id, taskLimit)
     const sectionObj = {
         id,
-        title : faker.name.firstName(),
-        tasks:getTasks(id, 20),
+        title: faker.name.firstName(),
+        tasks,
         isProtected: true,
     }
+    
+    
 
     ALL_DATA.section.byId[id] = sectionObj;
     ALL_DATA.section.allIds.push(id);

@@ -159,8 +159,6 @@ const getTasks = (sectionId, limit) => {
             }
         };
 
-        //ALL_DATA.task.byId[taskObj.id] = taskObj;
-        //ALL_DATA.task.allIds.push(taskObj.id);
     
         taskList.push(taskObj);
     });

@@ -167,9 +167,9 @@ const getTasks = (sectionId, limit) => {
 }
 
 const totalTaskIndex = 0;
-const taskLimit = 300;
+const taskLimit = 50;
 
-const sections = times(40, index => {
+const sections = times(3, index => {
     const id = faker.random.uuid();
     const tasks = getTasks(id, taskLimit)
     const sectionObj = {

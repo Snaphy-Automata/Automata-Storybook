@@ -34,8 +34,6 @@ import TaskSections      from '../components/TaskSections';
 import CircularLabel        from '../components/CircularLabel';
 import AssignedUserDialog   from '../components/AssignedUserDialog';
 import ChangeDateDialog     from '../components/ChangeDateDialog';
-import VirtualList          from '../components/TaskList/VirtualList';
-import TaskListDnd          from '../components/TaskList/TaskListDnd';
 import AllTasks             from '../components/AllTasks';
 import ListHandle           from '../components/AllTasks/ListHandle';
 
@@ -188,12 +186,6 @@ storiesOf('TaskList', module)
     <TaskList allData={ALL_DATA}></TaskList>
   )
 })
-.add('With Virtual Items', ()=>{
-   return (
-     <VirtualList allData={ALL_DATA}></VirtualList>
-   )
- })
-
 .add('With Items Compressed', ()=>{
   return(
     <div style={{width:'772px'}}>

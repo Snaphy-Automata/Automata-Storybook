@@ -19,7 +19,7 @@ import Description       from '../components/Description';
 import CustomCheckbox    from '../components/CustomCheckbox';
 import SubTask           from '../components/TaskDetail/SubTask';
 import TaskAttachment    from '../components/TaskDetail/TaskAttachment';
-import InputElement      from '../components/InputElement';
+import InputElement      from '../components/ReduxForm/InputElement';
 import TaskItem          from '../components/TaskList/TaskItem';
 import SelectLabel       from '../components/SelectLabel';
 import TagContainer      from '../components/TagContainer';
@@ -29,7 +29,6 @@ import ShareDialog       from '../components/ShareDialog';
 import CircularLabel        from '../components/CircularLabel';
 import AssignedUserDialog   from '../components/AssignedUserDialog';
 import ChangeDateDialog     from '../components/ChangeDateDialog';
-import VirtualList          from '../components/TaskList/VirtualList';
 import AllTasks             from '../components/AllTasks';
 //import DurationForm         from '../components/DurationForm';
 
@@ -182,12 +181,6 @@ storiesOf('TaskList', module)
     <TaskList allData={ALL_DATA}></TaskList>
   )
 })
-.add('With Virtual Items', ()=>{
-   return (
-     <VirtualList allData={ALL_DATA}></VirtualList>
-   )
- })
-
 .add('With Items Compressed', ()=>{
   return(
     <div style={{width:'772px'}}>

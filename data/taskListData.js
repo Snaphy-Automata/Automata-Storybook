@@ -55,12 +55,7 @@ const ALL_DATA = {
         },
         allIds:["completed", "in_progress", "pending"]
     },
-    section:{
-        byId:{
-
-        },
-        allIds:[]
-    },
+    //Will store all sections and its task ...
     task:{
         byId:{
 
@@ -154,6 +149,7 @@ const getTasks = (sectionId, limit) => {
             durationInMs: 20000,
             durationInText: "2h",
             sectionId,
+            type: 'task',
             stats:{
                 subtask:subtaskObj,
                 attachment:attachmentObj,
@@ -163,8 +159,6 @@ const getTasks = (sectionId, limit) => {
             }
         };
 
-        ALL_DATA.task.byId[taskObj.id] = taskObj;
-        ALL_DATA.task.allIds.push(taskObj.id);
     
         taskList.push(taskObj);
     });
@@ -173,22 +167,30 @@ const getTasks = (sectionId, limit) => {
 }
 
 const totalTaskIndex = 0;
-const taskLimit = 3;
+const taskLimit = 50;
 
-const sections = times(5, index => {
+const sections = times(3, index => {
     const id = faker.random.uuid();
     const tasks = getTasks(id, taskLimit)
     const sectionObj = {
         id,
         title: faker.name.firstName(),
-        tasks,
         isProtected: true,
+        type: "section"
     }
     
     
+    //Add Section..
+    ALL_DATA.task.byId[id] = sectionObj;
+    ALL_DATA.task.allIds.push(id);
 
-    ALL_DATA.section.byId[id] = sectionObj;
-    ALL_DATA.section.allIds.push(id);
+    //Add Task..
+    if(tasks && tasks.length){
+        tasks.forEach(task => {
+            ALL_DATA.task.byId[task.id] = task;
+            ALL_DATA.task.allIds.push(task.id);
+        });
+    }
 });
 
 

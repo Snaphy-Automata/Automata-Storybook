@@ -20,26 +20,18 @@ import CustomCheckbox    from '../components/CustomCheckbox';
 import SubTask           from '../components/TaskDetail/SubTask';
 import TaskAttachment    from '../components/TaskDetail/TaskAttachment';
 import InputElement      from '../components/InputElement';
-import TagElement        from '../components/TagElement';
 import TaskItem          from '../components/TaskList/TaskItem';
 import SelectLabel       from '../components/SelectLabel';
 import TagContainer      from '../components/TagContainer';
 import OverFlowLabel     from '../components/OverFlowLabel';
 import LabelDialog       from '../components/LabelDialog';
-import InputWithIcon     from '../components/DatePickerElement/InputWithIcon';
-import DatePickerElement from '../components/DatePickerElement';
 import ShareDialog       from '../components/ShareDialog';
-import DragAndDrop       from '../components/DragAndDrop';
-import TaskSections      from '../components/TaskSections';
 import CircularLabel        from '../components/CircularLabel';
 import AssignedUserDialog   from '../components/AssignedUserDialog';
 import ChangeDateDialog     from '../components/ChangeDateDialog';
 import VirtualList          from '../components/TaskList/VirtualList';
-import TaskListDnd          from '../components/TaskList/TaskListDnd';
 import AllTasks             from '../components/AllTasks';
-import ListHandle           from '../components/AllTasks/ListHandle';
-import ArrowKeyStepperTest  from '../components/AllTasks/ArrowKeyStepperTest';
-import DurationForm         from '../components/DurationForm';
+//import DurationForm         from '../components/DurationForm';
 
 
 
@@ -290,16 +282,6 @@ storiesOf("Input Element", module)
   )
 })
 
-storiesOf("Tag Element", module)
-.addDecorator(story => <Provider store={store}>{story()}</Provider>)
-.add('Basic', ()=>{
-  return (
-    <div style={{paddingLeft:"10px", paddingRight:"10px"}}>
-      <TagElement></TagElement>
-    </div>
-   
-  )
-})
 
 storiesOf("Task Item", module)
 .addDecorator(story => <Provider store={store}>{story()}</Provider>)
@@ -400,23 +382,6 @@ storiesOf("Label Dialog", module)
   )
 })
 
-storiesOf("date picker", module)
-.addDecorator(story => <Provider store={store}>{story()}</Provider>)
-.add("Basic", ()=>{
-  return (
-    <InputWithIcon/>
-  )
-})
-
-.add("With Date Picker", ()=> {
-  return (
-    <div style={{padding:20, textAlign:'center'}}>
-      <DatePickerElement/>
-    </div>
-  
-  )
-})
-
 
 storiesOf("Share Dialog", module)
 .addDecorator(story => <Provider store={store}>{story()}</Provider>)
@@ -426,19 +391,6 @@ storiesOf("Share Dialog", module)
   )
 })
 
-storiesOf("Drag And Drop", module)
-.addDecorator(story => <Provider store={store}>{story()}</Provider>)
-.add('Basic', ()=>{
-  return (
-    <DragAndDrop/>
-  )
-})
-.add('With Sections', ()=> {
-  return(
-    <div>Implement With Sections</div>
-    // <TaskSections/>
-  )
-})
 
 storiesOf('Circular Label', module)
 .addDecorator(story => <Provider store={store}>{story()}</Provider>)
@@ -488,35 +440,17 @@ storiesOf('Change Date Dialog')
   )
 })
 
-storiesOf("Task List Dnd")
-.addDecorator(story => <Provider store={store}>{story()}</Provider>)
-.add('Basic', () => {
-  return (
-    <TaskListDnd taskList={ALL_DATA}/>
-  )
-})
 
 
 storiesOf("All Tasks")
 .addDecorator(story => <Provider store={store}>{story()}</Provider>)
 .add('Basic', ()=> {
   return(
-    <TaskList allDate={ALL_DATA}></TaskList>
-    // <AllTasks></AllTasks>
+    // <TaskList allDate={ALL_DATA}></TaskList>
+     <AllTasks></AllTasks>
   )
 })
 
-.add("Key Fucntionality", ()=>{
-  return(
-    <ListHandle></ListHandle>
-  )
-})
-
-.add("ArrowKeyStepper", ()=>{
-  return(
-    <ArrowKeyStepperTest></ArrowKeyStepperTest>
-  )
-})
 
 storiesOf("Duration Form")
 .addDecorator(story => <Provider store={store}>{story()}</Provider>)

@@ -1,8 +1,7 @@
-import React from '../../../../../Library/Caches/typescript/2.9/node_modules/@types/react';
+import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { Provider } from '../../../../../Library/Caches/typescript/2.9/node_modules/@types/react-redux';
-import moment from "moment";
+import { Provider } from 'react-redux';
 
 import 'semantic-ui-css/semantic.min.css';
 

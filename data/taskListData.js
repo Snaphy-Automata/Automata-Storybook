@@ -1,6 +1,6 @@
 import faker from 'faker'
 import moment from 'moment'
-import times from "lodash/times";
+import times from "times";
 
 
 function getRandomInt(min, max) {

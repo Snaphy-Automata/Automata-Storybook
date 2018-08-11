@@ -42,27 +42,6 @@ const store = configureStore();
 
 
 
-const optionList = [
-  {key : "Nikita Mittal", text:"Nikita Mittal", value: "Nikita Mittal"},
-  {key : "Mitsu Nohara", text: "Mitsu Nohara", value : "Mitsu Nohara"},
-  {key : "Sakura", text: "Sakura", value: "Sakura"}
-]
-
-
-const totalLabelItemList = [
-  {name: "Issue", isSelected: false, color:"#d55fe0"},
-  {name: "Bug", isSelected: true, color : "#ff9b00"},
-  {name: "Name", isSelected: false, color : "#00c5e4"}
-]
-
-const totalUserItemList = [
-  {name: "Mitsu Nohara", isSelected: false},
-  {name: "Sakura", isSelected: true},
-  {name: "Nora Irie", isSelected: false}
-]
-
-//const selectedOptionList = 
-
 
 
 
@@ -171,21 +150,9 @@ storiesOf('TaskList', module)
       <TaskList allData={ALL_DATA}></TaskList>
   )
 })
-.add('Custom Section', ()=>{
-  return (
-    <TaskList allData={ALL_DATA}></TaskList>
-  )
-})
 .add('With Items', ()=>{
   return (
     <TaskList allData={ALL_DATA}></TaskList>
-  )
-})
-.add('With Items Compressed', ()=>{
-  return(
-    <div style={{width:'772px'}}>
-      <TaskList heading="Active Tasks" sectionId="1" onArchiveClicked={()=>{console.log("Archive has been clicked")}} onNewTaskClicked={()=>{console.log("New Task has been Clicked")}}></TaskList>
-    </div>
   )
 })
 
